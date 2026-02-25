@@ -1,5 +1,19 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+function Logo() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 3L14 25L26 3H20.5L14 17L7.5 3H2Z" fill="#4F8EF7" />
+      </svg>
+      <span style={{ fontSize: 20, fontWeight: 700, color: '#F5F5F5', letterSpacing: '-0.5px', fontFamily: 'Inter, sans-serif' }}>
+        virdar
+      </span>
+    </div>
+  )
+}
+
 // ─── Fade-in hook using Intersection Observer ────────────────────────────────
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null)
@@ -58,39 +72,50 @@ function Nav() {
           height: 64,
         }}
       >
-        {/* Wordmark */}
-        <span
-          style={{
-            fontSize: 22,
-            fontWeight: 700,
-            color: '#F5F5F5',
-            letterSpacing: '-0.5px',
-          }}
-        >
-          virdar
-        </span>
-
-        {/* CTA */}
-        <a href="#contact">
-          <button
-            style={{
-              backgroundColor: '#4F8EF7',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 8,
-              padding: '10px 20px',
-              fontSize: 14,
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif',
-              transition: 'background-color 0.2s ease',
-            }}
-            onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#3a78e8')}
-            onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7')}
-          >
-            Book a Call →
-          </button>
+        {/* Logo */}
+        <a href="#hero" style={{ textDecoration: 'none' }}>
+          <Logo />
         </a>
+
+        {/* Nav links + CTA */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+          <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+            {(['Services', 'How It Works', 'Pricing'] as const).map((label) => {
+              const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  style={{ fontSize: 14, color: '#888888', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 500 }}
+                  onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#F5F5F5')}
+                  onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
+                >
+                  {label}
+                </a>
+              )
+            })}
+          </div>
+          <a href="#contact">
+            <button
+              style={{
+                backgroundColor: '#4F8EF7',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 8,
+                padding: '10px 20px',
+                fontSize: 14,
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif',
+                transition: 'background-color 0.2s ease',
+              }}
+              onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#3a78e8')}
+              onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7')}
+            >
+              Book a Call →
+            </button>
+          </a>
+        </div>
       </div>
     </nav>
   )
@@ -127,6 +152,28 @@ function Hero() {
       />
 
       <div style={{ maxWidth: 780, position: 'relative' }}>
+        {/* Badge */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              border: '1px solid rgba(79,142,247,0.35)',
+              borderRadius: 999,
+              padding: '6px 14px',
+              fontSize: 13,
+              fontWeight: 500,
+              color: '#4F8EF7',
+              backgroundColor: 'rgba(79,142,247,0.08)',
+              letterSpacing: '0.2px',
+            }}
+          >
+            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', backgroundColor: '#4F8EF7' }} />
+            AI Automation Agency · Dallas, TX
+          </span>
+        </div>
+
         <h1
           style={{
             fontSize: 'clamp(36px, 6vw, 72px)',
@@ -185,9 +232,9 @@ function Hero() {
           </button>
         </a>
 
-        {/* Social proof */}
+        {/* Location / availability note */}
         <p style={{ marginTop: 48, fontSize: 13, color: '#555555', letterSpacing: '0.5px' }}>
-          Trusted by local businesses across Dallas, TX
+          Based in Dallas, TX · Currently accepting new clients
         </p>
       </div>
     </section>
@@ -244,6 +291,7 @@ function Problem() {
 
 // ─── Services ─────────────────────────────────────────────────────────────────
 interface ServiceCardProps {
+  icon: string
   name: string
   price: string
   description: string
@@ -253,7 +301,7 @@ interface ServiceCardProps {
   delay?: string
 }
 
-function ServiceCard({ name, price, description, bullets, bestFor, cta, delay }: ServiceCardProps) {
+function ServiceCard({ icon, name, price, description, bullets, bestFor, cta, delay }: ServiceCardProps) {
   const [hovered, setHovered] = useState(false)
   const ref = useFadeIn()
 
@@ -276,16 +324,26 @@ function ServiceCard({ name, price, description, bullets, bestFor, cta, delay }:
       }}
     >
       <div>
+        <div
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 10,
+            backgroundColor: 'rgba(79,142,247,0.1)',
+            border: '1px solid rgba(79,142,247,0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 22,
+            marginBottom: 16,
+          }}
+        >
+          {icon}
+        </div>
         <h3 style={{ fontSize: 20, fontWeight: 700, color: '#F5F5F5', marginBottom: 6 }}>
           {name}
         </h3>
-        <span
-          style={{
-            fontSize: 15,
-            fontWeight: 600,
-            color: '#4F8EF7',
-          }}
-        >
+        <span style={{ fontSize: 15, fontWeight: 600, color: '#4F8EF7' }}>
           {price}
         </span>
       </div>
@@ -344,6 +402,7 @@ function Services() {
 
   const services: ServiceCardProps[] = [
     {
+      icon: '⭐',
       name: 'Review Response System',
       price: '$500 one-time',
       description:
@@ -358,6 +417,7 @@ function Services() {
       delay: 'fade-delay-1',
     },
     {
+      icon: '📲',
       name: 'Missed Call Text-Back',
       price: '$750 one-time',
       description:
@@ -373,6 +433,7 @@ function Services() {
       delay: 'fade-delay-2',
     },
     {
+      icon: '👋',
       name: 'New Customer / Patient Welcome Flow',
       price: '$600 one-time',
       description:
@@ -387,6 +448,7 @@ function Services() {
       delay: 'fade-delay-3',
     },
     {
+      icon: '⚡',
       name: 'Custom Automation (Ask Us)',
       price: 'Starting at $500 — scoped per project',
       description: "Have a specific repetitive task eating your time? We'll build the system to handle it.",
@@ -1011,7 +1073,10 @@ function Footer() {
           gap: 12,
         }}
       >
-        <span style={{ fontSize: 15, fontWeight: 700, color: '#555555' }}>virdar.co</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <Logo />
+          <span style={{ fontSize: 13, color: '#333333' }}>© {new Date().getFullYear()} Virdar. All rights reserved.</span>
+        </div>
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <a
             href="#contact"
