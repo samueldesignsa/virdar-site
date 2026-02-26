@@ -1039,10 +1039,10 @@ function Contact() {
       if (res.ok) {
         setSubmitted(true)
       } else {
-        alert('Something went wrong. Please email us at hello@virdar.co')
+        alert('Something went wrong. Please email us at info@virdar.co')
       }
     } catch {
-      alert('Something went wrong. Please email us at hello@virdar.co')
+      alert('Something went wrong. Please email us at info@virdar.co')
     } finally {
       setLoading(false)
     }
@@ -1109,8 +1109,8 @@ function Contact() {
             </p>
             <p style={{ fontSize: 15, color: '#888888' }}>
               You can also email us directly at{' '}
-              <a href="mailto:hello@virdar.co" style={{ color: '#4F8EF7' }}>
-                hello@virdar.co
+              <a href="mailto:info@virdar.co" style={{ color: '#4F8EF7' }}>
+                info@virdar.co
               </a>
             </p>
           </div>
@@ -1313,12 +1313,12 @@ function Footer() {
             Contact
           </a>
           <a
-            href="mailto:hello@virdar.co"
+            href="mailto:info@virdar.co"
             style={{ fontSize: 14, color: '#555555', textDecoration: 'none', transition: 'color 0.2s' }}
             onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
             onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#555555')}
           >
-            hello@virdar.co
+            info@virdar.co
           </a>
         </div>
       </div>
