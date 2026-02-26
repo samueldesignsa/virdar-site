@@ -80,7 +80,7 @@ function Nav() {
         {/* Nav links + CTA */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
           <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-            {(['Services', 'How It Works', 'Pricing'] as const).map((label) => {
+            {(['Flagship', 'Services', 'How It Works', 'Pricing'] as const).map((label) => {
               const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
               return (
                 <a
@@ -198,9 +198,7 @@ function Hero() {
             margin: '0 auto 40px',
           }}
         >
-          Virdar builds AI automations for local businesses — custom-built systems that reply
-          to customers, follow up on missed calls, and handle repetitive tasks automatically.
-          One-time fee. Done in a week.
+          Virdar builds AI systems for local businesses — from a $500 review response setup to a $5,000 guest intelligence engine that knows every customer by name. One-time fee. Done for you. Running forever.
         </p>
 
         <a href="#contact">
@@ -284,6 +282,223 @@ function Problem() {
           the systems that do it for you — automatically, while you focus on what you're
           actually good at.
         </p>
+      </div>
+    </section>
+  )
+}
+
+// ─── Flagship Systems ─────────────────────────────────────────────────────────
+interface FlagshipCardProps {
+  icon: string
+  name: string
+  headline: string
+  body: string
+  stats: string
+  price: string
+  delay?: string
+}
+
+function FlagshipCard({ icon, name, headline, body, stats, price, delay }: FlagshipCardProps) {
+  const [hovered, setHovered] = useState(false)
+  const ref = useFadeIn()
+
+  return (
+    <div
+      ref={ref}
+      className={`fade-in ${delay || ''}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: '#111111',
+        border: hovered ? '1px solid rgba(79,142,247,0.5)' : '1px solid #1E1E1E',
+        borderRadius: 14,
+        padding: '32px 28px',
+        transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
+        boxShadow: hovered ? '0 0 24px rgba(79,142,247,0.12)' : 'none',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        position: 'relative',
+      }}
+    >
+      {/* FLAGSHIP BUILD badge */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          border: '1px solid #4F8EF7',
+          borderRadius: 999,
+          padding: '3px 10px',
+          fontSize: 10,
+          fontWeight: 700,
+          color: '#4F8EF7',
+          backgroundColor: 'rgba(79,142,247,0.08)',
+          letterSpacing: '0.5px',
+        }}
+      >
+        FLAGSHIP BUILD
+      </div>
+
+      {/* Icon */}
+      <div
+        style={{
+          width: 44,
+          height: 44,
+          borderRadius: 10,
+          backgroundColor: 'rgba(79,142,247,0.1)',
+          border: '1px solid rgba(79,142,247,0.2)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 22,
+        }}
+      >
+        {icon}
+      </div>
+
+      {/* Name */}
+      <h3 style={{ fontSize: 13, fontWeight: 600, color: '#888888', textTransform: 'uppercase', letterSpacing: '0.5px', margin: 0 }}>
+        {name}
+      </h3>
+
+      {/* Headline */}
+      <p style={{ fontSize: 20, fontWeight: 700, color: '#F5F5F5', margin: 0, lineHeight: 1.3 }}>
+        {headline}
+      </p>
+
+      {/* Body */}
+      <p style={{ fontSize: 15, lineHeight: 1.7, color: '#888888', margin: 0 }}>
+        {body}
+      </p>
+
+      {/* Stats */}
+      <p style={{ fontSize: 13, color: '#555555', margin: 0, fontStyle: 'italic' }}>
+        {stats}
+      </p>
+
+      {/* Price */}
+      <p style={{ fontSize: 22, fontWeight: 800, color: '#4F8EF7', margin: 0, letterSpacing: '-0.5px' }}>
+        {price}
+      </p>
+    </div>
+  )
+}
+
+function FlagshipSystems() {
+  const titleRef = useFadeIn()
+
+  const flagshipCards: FlagshipCardProps[] = [
+    {
+      icon: '📞',
+      name: 'AI Voice Receptionist',
+      headline: 'Your phone never goes unanswered again.',
+      body: "An AI agent answers every inbound call — in your business's name, in your voice — around the clock. Takes reservations. Answers FAQs. Handles catering inquiries. Sends call transcripts to your phone. Your competitor just picked up at 10pm. Did you?",
+      stats: 'Handles 200+ calls/month · Zero missed calls · Setup in 3 weeks',
+      price: 'From $4,000',
+      delay: 'fade-delay-1',
+    },
+    {
+      icon: '🧠',
+      name: 'Guest Intelligence & Loyalty System',
+      headline: "You have 3,000 customers. You're ignoring 2,400 of them.",
+      body: "We build a layer of intelligence on top of your POS data that tracks every guest: visit frequency, spend, favorite items, time since last visit. Drifting customers get an automated personalized reach-out. Your top 10% get recognized. Birthdays get remembered. Runs without you lifting a finger.",
+      stats: 'Win-back rate 15–25% · ROI in the first month · Integrates with Toast & Square',
+      price: 'From $5,500',
+      delay: 'fade-delay-2',
+    },
+    {
+      icon: '📱',
+      name: 'Autonomous Social Media Manager',
+      headline: 'The last time you posted was 3 weeks ago.',
+      body: "We build a pipeline that generates content, writes captions, and posts for you — across Instagram, Facebook, and Google Business. When you have a special, you text us. Everything else runs on its own. Comments get replied to. DMs get answered. You stay visible without touching your phone.",
+      stats: 'Posts daily · Responds to comments & DMs · Monthly performance report',
+      price: 'From $4,500',
+      delay: 'fade-delay-3',
+    },
+    {
+      icon: '⭐',
+      name: 'Reputation Intelligence System',
+      headline: "Your reputation is your most valuable asset. Most owners don't watch it.",
+      body: "Every review across Google, Yelp, TripAdvisor, and DoorDash — aggregated, responded to, and analyzed. Negative reviews flagged before they go live. Every Monday: your rating trend, competitor comparison, and what customers are actually saying. Always on top of it. Zero minutes spent.",
+      stats: 'Covers 4+ platforms · Competitor benchmarking · Weekly intelligence digest',
+      price: 'From $2,000',
+      delay: 'fade-delay-4',
+    },
+  ]
+
+  return (
+    <section
+      id="flagship"
+      style={{
+        padding: '100px 24px',
+        borderTop: '1px solid #1E1E1E',
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <div ref={titleRef} className="fade-in" style={{ marginBottom: 56, textAlign: 'center' }}>
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 42px)',
+              fontWeight: 700,
+              color: '#F5F5F5',
+              letterSpacing: '-0.5px',
+              marginBottom: 16,
+            }}
+          >
+            What we're really building
+          </h2>
+          <p style={{ fontSize: 17, color: '#888888', maxWidth: 640, margin: '0 auto', lineHeight: 1.7 }}>
+            Not automations. Infrastructure. Custom-built for your operation, running 24/7 in the background.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 24,
+          }}
+        >
+          {flagshipCards.map((c) => (
+            <FlagshipCard key={c.name} {...c} />
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div style={{ textAlign: 'center', marginTop: 56 }}>
+          <a href="#contact">
+            <button
+              style={{
+                backgroundColor: '#4F8EF7',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 10,
+                padding: '16px 36px',
+                fontSize: 17,
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif',
+                transition: 'background-color 0.2s ease, transform 0.15s ease',
+              }}
+              onMouseEnter={(e) => {
+                const el = e.target as HTMLButtonElement
+                el.style.backgroundColor = '#3a78e8'
+                el.style.transform = 'translateY(-1px)'
+              }}
+              onMouseLeave={(e) => {
+                const el = e.target as HTMLButtonElement
+                el.style.backgroundColor = '#4F8EF7'
+                el.style.transform = 'translateY(0)'
+              }}
+            >
+              See what we'd build for your business →
+            </button>
+          </a>
+          <p style={{ marginTop: 16, fontSize: 14, color: '#555555' }}>
+            Not ready for a flagship build? Our quick-win automations start at $500.
+          </p>
+        </div>
       </div>
     </section>
   )
@@ -482,8 +697,11 @@ function Services() {
               letterSpacing: '-0.5px',
             }}
           >
-            What we build
+            Quick wins — up and running in 5 days
           </h2>
+          <p style={{ fontSize: 17, color: '#888888', marginTop: 12 }}>
+            These are the fastest ways to see results. Most clients start here and add more systems over time.
+          </p>
         </div>
 
         <div
@@ -757,6 +975,14 @@ function FAQ() {
     {
       q: 'What kinds of businesses do you work with?',
       a: "Restaurants, dental and medical offices, salons, contractors, retail — any local business with customers. If you're doing something manually that happens more than 10 times a week, we can probably automate it.",
+    },
+    {
+      q: "What's the most complex thing you've built for a restaurant?",
+      a: "A full guest intelligence system: integrated with their POS, tracking thousands of guests across visit frequency, spend, and behavior. Automated birthday messages, lapsed-guest win-backs, and VIP recognition — all running without any staff involvement. If you want to see what that looks like, book a call and we'll walk you through it.",
+    },
+    {
+      q: 'Do you work with businesses outside of restaurants?',
+      a: 'Yes — dental and medical offices, salons, contractors, retail. The problems are usually the same: missed calls, unanswered reviews, inconsistent follow-up. The systems just get trained differently.',
     },
   ]
 
@@ -1108,6 +1334,7 @@ export default function App() {
       <main>
         <Hero />
         <Problem />
+        <FlagshipSystems />
         <Services />
         <HowItWorks />
         <PricingClarity />
