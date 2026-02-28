@@ -1,4 +1,21 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+
+// ─── Responsive hook ─────────────────────────────────────────────────────────
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    setIsMobile(mq.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [breakpoint])
+
+  return isMobile
+}
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
 function Logo() {
@@ -40,6 +57,8 @@ function useFadeIn() {
 // ─── Nav ─────────────────────────────────────────────────────────────────────
 function Nav() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -47,82 +66,197 @@ function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  const navLinks = useMemo(() => (['Flagship', 'Services', 'How It Works', 'Pricing'] as const), [])
+
   return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        backgroundColor: scrolled ? 'rgba(13,13,13,0.95)' : 'transparent',
-        borderBottom: scrolled ? '1px solid #1E1E1E' : '1px solid transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        transition: 'all 0.3s ease',
-        padding: '0 24px',
-      }}
-    >
-      <div
+    <>
+      <nav
         style={{
-          maxWidth: 1100,
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: 64,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          backgroundColor: scrolled || menuOpen ? 'rgba(13,13,13,0.95)' : 'transparent',
+          borderBottom: scrolled || menuOpen ? '1px solid #1E1E1E' : '1px solid transparent',
+          backdropFilter: scrolled || menuOpen ? 'blur(12px)' : 'none',
+          transition: 'all 0.3s ease',
+          padding: '0 24px',
         }}
       >
-        {/* Logo */}
-        <a href="#hero" style={{ textDecoration: 'none' }}>
-          <Logo />
-        </a>
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: 64,
+          }}
+        >
+          {/* Logo */}
+          <a href="#hero" style={{ textDecoration: 'none' }}>
+            <Logo />
+          </a>
 
-        {/* Nav links + CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-          <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-            {(['Flagship', 'Services', 'How It Works', 'Pricing'] as const).map((label) => {
-              const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
-              return (
-                <a
-                  key={label}
-                  href={href}
-                  style={{ fontSize: 14, color: '#888888', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 500 }}
-                  onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#F5F5F5')}
-                  onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
+          {/* Desktop nav */}
+          {!isMobile && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+              <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+                {navLinks.map((label) => {
+                  const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
+                  return (
+                    <a
+                      key={label}
+                      href={href}
+                      style={{ fontSize: 14, color: '#888888', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 500 }}
+                      onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#F5F5F5')}
+                      onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
+                    >
+                      {label}
+                    </a>
+                  )
+                })}
+              </div>
+              <a href="#contact">
+                <button
+                  style={{
+                    backgroundColor: '#4F8EF7',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: 8,
+                    padding: '10px 20px',
+                    fontSize: 14,
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    fontFamily: 'Inter, sans-serif',
+                    transition: 'background-color 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#3a78e8')}
+                  onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7')}
                 >
-                  {label}
-                </a>
-              )
-            })}
-          </div>
-          <a href="#contact">
+                  Book a Call →
+                </button>
+              </a>
+            </div>
+          )}
+
+          {/* Mobile hamburger */}
+          {isMobile && (
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: menuOpen ? 0 : 5,
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 40,
+                height: 40,
+              }}
+            >
+              <span style={{
+                display: 'block', width: 22, height: 2, backgroundColor: '#F5F5F5', borderRadius: 1,
+                transition: 'transform 0.3s ease, opacity 0.3s ease',
+                transform: menuOpen ? 'rotate(45deg) translateY(0px)' : 'none',
+              }} />
+              <span style={{
+                display: 'block', width: 22, height: 2, backgroundColor: '#F5F5F5', borderRadius: 1,
+                transition: 'opacity 0.3s ease',
+                opacity: menuOpen ? 0 : 1,
+              }} />
+              <span style={{
+                display: 'block', width: 22, height: 2, backgroundColor: '#F5F5F5', borderRadius: 1,
+                transition: 'transform 0.3s ease, opacity 0.3s ease',
+                transform: menuOpen ? 'rotate(-45deg) translateY(0px)' : 'none',
+                marginTop: menuOpen ? -2 : 0,
+              }} />
+            </button>
+          )}
+        </div>
+      </nav>
+
+      {/* Mobile menu overlay — rendered outside nav to avoid backdropFilter containing block issue */}
+      {isMobile && menuOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 64,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 99,
+            backgroundColor: '#0D0D0D',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 32,
+            padding: 24,
+          }}
+        >
+          {navLinks.map((label) => {
+            const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
+            return (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontSize: 22,
+                  color: '#F5F5F5',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  letterSpacing: '-0.3px',
+                }}
+              >
+                {label}
+              </a>
+            )
+          })}
+          <a href="#contact" onClick={() => setMenuOpen(false)}>
             <button
               style={{
                 backgroundColor: '#4F8EF7',
                 color: '#fff',
                 border: 'none',
-                borderRadius: 8,
-                padding: '10px 20px',
-                fontSize: 14,
+                borderRadius: 10,
+                padding: '14px 32px',
+                fontSize: 17,
                 fontWeight: 600,
                 cursor: 'pointer',
                 fontFamily: 'Inter, sans-serif',
-                transition: 'background-color 0.2s ease',
+                marginTop: 8,
               }}
-              onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#3a78e8')}
-              onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7')}
             >
               Book a Call →
             </button>
           </a>
         </div>
-      </div>
-    </nav>
+      )}
+    </>
   )
 }
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
+  const isMobile = useIsMobile()
+
   return (
     <section
       id="hero"
@@ -133,7 +267,7 @@ function Hero() {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        padding: '120px 24px 80px',
+        padding: isMobile ? '100px 20px 60px' : '120px 24px 80px',
         position: 'relative',
       }}
     >
@@ -242,12 +376,13 @@ function Hero() {
 // ─── Problem ──────────────────────────────────────────────────────────────────
 function Problem() {
   const ref = useFadeIn()
+  const isMobile = useIsMobile()
 
   return (
     <section
       id="problem"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
       }}
     >
@@ -387,6 +522,7 @@ function FlagshipCard({ icon, name, headline, body, stats, price, delay }: Flags
 
 function FlagshipSystems() {
   const titleRef = useFadeIn()
+  const isMobile = useIsMobile()
 
   const flagshipCards: FlagshipCardProps[] = [
     {
@@ -431,12 +567,12 @@ function FlagshipSystems() {
     <section
       id="flagship"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
       }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div ref={titleRef} className="fade-in" style={{ marginBottom: 56, textAlign: 'center' }}>
+        <div ref={titleRef} className="fade-in" style={{ marginBottom: isMobile ? 36 : 56, textAlign: 'center' }}>
           <h2
             style={{
               fontSize: 'clamp(26px, 4vw, 42px)',
@@ -448,7 +584,7 @@ function FlagshipSystems() {
           >
             What we're really building
           </h2>
-          <p style={{ fontSize: 17, color: '#888888', maxWidth: 640, margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ fontSize: isMobile ? 15 : 17, color: '#888888', maxWidth: 640, margin: '0 auto', lineHeight: 1.7 }}>
             Not automations. Infrastructure. Custom-built for your operation, running 24/7 in the background.
           </p>
         </div>
@@ -456,8 +592,8 @@ function FlagshipSystems() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 24,
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: isMobile ? 20 : 24,
           }}
         >
           {flagshipCards.map((c) => (
@@ -614,6 +750,7 @@ function ServiceCard({ icon, name, price, description, bullets, bestFor, cta, de
 
 function Services() {
   const titleRef = useFadeIn()
+  const isMobile = useIsMobile()
 
   const services: ServiceCardProps[] = [
     {
@@ -683,12 +820,12 @@ function Services() {
     <section
       id="services"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
       }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div ref={titleRef} className="fade-in" style={{ marginBottom: 56, textAlign: 'center' }}>
+        <div ref={titleRef} className="fade-in" style={{ marginBottom: isMobile ? 36 : 56, textAlign: 'center' }}>
           <h2
             style={{
               fontSize: 'clamp(26px, 4vw, 42px)',
@@ -699,7 +836,7 @@ function Services() {
           >
             Quick wins — up and running in 5 days
           </h2>
-          <p style={{ fontSize: 17, color: '#888888', marginTop: 12 }}>
+          <p style={{ fontSize: isMobile ? 15 : 17, color: '#888888', marginTop: 12 }}>
             These are the fastest ways to see results. Most clients start here and add more systems over time.
           </p>
         </div>
@@ -707,8 +844,8 @@ function Services() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 24,
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: isMobile ? 20 : 24,
           }}
         >
           {services.map((s) => (
@@ -765,6 +902,7 @@ function Step({ num, title, desc, delayClass }: StepProps) {
 
 function HowItWorks() {
   const titleRef = useFadeIn()
+  const isMobile = useIsMobile()
 
   const steps: StepProps[] = [
     {
@@ -797,13 +935,13 @@ function HowItWorks() {
     <section
       id="how-it-works"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
         backgroundColor: '#0a0a0a',
       }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div ref={titleRef} className="fade-in" style={{ textAlign: 'center', marginBottom: 64 }}>
+        <div ref={titleRef} className="fade-in" style={{ textAlign: 'center', marginBottom: isMobile ? 40 : 64 }}>
           <h2
             style={{
               fontSize: 'clamp(26px, 4vw, 42px)',
@@ -819,8 +957,8 @@ function HowItWorks() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: 32,
+            gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: isMobile ? 24 : 32,
           }}
         >
           {steps.map((step) => (
@@ -835,12 +973,13 @@ function HowItWorks() {
 // ─── Pricing Clarity ──────────────────────────────────────────────────────────
 function PricingClarity() {
   const ref = useFadeIn()
+  const isMobile = useIsMobile()
 
   return (
     <section
       id="pricing"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
       }}
     >
@@ -954,6 +1093,7 @@ function FAQItem({ q, a }: FAQItemProps) {
 
 function FAQ() {
   const ref = useFadeIn()
+  const isMobile = useIsMobile()
 
   const faqs: FAQItemProps[] = [
     {
@@ -990,7 +1130,7 @@ function FAQ() {
     <section
       id="faq"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
         backgroundColor: '#0a0a0a',
       }}
@@ -1021,6 +1161,7 @@ function FAQ() {
 // ─── Contact Form ──────────────────────────────────────────────────────────────
 function Contact() {
   const ref = useFadeIn()
+  const isMobile = useIsMobile()
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -1066,7 +1207,7 @@ function Contact() {
     <section
       id="contact"
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
       }}
     >
@@ -1219,11 +1360,12 @@ function Contact() {
 // ─── Footer CTA ───────────────────────────────────────────────────────────────
 function FooterCTA() {
   const ref = useFadeIn()
+  const isMobile = useIsMobile()
 
   return (
     <section
       style={{
-        padding: '100px 24px',
+        padding: isMobile ? '64px 20px' : '100px 24px',
         borderTop: '1px solid #1E1E1E',
         backgroundColor: '#080808',
         textAlign: 'center',
@@ -1280,10 +1422,12 @@ function FooterCTA() {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
+  const isMobile = useIsMobile()
+
   return (
     <footer
       style={{
-        padding: '28px 24px',
+        padding: isMobile ? '24px 20px' : '28px 24px',
         borderTop: '1px solid #1E1E1E',
         backgroundColor: '#080808',
       }}
@@ -1293,13 +1437,14 @@ function Footer() {
           maxWidth: 1100,
           margin: '0 auto',
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
           flexWrap: 'wrap',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 12,
+          justifyContent: isMobile ? 'center' : 'space-between',
+          gap: isMobile ? 16 : 12,
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: isMobile ? 'center' : 'center', flexDirection: isMobile ? 'column' : 'row', gap: 12 }}>
           <Logo />
           <span style={{ fontSize: 13, color: '#333333' }}>© {new Date().getFullYear()} Virdar. All rights reserved.</span>
         </div>
