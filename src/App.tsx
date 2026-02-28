@@ -128,25 +128,25 @@ function Nav() {
                   )
                 })}
               </div>
-              <a href="#contact">
-                <button
-                  style={{
-                    backgroundColor: '#4F8EF7',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 8,
-                    padding: '10px 20px',
-                    fontSize: 14,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    fontFamily: 'Inter, sans-serif',
-                    transition: 'background-color 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#3a78e8')}
-                  onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7')}
-                >
-                  Book a Call →
-                </button>
+              <a
+                href="#contact"
+                style={{
+                  display: 'inline-block',
+                  backgroundColor: '#4F8EF7',
+                  color: '#fff',
+                  borderRadius: 8,
+                  padding: '10px 20px',
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif',
+                  textDecoration: 'none',
+                  transition: 'background-color 0.2s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3a78e8')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#4F8EF7')}
+              >
+                Book a Call →
               </a>
             </div>
           )}
@@ -229,23 +229,24 @@ function Nav() {
               </a>
             )
           })}
-          <a href="#contact" onClick={() => setMenuOpen(false)}>
-            <button
-              style={{
-                backgroundColor: '#4F8EF7',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 10,
-                padding: '14px 32px',
-                fontSize: 17,
-                fontWeight: 600,
-                cursor: 'pointer',
-                fontFamily: 'Inter, sans-serif',
-                marginTop: 8,
-              }}
-            >
-              Book a Call →
-            </button>
+          <a
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'inline-block',
+              backgroundColor: '#4F8EF7',
+              color: '#fff',
+              borderRadius: 10,
+              padding: '14px 32px',
+              fontSize: 17,
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontFamily: 'Inter, sans-serif',
+              textDecoration: 'none',
+              marginTop: 8,
+            }}
+          >
+            Book a Call →
           </a>
         </div>
       )}
@@ -335,33 +336,31 @@ function Hero() {
           Virdar builds AI systems for local businesses — from a $500 review response setup to a $5,000 guest intelligence engine that knows every customer by name. One-time fee. Done for you. Running forever.
         </p>
 
-        <a href="#contact">
-          <button
-            style={{
-              backgroundColor: '#4F8EF7',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 10,
-              padding: '16px 36px',
-              fontSize: 17,
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif',
-              transition: 'background-color 0.2s ease, transform 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.target as HTMLButtonElement
-              el.style.backgroundColor = '#3a78e8'
-              el.style.transform = 'translateY(-1px)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.target as HTMLButtonElement
-              el.style.backgroundColor = '#4F8EF7'
-              el.style.transform = 'translateY(0)'
-            }}
-          >
-            Get a Free Demo →
-          </button>
+        <a
+          href="#contact"
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#4F8EF7',
+            color: '#fff',
+            borderRadius: 10,
+            padding: '16px 36px',
+            fontSize: 17,
+            fontWeight: 600,
+            cursor: 'pointer',
+            fontFamily: 'Inter, sans-serif',
+            textDecoration: 'none',
+            transition: 'background-color 0.2s ease, transform 0.15s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#3a78e8'
+            e.currentTarget.style.transform = 'translateY(-1px)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#4F8EF7'
+            e.currentTarget.style.transform = 'translateY(0)'
+          }}
+        >
+          Get a Free Demo →
         </a>
 
         {/* Location / availability note */}
@@ -603,33 +602,31 @@ function FlagshipSystems() {
 
         {/* CTA */}
         <div style={{ textAlign: 'center', marginTop: 56 }}>
-          <a href="#contact">
-            <button
-              style={{
-                backgroundColor: '#4F8EF7',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 10,
-                padding: '16px 36px',
-                fontSize: 17,
-                fontWeight: 600,
-                cursor: 'pointer',
-                fontFamily: 'Inter, sans-serif',
-                transition: 'background-color 0.2s ease, transform 0.15s ease',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.target as HTMLButtonElement
-                el.style.backgroundColor = '#3a78e8'
-                el.style.transform = 'translateY(-1px)'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.target as HTMLButtonElement
-                el.style.backgroundColor = '#4F8EF7'
-                el.style.transform = 'translateY(0)'
-              }}
-            >
-              See what we'd build for your business →
-            </button>
+          <a
+            href="#contact"
+            style={{
+              display: 'inline-block',
+              backgroundColor: '#4F8EF7',
+              color: '#fff',
+              borderRadius: 10,
+              padding: '16px 36px',
+              fontSize: 17,
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontFamily: 'Inter, sans-serif',
+              textDecoration: 'none',
+              transition: 'background-color 0.2s ease, transform 0.15s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#3a78e8'
+              e.currentTarget.style.transform = 'translateY(-1px)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#4F8EF7'
+              e.currentTarget.style.transform = 'translateY(0)'
+            }}
+          >
+            See what we'd build for your business →
           </a>
           <p style={{ marginTop: 16, fontSize: 14, color: '#555555' }}>
             Not ready for a flagship build? Our quick-win automations start at $500.
@@ -715,33 +712,33 @@ function ServiceCard({ icon, name, price, description, bullets, bestFor, cta, de
       </p>
 
       {cta && (
-        <a href="#contact" style={{ marginTop: 8 }}>
-          <button
-            style={{
-              backgroundColor: 'transparent',
-              border: '1px solid #4F8EF7',
-              color: '#4F8EF7',
-              borderRadius: 8,
-              padding: '10px 18px',
-              fontSize: 14,
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif',
-              transition: 'background-color 0.2s ease, color 0.2s ease',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.target as HTMLButtonElement
-              el.style.backgroundColor = '#4F8EF7'
-              el.style.color = '#fff'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.target as HTMLButtonElement
-              el.style.backgroundColor = 'transparent'
-              el.style.color = '#4F8EF7'
-            }}
-          >
-            {cta}
-          </button>
+        <a
+          href="#contact"
+          style={{
+            display: 'inline-block',
+            marginTop: 8,
+            backgroundColor: 'transparent',
+            border: '1px solid #4F8EF7',
+            color: '#4F8EF7',
+            borderRadius: 8,
+            padding: '10px 18px',
+            fontSize: 14,
+            fontWeight: 600,
+            cursor: 'pointer',
+            fontFamily: 'Inter, sans-serif',
+            textDecoration: 'none',
+            transition: 'background-color 0.2s ease, color 0.2s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#4F8EF7'
+            e.currentTarget.style.color = '#fff'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+            e.currentTarget.style.color = '#4F8EF7'
+          }}
+        >
+          {cta}
         </a>
       )}
     </div>
@@ -1261,10 +1258,11 @@ function Contact() {
             style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
           >
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
+              <label htmlFor="contact-name" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
                 Name
               </label>
               <input
+                id="contact-name"
                 type="text"
                 name="name"
                 required
@@ -1276,10 +1274,11 @@ function Contact() {
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
+              <label htmlFor="contact-business" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
                 Business Type
               </label>
               <input
+                id="contact-business"
                 type="text"
                 name="business_type"
                 required
@@ -1291,10 +1290,11 @@ function Contact() {
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
+              <label htmlFor="contact-email" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
                 Email
               </label>
               <input
+                id="contact-email"
                 type="email"
                 name="email"
                 required
@@ -1306,10 +1306,11 @@ function Contact() {
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
+              <label htmlFor="contact-tasks" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
                 What are you doing manually right now?
               </label>
               <textarea
+                id="contact-tasks"
                 name="manual_tasks"
                 required
                 rows={4}
@@ -1387,33 +1388,31 @@ function FooterCTA() {
           Book a free 20-minute call. No pitch, no pressure — we'll tell you honestly if
           automation makes sense for your business.
         </p>
-        <a href="#contact">
-          <button
-            style={{
-              backgroundColor: '#4F8EF7',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 10,
-              padding: '18px 40px',
-              fontSize: 18,
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif',
-              transition: 'background-color 0.2s ease, transform 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.target as HTMLButtonElement
-              el.style.backgroundColor = '#3a78e8'
-              el.style.transform = 'translateY(-2px)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.target as HTMLButtonElement
-              el.style.backgroundColor = '#4F8EF7'
-              el.style.transform = 'translateY(0)'
-            }}
-          >
-            Book a Free Call →
-          </button>
+        <a
+          href="#contact"
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#4F8EF7',
+            color: '#fff',
+            borderRadius: 10,
+            padding: '18px 40px',
+            fontSize: 18,
+            fontWeight: 600,
+            cursor: 'pointer',
+            fontFamily: 'Inter, sans-serif',
+            textDecoration: 'none',
+            transition: 'background-color 0.2s ease, transform 0.15s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#3a78e8'
+            e.currentTarget.style.transform = 'translateY(-2px)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#4F8EF7'
+            e.currentTarget.style.transform = 'translateY(0)'
+          }}
+        >
+          Book a Free Call →
         </a>
       </div>
     </section>
