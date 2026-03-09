@@ -1016,7 +1016,7 @@ function PricingClarity() {
         </h2>
 
         <p style={{ fontSize: 17, lineHeight: 1.8, color: '#888888', marginBottom: 20 }}>
-          Transparent pricing from day one. Custom setup fee based on your build, with optional monthly support to keep everything running and improving. You see it working before you pay anything.
+          No deposit. No commitment. We build your custom AI automation and demo it live. If you love it, you pay a flat one-time fee and we deploy. If you don't, you owe nothing.
         </p>
 
         <p
@@ -1030,6 +1030,23 @@ function PricingClarity() {
             padding: '16px 24px',
           }}
         >
+        <div
+          style={{
+            backgroundColor: '#111111',
+            border: '1px solid rgba(79,142,247,0.3)',
+            borderRadius: 10,
+            padding: '20px 24px',
+            marginBottom: 20,
+          }}
+        >
+          <p style={{ fontSize: 16, fontWeight: 600, color: '#4F8EF7', marginBottom: 8 }}>
+            The Virdar Guarantee
+          </p>
+          <p style={{ fontSize: 15, lineHeight: 1.8, color: '#888888', margin: 0 }}>
+            You see it working before you spend a dime. One-time fee, no subscriptions, no surprises. You own the system forever.
+          </p>
+        </div>
+
           Some automations use third-party tools like Twilio for SMS — those have small monthly
           costs, typically $10–30/month depending on volume. We'll tell you exactly what that is
           before you commit.
@@ -1120,7 +1137,7 @@ function FAQ() {
     },
     {
       q: 'How does payment work?',
-      a: "We build your automation first. You see it live and working before paying anything. Setup fee is due on delivery, with an optional monthly retainer for ongoing support and updates.",
+      a: "No. We build your automation completely free. You see a full live demo first. You only pay if you love it and want it deployed. If not, you owe nothing.",
     },
     {
       q: 'What kinds of businesses do you work with?',
@@ -1236,11 +1253,36 @@ function Contact() {
               letterSpacing: '-0.5px',
             }}
           >
-            Book a free call
+            Book your free call
           </h2>
           <p style={{ fontSize: 16, color: '#888888', lineHeight: 1.6 }}>
-            No pitch, no pressure — we'll tell you honestly if automation makes sense for your
-            business.
+            20 minutes. No pitch, no pressure — just a conversation about what we could build for your business.
+          </p>
+        <p style={{ fontSize: 15, fontWeight: 600, color: '#4F8EF7', marginBottom: 40 }}>
+          100% free to explore. We build first, you pay after.
+        </p>
+          <a
+            href="https://calendly.com/virdar-info/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              backgroundColor: '#4F8EF7',
+              color: '#fff',
+              borderRadius: 10,
+              padding: '16px 36px',
+              fontSize: 17,
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'background-color 0.2s ease, transform 0.15s ease',
+              marginTop: 20,
+              marginBottom: 24,
+            }}
+          >
+            Book Your Free Call →
+          </a>
+          <p style={{ fontSize: 14, color: '#555555' }}>
+            Or leave your details below and we'll reach out:
           </p>
         </div>
 
@@ -1395,11 +1437,14 @@ function FooterCTA() {
             letterSpacing: '-1px',
           }}
         >
-          Ready to stop doing it manually?
+          We build it free. You pay after you see it working.
         </h2>
-        <p style={{ fontSize: 18, color: '#888888', lineHeight: 1.7, marginBottom: 40 }}>
-          Book a free 20-minute call. No pitch, no pressure — we'll tell you honestly if
-          automation makes sense for your business.
+        <p style={{ fontSize: 18, color: '#888888', lineHeight: 1.7, marginBottom: 16 }}>
+          Book a free 20-minute call. No pitch, no pressure — just a conversation about what
+          we could build for your business.
+        </p>
+        <p style={{ fontSize: 15, fontWeight: 600, color: '#4F8EF7', marginBottom: 40 }}>
+          100% free to explore. We build first, you pay after.
         </p>
         <a
           href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
