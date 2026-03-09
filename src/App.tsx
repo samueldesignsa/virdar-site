@@ -129,7 +129,9 @@ function Nav() {
                 })}
               </div>
               <a
-                href="#contact"
+                href="https://calendly.com/virdar-info/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-block',
                   backgroundColor: '#4F8EF7',
@@ -146,7 +148,7 @@ function Nav() {
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3a78e8')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#4F8EF7')}
               >
-                Book a Call →
+                Book Your Free Call →
               </a>
             </div>
           )}
@@ -230,7 +232,9 @@ function Nav() {
             )
           })}
           <a
-            href="#contact"
+            href="https://calendly.com/virdar-info/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             style={{
               display: 'inline-block',
@@ -246,7 +250,7 @@ function Nav() {
               marginTop: 8,
             }}
           >
-            Book a Call →
+            Book Your Free Call →
           </a>
         </div>
       )}
@@ -319,8 +323,8 @@ function Hero() {
             letterSpacing: '-1.5px',
           }}
         >
-          Stop losing money to<br />
-          <span style={{ color: '#4F8EF7' }}>manual busywork.</span>
+          We Build Your AI Automation Free.<br />
+          <span style={{ color: '#4F8EF7' }}>You Pay After You See It Working.</span>
         </h1>
 
         <p
@@ -333,11 +337,13 @@ function Hero() {
             margin: '0 auto 40px',
           }}
         >
-          Virdar builds AI systems for local businesses — from a $500 review response setup to a $5,000 guest intelligence engine that knows every customer by name. One-time fee. Done for you. Running forever.
+          Book a free 20-minute call. We map out exactly what we'd build for your business — custom, not a template. Zero cost until you love it.
         </p>
 
         <a
-          href="#contact"
+          href="https://calendly.com/virdar-info/30min"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: 'inline-block',
             backgroundColor: '#4F8EF7',
@@ -360,11 +366,16 @@ function Hero() {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
-          Get a Free Demo →
+          Book Your Free Call →
         </a>
 
+        {/* Trust line */}
+        <p style={{ marginTop: 32, fontSize: 15, color: '#4F8EF7', fontWeight: 600, letterSpacing: '0.3px' }}>
+          100% free to explore. We build first, you pay after.
+        </p>
+
         {/* Location / availability note */}
-        <p style={{ marginTop: 48, fontSize: 13, color: '#555555', letterSpacing: '0.5px' }}>
+        <p style={{ marginTop: 16, fontSize: 13, color: '#555555', letterSpacing: '0.5px' }}>
           Based in Dallas, TX · Currently accepting new clients
         </p>
       </div>
@@ -512,8 +523,11 @@ function FlagshipCard({ icon, name, headline, body, stats, price, delay }: Flags
       </p>
 
       {/* Price */}
-      <p style={{ fontSize: 22, fontWeight: 800, color: '#4F8EF7', margin: 0, letterSpacing: '-0.5px' }}>
+      <p style={{ fontSize: 14, fontWeight: 500, color: '#555555', margin: 0 }}>
         {price}
+      </p>
+      <p style={{ fontSize: 13, fontWeight: 600, color: '#4F8EF7', margin: 0 }}>
+        We build it free — you pay only if you love it.
       </p>
     </div>
   )
@@ -581,10 +595,10 @@ function FlagshipSystems() {
               marginBottom: 16,
             }}
           >
-            What we're really building
+            What we build for you — custom, never a template
           </h2>
           <p style={{ fontSize: isMobile ? 15 : 17, color: '#888888', maxWidth: 640, margin: '0 auto', lineHeight: 1.7 }}>
-            Not automations. Infrastructure. Custom-built for your operation, running 24/7 in the background.
+            Every system is built specifically for your business. We build it first, demo it live, and you only pay if you love it.
           </p>
         </div>
 
@@ -603,7 +617,7 @@ function FlagshipSystems() {
         {/* CTA */}
         <div style={{ textAlign: 'center', marginTop: 56 }}>
           <a
-            href="#contact"
+            href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
             style={{
               display: 'inline-block',
               backgroundColor: '#4F8EF7',
@@ -626,10 +640,10 @@ function FlagshipSystems() {
               e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
-            See what we'd build for your business →
+            Book Your Free Call →
           </a>
           <p style={{ marginTop: 16, fontSize: 14, color: '#555555' }}>
-            Not ready for a flagship build? Our quick-win automations start at $500.
+            100% free to explore. We build first, you pay after.
           </p>
         </div>
       </div>
@@ -713,7 +727,7 @@ function ServiceCard({ icon, name, price, description, bullets, bestFor, cta, de
 
       {cta && (
         <a
-          href="#contact"
+          href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
           style={{
             display: 'inline-block',
             marginTop: 8,
@@ -753,7 +767,7 @@ function Services() {
     {
       icon: '⭐',
       name: 'Review Response System',
-      price: '$500 one-time',
+      price: 'From $500',
       description:
         'Every Google, Yelp, and Facebook review gets a professional, personalized AI response — automatically. No more ignoring reviews or copy-pasting generic replies.',
       bullets: [
@@ -768,7 +782,7 @@ function Services() {
     {
       icon: '📲',
       name: 'Missed Call Text-Back',
-      price: '$750 one-time',
+      price: 'From $750',
       description:
         "When a customer calls and nobody answers, they don't leave a voicemail — they call your competitor. Missed Call Text-Back automatically sends a text to every missed call within 60 seconds.",
       bullets: [
@@ -784,7 +798,7 @@ function Services() {
     {
       icon: '👋',
       name: 'New Customer / Patient Welcome Flow',
-      price: '$600 one-time',
+      price: 'From $600',
       description:
         "First impressions are automated too. When someone books or signs up, they automatically get a welcome sequence — confirmation, what to expect, what to bring, how to reach you — without you lifting a finger.",
       bullets: [
@@ -808,7 +822,7 @@ function Services() {
         'AI FAQ chat widget for your website',
       ],
       bestFor: 'Any local business with a repetitive manual process happening more than 10 times a week.',
-      cta: 'Tell us what you need →',
+      cta: 'Book Your Free Call →',
       delay: 'fade-delay-4',
     },
   ]
@@ -831,10 +845,10 @@ function Services() {
               letterSpacing: '-0.5px',
             }}
           >
-            Quick wins — up and running in 5 days
+            Quick wins — live in 5 days, free until you love it
           </h2>
           <p style={{ fontSize: isMobile ? 15 : 17, color: '#888888', marginTop: 12 }}>
-            These are the fastest ways to see results. Most clients start here and add more systems over time.
+            We build it, demo it live, and you only pay when you're thrilled with the result. Zero risk to get started.
           </p>
         </div>
 
@@ -904,26 +918,26 @@ function HowItWorks() {
   const steps: StepProps[] = [
     {
       num: '01',
-      title: 'Book a free 20-min call',
-      desc: "Tell us about your business and what's eating your time.",
+      title: 'Book a free call',
+      desc: '20 minutes. We learn your business, your bottlenecks, and what would move the needle.',
       delayClass: 'fade-delay-1',
     },
     {
       num: '02',
-      title: 'We scope it out',
-      desc: "We'll tell you exactly what we can build and what it costs. No surprises.",
+      title: 'We build it — free',
+      desc: 'Custom AI automation built specifically for your business. Not a template. No charge yet.',
       delayClass: 'fade-delay-2',
     },
     {
       num: '03',
-      title: 'We build it',
-      desc: 'Done in 5 business days. We handle setup, testing, and walkthrough.',
+      title: 'You see it live',
+      desc: 'Full demo of your working system before any payment. See exactly what it does.',
       delayClass: 'fade-delay-3',
     },
     {
       num: '04',
-      title: 'You own it',
-      desc: 'No monthly fees. No subscriptions. It runs automatically from day one.',
+      title: 'You decide',
+      desc: 'Transparent pricing. Setup fee + optional monthly support. It runs automatically from day one.',
       delayClass: 'fade-delay-4',
     },
   ]
@@ -947,7 +961,7 @@ function HowItWorks() {
               letterSpacing: '-0.5px',
             }}
           >
-            Simple process. Fast delivery.
+            How it works — zero risk, every step
           </h2>
         </div>
 
@@ -998,12 +1012,11 @@ function PricingClarity() {
             letterSpacing: '-0.5px',
           }}
         >
-          One-time fee. No subscriptions. No surprises.
+          Transparent pricing from day one.
         </h2>
 
         <p style={{ fontSize: 17, lineHeight: 1.8, color: '#888888', marginBottom: 20 }}>
-          We charge a flat one-time fee to build and set up your automation. You own it. You
-          keep it. There are no monthly fees from Virdar.
+          Transparent pricing from day one. Custom setup fee based on your build, with optional monthly support to keep everything running and improving. You see it working before you pay anything.
         </p>
 
         <p
@@ -1106,8 +1119,8 @@ function FAQ() {
       a: "Minor tweaks are covered. If you want a major rebuild, we'll quote a small update fee.",
     },
     {
-      q: 'Do I pay upfront?',
-      a: "50% upfront, 50% when it's live and you're happy with it.",
+      q: 'How does payment work?',
+      a: "We build your automation first. You see it live and working before paying anything. Setup fee is due on delivery, with an optional monthly retainer for ongoing support and updates.",
     },
     {
       q: 'What kinds of businesses do you work with?',
@@ -1349,7 +1362,7 @@ function Contact() {
                 (e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7'
               }}
             >
-              {loading ? 'Sending...' : 'Book a Free Call →'}
+              {loading ? 'Sending...' : 'Book Your Free Call →'}
             </button>
           </form>
         )}
@@ -1389,7 +1402,7 @@ function FooterCTA() {
           automation makes sense for your business.
         </p>
         <a
-          href="#contact"
+          href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
           style={{
             display: 'inline-block',
             backgroundColor: '#4F8EF7',
@@ -1412,7 +1425,7 @@ function FooterCTA() {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
-          Book a Free Call →
+          Book Your Free Call →
         </a>
       </div>
     </section>
@@ -1449,7 +1462,7 @@ function Footer() {
         </div>
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <a
-            href="#contact"
+            href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
             style={{ fontSize: 14, color: '#555555', textDecoration: 'none', transition: 'color 0.2s' }}
             onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
             onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#555555')}
