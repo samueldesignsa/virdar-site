@@ -701,74 +701,7 @@ function Hero() {
   )
 }
 
-// ─── Social Proof ───────────────────────────────────────────────────────────────
-function SocialProof() {
-  const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (!ref.current) return
-    const items = ref.current.querySelectorAll('.proof-item')
-    const ctx = gsap.context(() => {
-      gsap.fromTo(items,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1, y: 0, stagger: 0.1, duration: 0.6, ease: 'power2.out',
-          scrollTrigger: { trigger: ref.current!, start: 'top 85%', once: true },
-        }
-      )
-    })
-    return () => ctx.revert()
-  }, [])
-
-  const testimonials = [
-    {
-      quote: "Virdar built us an AI receptionist that handles 200+ calls a month. We haven't missed a reservation since.",
-      name: 'Marcus T.',
-      role: 'Restaurant Owner, Dallas',
-    },
-    {
-      quote: "They automated our entire review response system. Our Google rating went from 3.8 to 4.6 in two months.",
-      name: 'Sarah K.',
-      role: 'Med Spa Owner, Plano',
-    },
-    {
-      quote: "I was spending 12 hours a week on follow-ups. Now it's zero. The system just runs.",
-      name: 'David R.',
-      role: 'Real Estate Agent, Fort Worth',
-    },
-  ]
-
-  return (
-    <section ref={ref} className="py-20 md:py-28 relative">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        {/* Trust line */}
-        <p className="text-center text-sm font-medium text-text-tertiary uppercase tracking-widest mb-12">
-          Trusted by local businesses across DFW
-        </p>
-
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div key={i} className="proof-item glass rounded-2xl p-8 card-hover">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, j) => (
-                  <svg key={j} width="16" height="16" viewBox="0 0 16 16" fill="#4F8EF7">
-                    <path d="M8 1l2.2 4.4 4.8.7-3.5 3.4.8 4.8L8 12l-4.3 2.3.8-4.8L1 6.1l4.8-.7z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-text/90 text-sm leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
-              <div>
-                <div className="text-sm font-semibold text-text">{t.name}</div>
-                <div className="text-xs text-text-tertiary">{t.role}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ─── Problem Section ────────────────────────────────────────────────────────────
 function Problem() {
@@ -1569,7 +1502,6 @@ export default function App() {
       <Nav />
       <main className="relative z-10">
         <Hero />
-        <SocialProof />
         <Problem />
         <Services />
         <HowItWorks />
