@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Points, PointMaterial, Line } from '@react-three/drei'
+import * as THREE from 'three'
 
-// ─── Responsive hook ─────────────────────────────────────────────────────────
+gsap.registerPlugin(ScrollTrigger)
+
+// ─── Constants ──────────────────────────────────────────────────────────────────
+const CALENDLY_URL = 'https://calendly.com/virdar-info/30min'
+const FORMSPREE_URL = 'https://formspree.io/f/xeelnjwd'
+
+// ─── Hooks ──────────────────────────────────────────────────────────────────────
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
   )
-
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`)
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
@@ -13,51 +23,514 @@ function useIsMobile(breakpoint = 768) {
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [breakpoint])
-
   return isMobile
 }
 
-// ─── Logo ─────────────────────────────────────────────────────────────────────
-function Logo() {
+// ─── Animated Gradient Orb (Canvas) ─────────────────────────────────────────────
+function GradientOrb() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    let animationId: number
+    let time = 0
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio, 2)
+      canvas.width = canvas.offsetWidth * dpr
+      canvas.height = canvas.offsetHeight * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    const animate = () => {
+      time += 0.003
+      const w = canvas.offsetWidth
+      const h = canvas.offsetHeight
+
+      ctx.clearRect(0, 0, w, h)
+
+      const blobs = [
+        {
+          x: w * 0.5 + Math.sin(time * 0.7) * w * 0.15,
+          y: h * 0.4 + Math.cos(time * 0.5) * h * 0.1,
+          r: Math.min(w, h) * 0.45,
+          c1: 'rgba(79, 142, 247, 0.3)',
+          c2: 'rgba(79, 142, 247, 0)',
+        },
+        {
+          x: w * 0.4 + Math.cos(time * 0.6) * w * 0.12,
+          y: h * 0.5 + Math.sin(time * 0.8) * h * 0.12,
+          r: Math.min(w, h) * 0.35,
+          c1: 'rgba(59, 130, 246, 0.25)',
+          c2: 'rgba(59, 130, 246, 0)',
+        },
+        {
+          x: w * 0.6 + Math.sin(time * 0.9) * w * 0.1,
+          y: h * 0.35 + Math.cos(time * 0.4) * h * 0.08,
+          r: Math.min(w, h) * 0.3,
+          c1: 'rgba(96, 165, 250, 0.2)',
+          c2: 'rgba(96, 165, 250, 0)',
+        },
+        {
+          x: w * 0.55 + Math.cos(time * 1.1) * w * 0.08,
+          y: h * 0.45 + Math.sin(time * 0.6) * h * 0.1,
+          r: Math.min(w, h) * 0.25,
+          c1: 'rgba(37, 99, 235, 0.2)',
+          c2: 'rgba(37, 99, 235, 0)',
+        },
+      ]
+
+      for (const b of blobs) {
+        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r)
+        grad.addColorStop(0, b.c1)
+        grad.addColorStop(1, b.c2)
+        ctx.fillStyle = grad
+        ctx.fillRect(0, 0, w, h)
+      }
+
+      animationId = requestAnimationFrame(animate)
+    }
+
+    resize()
+    animate()
+    window.addEventListener('resize', resize)
+
+    return () => {
+      cancelAnimationFrame(animationId)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-      <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M2 3L14 25L26 3H20.5L14 17L7.5 3H2Z" fill="#4F8EF7" />
-      </svg>
-      <span style={{ fontSize: 20, fontWeight: 700, color: '#F5F5F5', letterSpacing: '-0.5px', fontFamily: 'Inter, sans-serif' }}>
-        virdar
-      </span>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ filter: 'blur(60px)' }}
+      aria-hidden="true"
+    />
+  )
+}
+
+// ─── Neural Network Hero Orb (Three.js) ─────────────────────────────────────────
+function generateFibonacciSphere(count: number, radius: number) {
+  const positions = new Float32Array(count * 3)
+  const goldenRatio = (1 + Math.sqrt(5)) / 2
+
+  for (let i = 0; i < count; i++) {
+    const theta = Math.acos(1 - (2 * (i + 0.5)) / count)
+    const phi = (2 * Math.PI * i) / goldenRatio
+
+    positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi)
+    positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi)
+    positions[i * 3 + 2] = radius * Math.cos(theta)
+  }
+  return positions
+}
+
+function NeuralParticles({ count = 500, radius = 2.2 }: { count?: number; radius?: number }) {
+  const pointsRef = useRef<THREE.Points>(null)
+  const originalPositions = useMemo(() => generateFibonacciSphere(count, radius), [count, radius])
+  const positions = useMemo(() => new Float32Array(originalPositions), [originalPositions])
+
+  // Glow layer — larger, dimmer duplicate
+  const glowPositions = useMemo(() => new Float32Array(originalPositions), [originalPositions])
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime() * 0.3
+    for (let i = 0; i < count; i++) {
+      const ox = originalPositions[i * 3]
+      const oy = originalPositions[i * 3 + 1]
+      const oz = originalPositions[i * 3 + 2]
+
+      const displacement = Math.sin(t + ox * 1.5) * 0.12 +
+                          Math.sin(t * 0.7 + oy * 2.0) * 0.08 +
+                          Math.sin(t * 0.5 + oz * 1.8) * 0.06
+
+      const nx = ox / radius
+      const ny = oy / radius
+      const nz = oz / radius
+
+      positions[i * 3] = ox + nx * displacement
+      positions[i * 3 + 1] = oy + ny * displacement
+      positions[i * 3 + 2] = oz + nz * displacement
+
+      glowPositions[i * 3] = positions[i * 3]
+      glowPositions[i * 3 + 1] = positions[i * 3 + 1]
+      glowPositions[i * 3 + 2] = positions[i * 3 + 2]
+    }
+    if (pointsRef.current) {
+      pointsRef.current.geometry.attributes.position.needsUpdate = true
+    }
+  })
+
+  return (
+    <>
+      <Points ref={pointsRef} positions={positions} stride={3} frustumCulled={false}>
+        <PointMaterial
+          transparent
+          color="#4F8EF7"
+          size={0.035}
+          sizeAttenuation
+          depthWrite={false}
+          opacity={0.9}
+        />
+      </Points>
+      <Points positions={glowPositions} stride={3} frustumCulled={false}>
+        <PointMaterial
+          transparent
+          color="#4F8EF7"
+          size={0.1}
+          sizeAttenuation
+          depthWrite={false}
+          opacity={0.15}
+        />
+      </Points>
+    </>
+  )
+}
+
+function NeuralConnections({ count = 500, radius = 2.2, maxDist = 0.7 }: { count?: number; radius?: number; maxDist?: number }) {
+  const lines = useMemo(() => {
+    const positions = generateFibonacciSphere(count, radius)
+    const connections: [THREE.Vector3, THREE.Vector3][] = []
+
+    for (let i = 0; i < count && connections.length < 120; i++) {
+      const ax = positions[i * 3], ay = positions[i * 3 + 1], az = positions[i * 3 + 2]
+      for (let j = i + 1; j < count && connections.length < 120; j++) {
+        const bx = positions[j * 3], by = positions[j * 3 + 1], bz = positions[j * 3 + 2]
+        const dist = Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2 + (az - bz) ** 2)
+        if (dist < maxDist) {
+          connections.push([
+            new THREE.Vector3(ax, ay, az),
+            new THREE.Vector3(bx, by, bz),
+          ])
+        }
+      }
+    }
+    return connections
+  }, [count, radius, maxDist])
+
+  return (
+    <>
+      {lines.map((pair, i) => (
+        <Line
+          key={i}
+          points={pair}
+          color="#4F8EF7"
+          lineWidth={0.5}
+          transparent
+          opacity={0.12}
+        />
+      ))}
+    </>
+  )
+}
+
+function NeuralOrbScene() {
+  const groupRef = useRef<THREE.Group>(null)
+  const mouse = useRef({ x: 0, y: 0 })
+  const lerpedMouse = useRef({ x: 0, y: 0 })
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => {
+      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2
+      mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * 2
+    }
+    window.addEventListener('mousemove', handleMouse)
+    return () => window.removeEventListener('mousemove', handleMouse)
+  }, [])
+
+  useFrame((_, delta) => {
+    lerpedMouse.current.x += (mouse.current.x - lerpedMouse.current.x) * 2 * delta
+    lerpedMouse.current.y += (mouse.current.y - lerpedMouse.current.y) * 2 * delta
+
+    if (groupRef.current) {
+      groupRef.current.rotation.y = lerpedMouse.current.x * 0.15
+      groupRef.current.rotation.x = lerpedMouse.current.y * 0.1
+      groupRef.current.rotation.z += delta * 0.05
+    }
+  })
+
+  return (
+    <group ref={groupRef}>
+      <NeuralParticles />
+      <NeuralConnections />
+    </group>
+  )
+}
+
+function NeuralHeroOrb() {
+  return (
+    <div className="absolute inset-0 w-full h-full" aria-hidden="true">
+      <Canvas
+        camera={{ position: [0, 0, 5.5], fov: 45 }}
+        dpr={[1, 2]}
+        gl={{ alpha: true, antialias: true }}
+        style={{ background: 'transparent' }}
+      >
+        <ambientLight intensity={0.5} />
+        <NeuralOrbScene />
+      </Canvas>
     </div>
   )
 }
 
-// ─── Fade-in hook using Intersection Observer ────────────────────────────────
-function useFadeIn() {
+// ─── Tilt Card Hook ─────────────────────────────────────────────────────────────
+function useTiltCard(maxDeg = 8) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+  const animating = useRef(false)
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current
+    if (!card) return
+    const rect = card.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+
+    if (!animating.current) {
+      animating.current = true
+      requestAnimationFrame(() => {
+        card.style.transform = `perspective(800px) rotateY(${x * maxDeg}deg) rotateX(${-y * maxDeg}deg) scale(1.02)`
+        if (glowRef.current) {
+          glowRef.current.style.opacity = '1'
+          glowRef.current.style.background = `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(79,142,247,0.15), transparent 60%)`
+        }
+        animating.current = false
+      })
+    }
+  }, [maxDeg])
+
+  const handleMouseLeave = useCallback(() => {
+    const card = cardRef.current
+    if (!card) return
+    card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)'
+    if (glowRef.current) {
+      glowRef.current.style.opacity = '0'
+    }
+  }, [])
+
+  return { cardRef, glowRef, handleMouseMove, handleMouseLeave }
+}
+
+// ─── Automation Pipeline (SVG) ──────────────────────────────────────────────────
+function AutomationPipeline() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('visible')
-          observer.unobserve(el)
+    if (!ref.current) return
+    const nodes = ref.current.querySelectorAll('.pipeline-node')
+    const paths = ref.current.querySelectorAll('.pipeline-path')
+    const packets = ref.current.querySelectorAll('.pipeline-packet')
+
+    const ctx = gsap.context(() => {
+      // Nodes light up sequentially
+      gsap.fromTo(nodes,
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1, scale: 1, stagger: 0.2, duration: 0.5, ease: 'back.out(1.7)',
+          scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true }
         }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
+      )
+      // Paths draw in
+      gsap.fromTo(paths,
+        { strokeDashoffset: 200 },
+        {
+          strokeDashoffset: 0, stagger: 0.15, duration: 0.8, ease: 'power2.out', delay: 0.3,
+          scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true }
+        }
+      )
+      // Packets animate along paths (looping)
+      packets.forEach((packet, i) => {
+        gsap.fromTo(packet,
+          { opacity: 0 },
+          {
+            opacity: 1, duration: 0.3, delay: 0.8 + i * 0.3,
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true }
+          }
+        )
+      })
+    })
+    return () => ctx.revert()
   }, [])
 
-  return ref
+  // Animate packets along paths with CSS
+  const packetKeyframes = `
+    @keyframes flowPacket1 { 0% { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+    @keyframes flowPacket2 { 0% { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+    @keyframes flowPacket3 { 0% { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+    @keyframes pulseNode { 0%, 100% { filter: drop-shadow(0 0 6px rgba(79,142,247,0.4)); } 50% { filter: drop-shadow(0 0 16px rgba(79,142,247,0.8)); } }
+  `
+
+  return (
+    <div ref={ref} className="relative w-full max-w-3xl mx-auto h-24 md:h-32 mb-10">
+      <style>{packetKeyframes}</style>
+      <svg viewBox="0 0 800 120" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Connection paths */}
+        <path className="pipeline-path" d="M130 60 Q 250 20, 340 60" stroke="#4F8EF7" strokeWidth="1.5" strokeDasharray="200" strokeDashoffset="0" opacity="0.3" />
+        <path className="pipeline-path" d="M380 60 Q 470 100, 540 60" stroke="#4F8EF7" strokeWidth="1.5" strokeDasharray="200" strokeDashoffset="0" opacity="0.3" />
+        <path className="pipeline-path" d="M580 60 Q 650 20, 720 60" stroke="#4F8EF7" strokeWidth="1.5" strokeDasharray="200" strokeDashoffset="0" opacity="0.3" />
+
+        {/* Flowing packets */}
+        <circle r="4" fill="#4F8EF7" opacity="0.9" style={{ offsetPath: "path('M130 60 Q 250 20, 340 60')", animation: 'flowPacket1 2s ease-in-out infinite', animationDelay: '1s' }}>
+          <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="1s" />
+        </circle>
+        <circle r="4" fill="#4F8EF7" opacity="0.9" style={{ offsetPath: "path('M380 60 Q 470 100, 540 60')", animation: 'flowPacket2 2s ease-in-out infinite', animationDelay: '1.5s' }}>
+          <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="1.5s" />
+        </circle>
+        <circle r="4" fill="#4F8EF7" opacity="0.9" style={{ offsetPath: "path('M580 60 Q 650 20, 720 60')", animation: 'flowPacket3 2s ease-in-out infinite', animationDelay: '2s' }}>
+          <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="2s" />
+        </circle>
+
+        {/* Nodes */}
+        <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite' }}>
+          <circle cx="100" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
+          <text x="100" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">📞</text>
+          <text x="100" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Call</text>
+        </g>
+        <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite 0.5s' }}>
+          <circle cx="360" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
+          <text x="360" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">🧠</text>
+          <text x="360" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">AI Processes</text>
+        </g>
+        <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite 1s' }}>
+          <circle cx="560" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
+          <text x="560" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">⚡</text>
+          <text x="560" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Action</text>
+        </g>
+        <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite 1.5s' }}>
+          <circle cx="750" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
+          <text x="750" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">✅</text>
+          <text x="750" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Done</text>
+        </g>
+      </svg>
+    </div>
+  )
 }
 
-// ─── Nav ─────────────────────────────────────────────────────────────────────
+// ─── ROI Globe (Three.js) ───────────────────────────────────────────────────────
+function GlobeScene({ intensity = 0.5 }: { intensity: number }) {
+  const globeRef = useRef<THREE.Group>(null)
+  const arcsRef = useRef<THREE.Group>(null)
+
+  // Generate arc curves
+  const arcs = useMemo(() => {
+    const dfwLat = 32.78, dfwLon = -96.8
+    const toSphere = (lat: number, lon: number, r: number) => {
+      const phi = (90 - lat) * (Math.PI / 180)
+      const theta = (lon + 180) * (Math.PI / 180)
+      return new THREE.Vector3(
+        -r * Math.sin(phi) * Math.cos(theta),
+        r * Math.cos(phi),
+        r * Math.sin(phi) * Math.sin(theta)
+      )
+    }
+
+    const destinations = [
+      [33.4, -97.5], [32.2, -95.8], [30.3, -97.7], [29.4, -98.5],
+      [35.2, -97.0], [33.5, -101.8], [31.8, -94.2], [34.7, -92.3],
+    ]
+
+    return destinations.map(([lat, lon]) => {
+      const start = toSphere(dfwLat, dfwLon, 1.5)
+      const end = toSphere(lat, lon, 1.5)
+      const mid = start.clone().add(end).multiplyScalar(0.5).normalize().multiplyScalar(2.0)
+      const curve = new THREE.QuadraticBezierCurve3(start, mid, end)
+      return curve.getPoints(30)
+    })
+  }, [])
+
+  useFrame((_, delta) => {
+    if (globeRef.current) {
+      globeRef.current.rotation.y += delta * 0.08
+    }
+  })
+
+  const visibleArcs = Math.max(2, Math.round(arcs.length * intensity))
+
+  return (
+    <group ref={globeRef} rotation={[0.3, 2.0, 0]}>
+      {/* Wireframe globe */}
+      <mesh>
+        <sphereGeometry args={[1.5, 32, 24]} />
+        <meshBasicMaterial color="#4F8EF7" wireframe transparent opacity={0.08} />
+      </mesh>
+      {/* Equator / latitude rings */}
+      <mesh>
+        <sphereGeometry args={[1.5, 48, 2]} />
+        <meshBasicMaterial color="#4F8EF7" wireframe transparent opacity={0.15} />
+      </mesh>
+
+      {/* DFW hotspot */}
+      <mesh position={(() => {
+        const phi = (90 - 32.78) * (Math.PI / 180)
+        const theta = (-96.8 + 180) * (Math.PI / 180)
+        return [
+          -1.52 * Math.sin(phi) * Math.cos(theta),
+          1.52 * Math.cos(phi),
+          1.52 * Math.sin(phi) * Math.sin(theta)
+        ] as [number, number, number]
+      })()}>
+        <sphereGeometry args={[0.04, 8, 8]} />
+        <meshBasicMaterial color="#60A5FA" />
+      </mesh>
+      <pointLight position={[0.3, 1.2, 0.8]} color="#4F8EF7" intensity={intensity * 3} distance={4} />
+
+      {/* Connection arcs */}
+      <group ref={arcsRef}>
+        {arcs.slice(0, visibleArcs).map((points, i) => (
+          <Line
+            key={i}
+            points={points}
+            color="#4F8EF7"
+            lineWidth={1}
+            transparent
+            opacity={0.2 + intensity * 0.3}
+          />
+        ))}
+      </group>
+    </group>
+  )
+}
+
+function ROIGlobe({ hours, hourlyRate }: { hours: number; hourlyRate: number }) {
+  const intensity = Math.min(1, (hours - 5) / 35 * 0.7 + (hourlyRate - 15) / 85 * 0.3)
+
+  return (
+    <div className="w-full h-64 md:h-80" aria-hidden="true">
+      <Canvas
+        camera={{ position: [0, 0, 4.5], fov: 40 }}
+        dpr={[1, 1.5]}
+        gl={{ alpha: true, antialias: true }}
+        style={{ background: 'transparent' }}
+      >
+        <GlobeScene intensity={intensity} />
+      </Canvas>
+    </div>
+  )
+}
+
+// ─── Logo ───────────────────────────────────────────────────────────────────────
+function Logo({ size = 'default' }: { size?: 'default' | 'large' }) {
+  const s = size === 'large' ? 32 : 24
+  const fontSize = size === 'large' ? 'text-2xl' : 'text-lg'
+  return (
+    <a href="#" className={`flex items-center gap-2.5 ${fontSize} font-bold text-text tracking-tight no-underline`}>
+      <svg width={s} height={s} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 3L14 25L26 3H20.5L14 17L7.5 3H2Z" fill="#4F8EF7" />
+      </svg>
+      virdar
+    </a>
+  )
+}
+
+// ─── Nav ────────────────────────────────────────────────────────────────────────
 function Nav() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const isMobile = useIsMobile()
 
   useEffect(() => {
@@ -66,1485 +539,1045 @@ function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+  }, [mobileOpen])
 
-  const navLinks = useMemo(() => (['Flagship', 'Services', 'How It Works', 'Pricing'] as const), [])
+  const navLinks = [
+    { label: 'Services', href: '#services' },
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Calculator', href: '#calculator' },
+    { label: 'FAQ', href: '#faq' },
+  ]
 
   return (
-    <>
-      <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          backgroundColor: scrolled || menuOpen ? 'rgba(13,13,13,0.95)' : 'transparent',
-          borderBottom: scrolled || menuOpen ? '1px solid #1E1E1E' : '1px solid transparent',
-          backdropFilter: scrolled || menuOpen ? 'blur(12px)' : 'none',
-          transition: 'all 0.3s ease',
-          padding: '0 24px',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: 64,
-          }}
-        >
-          {/* Logo */}
-          <a href="#hero" style={{ textDecoration: 'none' }}>
-            <Logo />
-          </a>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'glass-strong py-3' : 'py-5 bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
+        <Logo />
 
-          {/* Desktop nav */}
-          {!isMobile && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-              <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-                {navLinks.map((label) => {
-                  const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
-                  return (
-                    <a
-                      key={label}
-                      href={href}
-                      style={{ fontSize: 14, color: '#888888', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 500 }}
-                      onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#F5F5F5')}
-                      onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
-                    >
-                      {label}
-                    </a>
-                  )
-                })}
-              </div>
-              <a
-                href="https://calendly.com/virdar-info/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-block',
-                  backgroundColor: '#4F8EF7',
-                  color: '#fff',
-                  borderRadius: 8,
-                  padding: '10px 20px',
-                  fontSize: 14,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  fontFamily: 'Inter, sans-serif',
-                  textDecoration: 'none',
-                  transition: 'background-color 0.2s ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3a78e8')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#4F8EF7')}
-              >
-                Book Your Free Call →
-              </a>
-            </div>
-          )}
-
-          {/* Mobile hamburger */}
-          {isMobile && (
+        {isMobile ? (
+          <>
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: menuOpen ? 0 : 5,
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 40,
-                height: 40,
-              }}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="relative z-50 w-10 h-10 flex items-center justify-center text-text-secondary"
+              aria-label="Toggle menu"
             >
-              <span style={{
-                display: 'block', width: 22, height: 2, backgroundColor: '#F5F5F5', borderRadius: 1,
-                transition: 'transform 0.3s ease, opacity 0.3s ease',
-                transform: menuOpen ? 'rotate(45deg) translateY(0px)' : 'none',
-              }} />
-              <span style={{
-                display: 'block', width: 22, height: 2, backgroundColor: '#F5F5F5', borderRadius: 1,
-                transition: 'opacity 0.3s ease',
-                opacity: menuOpen ? 0 : 1,
-              }} />
-              <span style={{
-                display: 'block', width: 22, height: 2, backgroundColor: '#F5F5F5', borderRadius: 1,
-                transition: 'transform 0.3s ease, opacity 0.3s ease',
-                transform: menuOpen ? 'rotate(-45deg) translateY(0px)' : 'none',
-                marginTop: menuOpen ? -2 : 0,
-              }} />
+              <div className="flex flex-col gap-1.5">
+                <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </div>
             </button>
-          )}
-        </div>
-      </nav>
 
-      {/* Mobile menu overlay — rendered outside nav to avoid backdropFilter containing block issue */}
-      {isMobile && menuOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 64,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 99,
-            backgroundColor: '#0D0D0D',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 32,
-            padding: 24,
-          }}
-        >
-          {navLinks.map((label) => {
-            const href = label === 'How It Works' ? '#how-it-works' : `#${label.toLowerCase()}`
-            return (
+            {mobileOpen && (
+              <div className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-2xl font-medium text-text-secondary hover:text-text transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary mt-4">
+                  Book a Free Call
+                </a>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="flex items-center gap-8">
+            {navLinks.map((link) => (
               <a
-                key={label}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  fontSize: 22,
-                  color: '#F5F5F5',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                  letterSpacing: '-0.3px',
-                }}
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-text-secondary hover:text-text transition-colors duration-200"
               >
-                {label}
+                {link.label}
               </a>
-            )
-          })}
-          <a
-            href="https://calendly.com/virdar-info/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
-            style={{
-              display: 'inline-block',
-              backgroundColor: '#4F8EF7',
-              color: '#fff',
-              borderRadius: 10,
-              padding: '14px 32px',
-              fontSize: 17,
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif',
-              textDecoration: 'none',
-              marginTop: 8,
-            }}
-          >
-            Book Your Free Call →
-          </a>
-        </div>
-      )}
-    </>
+            ))}
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary !py-2.5 !px-5 !text-sm">
+              Book a Free Call
+            </a>
+          </div>
+        )}
+      </div>
+    </nav>
   )
 }
 
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+// ─── Hero ───────────────────────────────────────────────────────────────────────
 function Hero() {
+  const heroRef = useRef<HTMLElement>(null)
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+      tl.from('.hero-badge', { opacity: 0, y: 20, duration: 0.6, delay: 0.2 })
+        .from(headlineRef.current, { opacity: 0, y: 30, duration: 0.8 }, '-=0.3')
+        .from('.hero-sub', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4')
+        .from('.hero-ctas', { opacity: 0, y: 20, duration: 0.6 }, '-=0.3')
+        .from('.hero-stats', { opacity: 0, y: 20, duration: 0.6 }, '-=0.3')
+    }, heroRef)
+
+    return () => ctx.revert()
+  }, [])
+
   const isMobile = useIsMobile()
 
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: isMobile ? '100px 20px 60px' : '120px 24px 80px',
-        position: 'relative',
-      }}
-    >
-      {/* Subtle radial glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '30%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 600,
-          height: 400,
-          background: 'radial-gradient(ellipse, rgba(79,142,247,0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {isMobile ? <GradientOrb /> : <NeuralHeroOrb />}
 
-      <div style={{ maxWidth: 780, position: 'relative' }}>
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 grid-pattern opacity-40" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-5 md:px-8 text-center pt-24 pb-20">
         {/* Badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 6,
-              border: '1px solid rgba(79,142,247,0.35)',
-              borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: 500,
-              color: '#4F8EF7',
-              backgroundColor: 'rgba(79,142,247,0.08)',
-              letterSpacing: '0.2px',
-            }}
-          >
-            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', backgroundColor: '#4F8EF7' }} />
-            AI Automation Agency · Dallas, TX
+        <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border mb-8 bg-surface/50 backdrop-blur-sm">
+          <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+          <span className="text-xs font-medium text-text-secondary tracking-wide uppercase">
+            AI Automation Agency &middot; Dallas, TX
           </span>
         </div>
 
-        <h1
-          style={{
-            fontSize: 'clamp(36px, 6vw, 72px)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            color: '#F5F5F5',
-            marginBottom: 24,
-            letterSpacing: '-1.5px',
-          }}
-        >
-          We Build Your AI Automation Free.<br />
-          <span style={{ color: '#4F8EF7' }}>You Pay After You See It Working.</span>
+        {/* Headline - Hormozi Grand Slam Offer */}
+        <h1 ref={headlineRef} className="heading-xl mb-6 max-w-4xl mx-auto">
+          We Build Your Custom AI System{' '}
+          <span className="gradient-text">Free</span>
+          <br />
+          <span className="text-text-secondary" style={{ fontSize: '0.72em', fontWeight: 600 }}>
+            You Only Pay After You See It Working
+          </span>
         </h1>
 
-        <p
-          style={{
-            fontSize: 'clamp(16px, 2vw, 20px)',
-            lineHeight: 1.6,
-            color: '#888888',
-            marginBottom: 40,
-            maxWidth: 620,
-            margin: '0 auto 40px',
-          }}
-        >
-          Book a free 20-minute call. We map out exactly what we'd build for your business — custom, not a template. Zero cost until you love it.
+        {/* Subheadline */}
+        <p className="hero-sub body-lg max-w-2xl mx-auto mb-10">
+          We learn your business, build a custom AI system for free, and demo it live.
+          No obligations — you only pay after you see it working.
         </p>
 
-        <a
-          href="https://calendly.com/virdar-info/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            backgroundColor: '#4F8EF7',
-            color: '#fff',
-            borderRadius: 10,
-            padding: '16px 36px',
-            fontSize: 17,
-            fontWeight: 600,
-            cursor: 'pointer',
-            fontFamily: 'Inter, sans-serif',
-            textDecoration: 'none',
-            transition: 'background-color 0.2s ease, transform 0.15s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#3a78e8'
-            e.currentTarget.style.transform = 'translateY(-1px)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#4F8EF7'
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
-        >
-          Book Your Free Call →
-        </a>
-
-        {/* Trust line */}
-        <p style={{ marginTop: 32, fontSize: 15, color: '#4F8EF7', fontWeight: 600, letterSpacing: '0.3px' }}>
-          100% free to explore. We build first, you pay after.
-        </p>
-
-        {/* Location / availability note */}
-        <p style={{ marginTop: 16, fontSize: 13, color: '#555555', letterSpacing: '0.5px' }}>
-          Based in Dallas, TX · Currently accepting new clients
-        </p>
-      </div>
-    </section>
-  )
-}
-
-// ─── Problem ──────────────────────────────────────────────────────────────────
-function Problem() {
-  const ref = useFadeIn()
-  const isMobile = useIsMobile()
-
-  return (
-    <section
-      id="problem"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-      }}
-    >
-      <div ref={ref} className="fade-in" style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-        <h2
-          style={{
-            fontSize: 'clamp(26px, 4vw, 42px)',
-            fontWeight: 700,
-            color: '#F5F5F5',
-            marginBottom: 32,
-            letterSpacing: '-0.5px',
-          }}
-        >
-          You're running a business,<br />not a call center.
-        </h2>
-
-        <div style={{ fontSize: 18, lineHeight: 1.9, color: '#888888' }}>
-          <p>Every missed call is a missed customer.</p>
-          <p>Every unanswered review is a lost referral.</p>
-          <p>Every hour spent on onboarding paperwork is an hour not spent growing.</p>
+        {/* CTAs */}
+        <div className="hero-ctas flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary text-base px-8 py-4">
+            Book a Free Strategy Call
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-1">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+          <a href="#how-it-works" className="btn-secondary text-base px-8 py-4">
+            See How It Works
+          </a>
         </div>
 
-        <p
-          style={{
-            marginTop: 32,
-            fontSize: 17,
-            lineHeight: 1.8,
-            color: '#aaaaaa',
-          }}
-        >
-          Most local businesses don't have the time or team to handle all of it. Virdar builds
-          the systems that do it for you — automatically, while you focus on what you're
-          actually good at.
-        </p>
+        {/* Stats bar */}
+        <div className="hero-stats flex flex-wrap items-center justify-center gap-8 md:gap-16">
+          {[
+            { value: '16hrs', label: 'Avg. Admin Time Reclaimed' },
+            { value: '85%', label: 'Of Missed Callers Never Call Back' },
+            { value: '$0', label: 'Until You See It Working' },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-text tracking-tight">{stat.value}</div>
+              <div className="text-xs font-medium text-text-tertiary uppercase tracking-wider mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg to-transparent" />
     </section>
   )
 }
 
-// ─── Flagship Systems ─────────────────────────────────────────────────────────
-interface FlagshipCardProps {
-  icon: string
-  name: string
-  headline: string
-  body: string
-  stats: string
-  price: string
-  delay?: string
-}
+// ─── Social Proof ───────────────────────────────────────────────────────────────
+function SocialProof() {
+  const ref = useRef<HTMLDivElement>(null)
 
-function FlagshipCard({ icon, name, headline, body, stats, price, delay }: FlagshipCardProps) {
-  const [hovered, setHovered] = useState(false)
-  const ref = useFadeIn()
+  useEffect(() => {
+    if (!ref.current) return
+    const items = ref.current.querySelectorAll('.proof-item')
+    const ctx = gsap.context(() => {
+      gsap.fromTo(items,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0, stagger: 0.1, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: ref.current!, start: 'top 85%', once: true },
+        }
+      )
+    })
+    return () => ctx.revert()
+  }, [])
 
-  return (
-    <div
-      ref={ref}
-      className={`fade-in ${delay || ''}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        backgroundColor: '#111111',
-        border: hovered ? '1px solid rgba(79,142,247,0.5)' : '1px solid #1E1E1E',
-        borderRadius: 14,
-        padding: '32px 28px',
-        transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
-        boxShadow: hovered ? '0 0 24px rgba(79,142,247,0.12)' : 'none',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-        position: 'relative',
-      }}
-    >
-      {/* FLAGSHIP BUILD badge */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 16,
-          right: 16,
-          border: '1px solid #4F8EF7',
-          borderRadius: 999,
-          padding: '3px 10px',
-          fontSize: 10,
-          fontWeight: 700,
-          color: '#4F8EF7',
-          backgroundColor: 'rgba(79,142,247,0.08)',
-          letterSpacing: '0.5px',
-        }}
-      >
-        FLAGSHIP BUILD
-      </div>
-
-      {/* Icon */}
-      <div
-        style={{
-          width: 44,
-          height: 44,
-          borderRadius: 10,
-          backgroundColor: 'rgba(79,142,247,0.1)',
-          border: '1px solid rgba(79,142,247,0.2)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 22,
-        }}
-      >
-        {icon}
-      </div>
-
-      {/* Name */}
-      <h3 style={{ fontSize: 13, fontWeight: 600, color: '#888888', textTransform: 'uppercase', letterSpacing: '0.5px', margin: 0 }}>
-        {name}
-      </h3>
-
-      {/* Headline */}
-      <p style={{ fontSize: 20, fontWeight: 700, color: '#F5F5F5', margin: 0, lineHeight: 1.3 }}>
-        {headline}
-      </p>
-
-      {/* Body */}
-      <p style={{ fontSize: 15, lineHeight: 1.7, color: '#888888', margin: 0 }}>
-        {body}
-      </p>
-
-      {/* Stats */}
-      <p style={{ fontSize: 13, color: '#555555', margin: 0, fontStyle: 'italic' }}>
-        {stats}
-      </p>
-
-      {/* Price */}
-      <p style={{ fontSize: 14, fontWeight: 500, color: '#555555', margin: 0 }}>
-        {price}
-      </p>
-      <p style={{ fontSize: 13, fontWeight: 600, color: '#4F8EF7', margin: 0 }}>
-        We build it free — you pay only if you love it.
-      </p>
-    </div>
-  )
-}
-
-function FlagshipSystems() {
-  const titleRef = useFadeIn()
-  const isMobile = useIsMobile()
-
-  const flagshipCards: FlagshipCardProps[] = [
+  const testimonials = [
     {
-      icon: '📞',
-      name: 'AI Voice Receptionist',
-      headline: 'Your phone never goes unanswered again.',
-      body: "An AI agent answers every inbound call — in your business's name, in your voice — around the clock. Takes reservations. Answers FAQs. Handles catering inquiries. Sends call transcripts to your phone. Your competitor just picked up at 10pm. Did you?",
-      stats: 'Handles 200+ calls/month · Zero missed calls · Setup in 3 weeks',
-      price: 'From $4,000',
-      delay: 'fade-delay-1',
+      quote: "Virdar built us an AI receptionist that handles 200+ calls a month. We haven't missed a reservation since.",
+      name: 'Marcus T.',
+      role: 'Restaurant Owner, Dallas',
     },
     {
-      icon: '🧠',
-      name: 'Guest Intelligence & Loyalty System',
-      headline: "You have 3,000 customers. You're ignoring 2,400 of them.",
-      body: "We build a layer of intelligence on top of your POS data that tracks every guest: visit frequency, spend, favorite items, time since last visit. Drifting customers get an automated personalized reach-out. Your top 10% get recognized. Birthdays get remembered. Runs without you lifting a finger.",
-      stats: 'Win-back rate 15–25% · ROI in the first month · Integrates with Toast & Square',
-      price: 'From $5,500',
-      delay: 'fade-delay-2',
+      quote: "They automated our entire review response system. Our Google rating went from 3.8 to 4.6 in two months.",
+      name: 'Sarah K.',
+      role: 'Med Spa Owner, Plano',
     },
     {
-      icon: '📱',
-      name: 'Autonomous Social Media Manager',
-      headline: 'The last time you posted was 3 weeks ago.',
-      body: "We build a pipeline that generates content, writes captions, and posts for you — across Instagram, Facebook, and Google Business. When you have a special, you text us. Everything else runs on its own. Comments get replied to. DMs get answered. You stay visible without touching your phone.",
-      stats: 'Posts daily · Responds to comments & DMs · Monthly performance report',
-      price: 'From $4,500',
-      delay: 'fade-delay-3',
-    },
-    {
-      icon: '⭐',
-      name: 'Reputation Intelligence System',
-      headline: "Your reputation is your most valuable asset. Most owners don't watch it.",
-      body: "Every review across Google, Yelp, TripAdvisor, and DoorDash — aggregated, responded to, and analyzed. Negative reviews flagged before they go live. Every Monday: your rating trend, competitor comparison, and what customers are actually saying. Always on top of it. Zero minutes spent.",
-      stats: 'Covers 4+ platforms · Competitor benchmarking · Weekly intelligence digest',
-      price: 'From $2,000',
-      delay: 'fade-delay-4',
+      quote: "I was spending 12 hours a week on follow-ups. Now it's zero. The system just runs.",
+      name: 'David R.',
+      role: 'Real Estate Agent, Fort Worth',
     },
   ]
 
   return (
-    <section
-      id="flagship"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-      }}
-    >
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div ref={titleRef} className="fade-in" style={{ marginBottom: isMobile ? 36 : 56, textAlign: 'center' }}>
-          <h2
-            style={{
-              fontSize: 'clamp(26px, 4vw, 42px)',
-              fontWeight: 700,
-              color: '#F5F5F5',
-              letterSpacing: '-0.5px',
-              marginBottom: 16,
-            }}
-          >
-            What we build for you — custom, never a template
-          </h2>
-          <p style={{ fontSize: isMobile ? 15 : 17, color: '#888888', maxWidth: 640, margin: '0 auto', lineHeight: 1.7 }}>
-            Every system is built specifically for your business. We build it first, demo it live, and you only pay if you love it.
-          </p>
-        </div>
+    <section ref={ref} className="py-20 md:py-28 relative">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        {/* Trust line */}
+        <p className="text-center text-sm font-medium text-text-tertiary uppercase tracking-widest mb-12">
+          Trusted by local businesses across DFW
+        </p>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: isMobile ? 20 : 24,
-          }}
-        >
-          {flagshipCards.map((c) => (
-            <FlagshipCard key={c.name} {...c} />
+        {/* Testimonials */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <div key={i} className="proof-item glass rounded-2xl p-8 card-hover">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, j) => (
+                  <svg key={j} width="16" height="16" viewBox="0 0 16 16" fill="#4F8EF7">
+                    <path d="M8 1l2.2 4.4 4.8.7-3.5 3.4.8 4.8L8 12l-4.3 2.3.8-4.8L1 6.1l4.8-.7z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-text/90 text-sm leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
+              <div>
+                <div className="text-sm font-semibold text-text">{t.name}</div>
+                <div className="text-xs text-text-tertiary">{t.role}</div>
+              </div>
+            </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div style={{ textAlign: 'center', marginTop: 56 }}>
-          <a
-            href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              backgroundColor: '#4F8EF7',
-              color: '#fff',
-              borderRadius: 10,
-              padding: '16px 36px',
-              fontSize: 17,
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif',
-              textDecoration: 'none',
-              transition: 'background-color 0.2s ease, transform 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#3a78e8'
-              e.currentTarget.style.transform = 'translateY(-1px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#4F8EF7'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
-          >
-            Book Your Free Call →
-          </a>
-          <p style={{ marginTop: 16, fontSize: 14, color: '#555555' }}>
-            100% free to explore. We build first, you pay after.
-          </p>
         </div>
       </div>
     </section>
   )
 }
 
-// ─── Services ─────────────────────────────────────────────────────────────────
-interface ServiceCardProps {
-  icon: string
-  name: string
-  price: string
-  description: string
-  bullets: string[]
-  bestFor: string
-  cta?: string
-  delay?: string
+// ─── Problem Section ────────────────────────────────────────────────────────────
+function Problem() {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const header = ref.current.querySelector('.problem-content')
+    const cards = ref.current.querySelectorAll('.problem-card')
+    const ctx = gsap.context(() => {
+      if (header) {
+        gsap.fromTo(header,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+        )
+      }
+      gsap.fromTo(cards,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: ref.current!, start: 'top 70%', once: true } }
+      )
+    })
+    return () => ctx.revert()
+  }, [])
+
+  const pains = [
+    { icon: '📞', stat: '62%', text: 'of SMB calls go unanswered — 411 Locals study' },
+    { icon: '⭐', stat: '97%', text: 'of consumers read reviews before choosing a local business — BrightLocal' },
+    { icon: '⏰', stat: '16hrs', text: 'per week lost to admin tasks by average SMB owner — Time Etc survey' },
+    { icon: '📉', stat: '85%', text: 'of unanswered callers will never try again — PATLive research' },
+  ]
+
+  return (
+    <section ref={ref} className="py-20 md:py-28 relative">
+      <div className="section-divider max-w-7xl mx-auto" />
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        <div className="problem-content text-center mb-14">
+          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">The Problem</p>
+          <h2 className="heading-lg mb-4">
+            You&apos;re Losing Customers<br />
+            <span className="text-text-secondary">While You Sleep</span>
+          </h2>
+          <p className="body-lg max-w-2xl mx-auto">
+            Harvard Business School found a single star increase on Yelp drives 5-9% more revenue.
+            Every missed call, unanswered review, and forgotten follow-up is money walking out the door.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {pains.map((p, i) => (
+            <div key={i} className="problem-card glass rounded-2xl p-6 md:p-8 text-center card-hover">
+              <div className="text-3xl mb-3">{p.icon}</div>
+              <div className="text-2xl md:text-3xl font-bold gradient-text mb-2">{p.stat}</div>
+              <p className="text-xs md:text-sm text-text-secondary leading-relaxed">{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }
 
-function ServiceCard({ icon, name, price, description, bullets, bestFor, cta, delay }: ServiceCardProps) {
-  const [hovered, setHovered] = useState(false)
-  const ref = useFadeIn()
+// ─── Services ───────────────────────────────────────────────────────────────────
+const services = [
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+    ),
+    name: 'AI Voice Receptionist',
+    price: '$4,000',
+    description: 'Never miss a call again. AI answers, books appointments, and handles FAQs 24/7.',
+    highlights: ['Handles 200+ calls/month', '24/7 availability', '3-week setup'],
+    tag: 'Most Popular',
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a10 10 0 0110 10 10 10 0 01-10 10A10 10 0 012 12 10 10 0 0112 2z"/>
+        <path d="M12 8v4l3 3"/>
+      </svg>
+    ),
+    name: 'Guest Intelligence System',
+    price: '$5,500',
+    description: 'Know your customers better than they know themselves. POS-integrated AI that tracks and re-engages.',
+    highlights: ['POS integration (Toast, Square)', 'Win-back rate 15-25%', 'Automated VIP recognition'],
+    tag: 'Highest ROI',
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    ),
+    name: 'AI Social Media Manager',
+    price: '$4,500',
+    description: 'Daily posts across all platforms. On-brand content created and scheduled automatically.',
+    highlights: ['Instagram, Facebook, Google', 'Daily auto-posting', 'Brand voice trained'],
+    tag: null,
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    ),
+    name: 'Reputation Intelligence',
+    price: '$2,000',
+    description: 'Monitor and respond to every review automatically. Track competitors. Protect your brand.',
+    highlights: ['Google, Yelp, DoorDash', 'Auto-response in your voice', 'Competitor benchmarking'],
+    tag: 'Quick Win',
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+    ),
+    name: 'Missed Call Text-Back',
+    price: '$750',
+    description: 'Every missed call gets an instant text within 60 seconds. Works 24/7, no staff needed.',
+    highlights: ['60-second response time', '24/7 automated', '5-day setup'],
+    tag: 'Starter',
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+    ),
+    name: 'Custom Automation',
+    price: 'From $500',
+    description: 'If you do it more than 10 times a week, we can automate it. Tell us what\'s eating your time.',
+    highlights: ['Any repetitive task', 'Custom-built for you', 'Free scoping call'],
+    tag: null,
+  },
+]
+
+function Services() {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const header = ref.current.querySelector('.services-header')
+    const cards = ref.current.querySelectorAll('.service-card')
+    const ctx = gsap.context(() => {
+      if (header) {
+        gsap.fromTo(header,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+        )
+      }
+      gsap.fromTo(cards,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+      )
+    })
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section ref={ref} id="services" className="py-20 md:py-28 relative">
+      <div className="section-divider max-w-7xl mx-auto" />
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        <div className="services-header text-center mb-14">
+          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">What We Build</p>
+          <h2 className="heading-lg mb-4">
+            AI Systems That Run<br />
+            <span className="text-text-secondary">While You Don&apos;t</span>
+          </h2>
+          <p className="body-lg max-w-2xl mx-auto">
+            Each system is custom-built for your business. No templates. No generic chatbots.
+            Real automation that replaces real work.
+          </p>
+        </div>
+
+        <AutomationPipeline />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s, i) => (
+            <div key={i} className="service-card group glass rounded-2xl p-7 card-hover relative overflow-hidden">
+              {/* Hover glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-dim to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative z-10">
+                {/* Tag */}
+                {s.tag && (
+                  <span className="inline-block text-[10px] font-semibold uppercase tracking-wider text-accent bg-accent-dim px-2.5 py-1 rounded-full mb-4">
+                    {s.tag}
+                  </span>
+                )}
+
+                {/* Icon */}
+                <div className="w-11 h-11 rounded-xl bg-accent-dim flex items-center justify-center mb-5">
+                  {s.icon}
+                </div>
+
+                {/* Name + Price */}
+                <div className="flex items-baseline justify-between mb-3">
+                  <h3 className="text-lg font-semibold text-text">{s.name}</h3>
+                  <span className="text-sm font-semibold text-accent ml-3 shrink-0">{s.price}</span>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm text-text-secondary leading-relaxed mb-5">{s.description}</p>
+
+                {/* Highlights */}
+                <ul className="space-y-2">
+                  {s.highlights.map((h, j) => (
+                    <li key={j} className="flex items-center gap-2 text-xs text-text-secondary">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M3 7l3 3 5-5" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Tilt Step Card ─────────────────────────────────────────────────────────────
+function TiltStep({ step }: { step: { num: string; title: string; desc: string; icon: React.ReactNode } }) {
+  const { cardRef, glowRef, handleMouseMove, handleMouseLeave } = useTiltCard(8)
+  const isMobile = useIsMobile()
 
   return (
     <div
-      ref={ref}
-      className={`fade-in ${delay || ''}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        backgroundColor: '#111111',
-        border: hovered ? '1px solid rgba(79,142,247,0.5)' : '1px solid #1E1E1E',
-        borderRadius: 14,
-        padding: '32px 28px',
-        transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
-        boxShadow: hovered ? '0 0 24px rgba(79,142,247,0.12)' : 'none',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-      }}
+      ref={cardRef}
+      className="hiw-step text-center relative glass rounded-2xl p-8 cursor-default"
+      onMouseMove={isMobile ? undefined : handleMouseMove}
+      onMouseLeave={isMobile ? undefined : handleMouseLeave}
+      style={{ transition: 'transform 0.15s ease-out', transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
-      <div>
-        <div
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: 10,
-            backgroundColor: 'rgba(79,142,247,0.1)',
-            border: '1px solid rgba(79,142,247,0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 22,
-            marginBottom: 16,
-          }}
-        >
-          {icon}
-        </div>
-        <h3 style={{ fontSize: 20, fontWeight: 700, color: '#F5F5F5', marginBottom: 6 }}>
-          {name}
-        </h3>
-        <span style={{ fontSize: 15, fontWeight: 600, color: '#4F8EF7' }}>
-          {price}
+      {/* Mouse-follow glow overlay */}
+      <div
+        ref={glowRef}
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        style={{ opacity: 0, transition: 'opacity 0.3s ease' }}
+      />
+
+      {/* Step icon with ring */}
+      <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-surface border border-border mb-6 mx-auto">
+        <div className="absolute inset-0 rounded-2xl bg-accent/5" />
+        {step.icon}
+        <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-accent text-[11px] font-bold text-white flex items-center justify-center">
+          {step.num.replace('0', '')}
         </span>
       </div>
 
-      <p style={{ fontSize: 15, lineHeight: 1.7, color: '#888888' }}>{description}</p>
-
-      <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {bullets.map((b, i) => (
-          <li key={i} style={{ fontSize: 14, color: '#aaaaaa', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-            <span style={{ color: '#4F8EF7', flexShrink: 0, marginTop: 2 }}>✓</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-
-      <p style={{ fontSize: 13, color: '#555555', marginTop: 4, fontStyle: 'italic' }}>
-        Best for: {bestFor}
-      </p>
-
-      {cta && (
-        <a
-          href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            marginTop: 8,
-            backgroundColor: 'transparent',
-            border: '1px solid #4F8EF7',
-            color: '#4F8EF7',
-            borderRadius: 8,
-            padding: '10px 18px',
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: 'pointer',
-            fontFamily: 'Inter, sans-serif',
-            textDecoration: 'none',
-            transition: 'background-color 0.2s ease, color 0.2s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#4F8EF7'
-            e.currentTarget.style.color = '#fff'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent'
-            e.currentTarget.style.color = '#4F8EF7'
-          }}
-        >
-          {cta}
-        </a>
-      )}
+      <h3 className="text-xl font-semibold text-text mb-3">{step.title}</h3>
+      <p className="text-sm text-text-secondary leading-relaxed max-w-xs mx-auto">{step.desc}</p>
     </div>
   )
 }
 
-function Services() {
-  const titleRef = useFadeIn()
-  const isMobile = useIsMobile()
-
-  const services: ServiceCardProps[] = [
-    {
-      icon: '⭐',
-      name: 'Review Response System',
-      price: 'From $500',
-      description:
-        'Every Google, Yelp, and Facebook review gets a professional, personalized AI response — automatically. No more ignoring reviews or copy-pasting generic replies.',
-      bullets: [
-        'AI trained on your business voice and tone',
-        'Automatic responses to new reviews within minutes',
-        'Custom handling for negative reviews (flagged for your approval before posting)',
-        'Setup + testing + handoff in 5 business days',
-      ],
-      bestFor: 'Restaurants, dental/medical offices, salons, retail, any business where reviews drive new customers.',
-      delay: 'fade-delay-1',
-    },
-    {
-      icon: '📲',
-      name: 'Missed Call Text-Back',
-      price: 'From $750',
-      description:
-        "When a customer calls and nobody answers, they don't leave a voicemail — they call your competitor. Missed Call Text-Back automatically sends a text to every missed call within 60 seconds.",
-      bullets: [
-        'Instant automated text to every missed caller',
-        'Custom message with your hours, booking link, or direct reply option',
-        'Works 24/7 — including nights, weekends, and holidays',
-        'Setup + testing + handoff in 5 business days',
-      ],
-      bestFor:
-        'Dental/medical offices, restaurants taking reservations, salons, contractors, any business that loses leads to voicemail.',
-      delay: 'fade-delay-2',
-    },
-    {
-      icon: '👋',
-      name: 'New Customer / Patient Welcome Flow',
-      price: 'From $600',
-      description:
-        "First impressions are automated too. When someone books or signs up, they automatically get a welcome sequence — confirmation, what to expect, what to bring, how to reach you — without you lifting a finger.",
-      bullets: [
-        'Automated welcome text + email on new booking/signup',
-        'Custom pre-visit/pre-appointment instructions',
-        'Reminder message 24 hours before',
-        'Setup + testing + handoff in 5 business days',
-      ],
-      bestFor: 'Dental/medical offices, salons, fitness studios, any appointment-based business.',
-      delay: 'fade-delay-3',
-    },
-    {
-      icon: '⚡',
-      name: 'Custom Automation (Ask Us)',
-      price: 'Starting at $500 — scoped per project',
-      description: "Have a specific repetitive task eating your time? We'll build the system to handle it.",
-      bullets: [
-        'Auto-post daily specials to Instagram + Google Business',
-        'New employee onboarding document flow',
-        'Appointment no-show follow-up sequence',
-        'AI FAQ chat widget for your website',
-      ],
-      bestFor: 'Any local business with a repetitive manual process happening more than 10 times a week.',
-      cta: 'Book Your Free Call →',
-      delay: 'fade-delay-4',
-    },
-  ]
-
-  return (
-    <section
-      id="services"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-      }}
-    >
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div ref={titleRef} className="fade-in" style={{ marginBottom: isMobile ? 36 : 56, textAlign: 'center' }}>
-          <h2
-            style={{
-              fontSize: 'clamp(26px, 4vw, 42px)',
-              fontWeight: 700,
-              color: '#F5F5F5',
-              letterSpacing: '-0.5px',
-            }}
-          >
-            Quick wins — live in 5 days, free until you love it
-          </h2>
-          <p style={{ fontSize: isMobile ? 15 : 17, color: '#888888', marginTop: 12 }}>
-            We build it, demo it live, and you only pay when you're thrilled with the result. Zero risk to get started.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: isMobile ? 20 : 24,
-          }}
-        >
-          {services.map((s) => (
-            <ServiceCard key={s.name} {...s} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── How It Works ─────────────────────────────────────────────────────────────
-interface StepProps {
-  num: string
-  title: string
-  desc: string
-  delayClass: string
-}
-
-function Step({ num, title, desc, delayClass }: StepProps) {
-  const stepRef = useFadeIn()
-  return (
-    <div
-      ref={stepRef}
-      className={`fade-in ${delayClass}`}
-      style={{ textAlign: 'center', padding: '0 12px' }}
-    >
-      <div
-        style={{
-          fontSize: 36,
-          fontWeight: 800,
-          color: '#4F8EF7',
-          opacity: 0.6,
-          marginBottom: 16,
-          letterSpacing: '-1px',
-        }}
-      >
-        {num}
-      </div>
-      <h3
-        style={{
-          fontSize: 17,
-          fontWeight: 700,
-          color: '#F5F5F5',
-          marginBottom: 12,
-        }}
-      >
-        {title}
-      </h3>
-      <p style={{ fontSize: 15, lineHeight: 1.7, color: '#888888' }}>{desc}</p>
-    </div>
-  )
-}
-
+// ─── How It Works ───────────────────────────────────────────────────────────────
 function HowItWorks() {
-  const titleRef = useFadeIn()
-  const isMobile = useIsMobile()
+  const ref = useRef<HTMLDivElement>(null)
 
-  const steps: StepProps[] = [
+  useEffect(() => {
+    if (!ref.current) return
+    const header = ref.current.querySelector('.hiw-header')
+    const steps = ref.current.querySelectorAll('.hiw-step')
+    const line = ref.current.querySelector('.hiw-line')
+    const ctx = gsap.context(() => {
+      if (header) {
+        gsap.fromTo(header,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+        )
+      }
+      gsap.fromTo(steps,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.15, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: ref.current!, start: 'top 75%', once: true } }
+      )
+      if (line) {
+        gsap.fromTo(line,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 1, ease: 'power2.inOut', transformOrigin: 'left center',
+            scrollTrigger: { trigger: ref.current!, start: 'top 75%', once: true } }
+        )
+      }
+    })
+    return () => ctx.revert()
+  }, [])
+
+  const steps = [
     {
       num: '01',
-      title: 'Book a free call',
-      desc: '20 minutes. We learn your business, your bottlenecks, and what would move the needle.',
-      delayClass: 'fade-delay-1',
+      title: 'Book a Free Call',
+      desc: '20 minutes. We learn your business, identify the biggest time-wasters, and map out exactly what to automate.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      ),
     },
     {
       num: '02',
-      title: 'We build it — free',
-      desc: 'Custom AI automation built specifically for your business. Not a template. No charge yet.',
-      delayClass: 'fade-delay-2',
+      title: 'We Build It — Free',
+      desc: 'We design and build your custom AI system at no cost to you. Real automation, not a template. Takes 5-10 business days.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      ),
     },
     {
       num: '03',
-      title: 'You see it live',
-      desc: 'Full demo of your working system before any payment. See exactly what it does.',
-      delayClass: 'fade-delay-3',
-    },
-    {
-      num: '04',
-      title: 'You decide',
-      desc: 'Transparent pricing. Setup fee + optional monthly support. It runs automatically from day one.',
-      delayClass: 'fade-delay-4',
+      title: 'See It Live, Then Decide',
+      desc: 'Full demo of your working system. If it doesn\'t blow your mind, walk away. You only pay when you\'re 100% satisfied.',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      ),
     },
   ]
 
   return (
-    <section
-      id="how-it-works"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-        backgroundColor: '#0a0a0a',
-      }}
-    >
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div ref={titleRef} className="fade-in" style={{ textAlign: 'center', marginBottom: isMobile ? 40 : 64 }}>
-          <h2
-            style={{
-              fontSize: 'clamp(26px, 4vw, 42px)',
-              fontWeight: 700,
-              color: '#F5F5F5',
-              letterSpacing: '-0.5px',
-            }}
-          >
-            How it works — zero risk, every step
+    <section ref={ref} id="how-it-works" className="py-20 md:py-28 relative">
+      <div className="section-divider max-w-7xl mx-auto" />
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        <div className="hiw-header text-center mb-16">
+          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">How It Works</p>
+          <h2 className="heading-lg mb-4">
+            Zero Risk. Zero Hassle.<br />
+            <span className="text-text-secondary">Here&apos;s How We Do It</span>
           </h2>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: isMobile ? 24 : 32,
-          }}
-        >
-          {steps.map((step) => (
-            <Step key={step.num} {...step} />
-          ))}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Connecting line (desktop) */}
+          <div className="hiw-line hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-gradient-to-r from-accent/20 via-accent/40 to-accent/20" />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {steps.map((step, i) => (
+              <TiltStep key={i} step={step} />
+            ))}
+          </div>
+        </div>
+
+        {/* Guarantee callout */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl glass border border-accent/20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span className="text-sm font-medium text-text">
+              <span className="text-success font-semibold">The Virdar Guarantee:</span>{' '}
+              You see it working before you spend a dime.
+            </span>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-// ─── Pricing Clarity ──────────────────────────────────────────────────────────
-function PricingClarity() {
-  const ref = useFadeIn()
-  const isMobile = useIsMobile()
+// ─── ROI Calculator ─────────────────────────────────────────────────────────────
+function ROICalculator() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [hours, setHours] = useState(16)
+  const [hourlyRate, setHourlyRate] = useState(35)
+  const countRef = useRef<HTMLDivElement>(null)
+
+  const weeklySaved = hours
+  const monthlySaved = hours * 4
+  const moneySavedMonthly = hours * 4 * hourlyRate
+  const annualSavings = moneySavedMonthly * 12
+
+  useEffect(() => {
+    if (!ref.current) return
+    const header = ref.current.querySelector('.calc-header')
+    const body = ref.current.querySelector('.calc-body')
+    const ctx = gsap.context(() => {
+      if (header) {
+        gsap.fromTo(header,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+        )
+      }
+      if (body) {
+        gsap.fromTo(body,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.2,
+            scrollTrigger: { trigger: ref.current!, start: 'top 75%', once: true } }
+        )
+      }
+    })
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section
-      id="pricing"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-      }}
-    >
-      <div
-        ref={ref}
-        className="fade-in"
-        style={{
-          maxWidth: 680,
-          margin: '0 auto',
-          textAlign: 'center',
-        }}
-      >
-        <h2
-          style={{
-            fontSize: 'clamp(26px, 4vw, 42px)',
-            fontWeight: 700,
-            color: '#F5F5F5',
-            marginBottom: 32,
-            letterSpacing: '-0.5px',
-          }}
-        >
-          Transparent pricing from day one.
-        </h2>
-
-        <p style={{ fontSize: 17, lineHeight: 1.8, color: '#888888', marginBottom: 20 }}>
-          No deposit. No commitment. We build your custom AI automation and demo it live. If you love it, you pay a flat one-time fee and we deploy. If you don't, you owe nothing.
-        </p>
-
-        <p
-          style={{
-            fontSize: 15,
-            lineHeight: 1.8,
-            color: '#666666',
-            backgroundColor: '#111111',
-            border: '1px solid #1E1E1E',
-            borderRadius: 10,
-            padding: '16px 24px',
-          }}
-        >
-        <div
-          style={{
-            backgroundColor: '#111111',
-            border: '1px solid rgba(79,142,247,0.3)',
-            borderRadius: 10,
-            padding: '20px 24px',
-            marginBottom: 20,
-          }}
-        >
-          <p style={{ fontSize: 16, fontWeight: 600, color: '#4F8EF7', marginBottom: 8 }}>
-            The Virdar Guarantee
-          </p>
-          <p style={{ fontSize: 15, lineHeight: 1.8, color: '#888888', margin: 0 }}>
-            You see it working before you spend a dime. One-time fee, no subscriptions, no surprises. You own the system forever.
+    <section ref={ref} id="calculator" className="py-20 md:py-28 relative">
+      <div className="section-divider max-w-7xl mx-auto" />
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        <div className="calc-header text-center mb-14">
+          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">ROI Calculator</p>
+          <h2 className="heading-lg mb-4">
+            See What Automation<br />
+            <span className="text-text-secondary">Saves Your Business</span>
+          </h2>
+          <p className="body-md max-w-xl mx-auto">
+            SMB owners spend an average of 16 hours/week on admin tasks (Time Etc). McKinsey estimates AI can automate up to 57% of those hours.
           </p>
         </div>
 
-          Some automations use third-party tools like Twilio for SMS — those have small monthly
-          costs, typically $10–30/month depending on volume. We'll tell you exactly what that is
-          before you commit.
-        </p>
+        <div className="calc-body max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Globe visualization */}
+          <div className="order-2 md:order-1">
+            <ROIGlobe hours={hours} hourlyRate={hourlyRate} />
+          </div>
+
+          {/* Calculator panel */}
+          <div className="order-1 md:order-2 glass rounded-3xl p-8">
+            {/* Sliders */}
+            <div className="space-y-8 mb-8">
+              <div>
+                <div className="flex justify-between items-baseline mb-3">
+                  <label className="text-sm font-medium text-text">Hours on admin/repetitive tasks per week</label>
+                  <span className="text-lg font-bold text-accent">{hours}hrs</span>
+                </div>
+                <input
+                  type="range"
+                  min="5"
+                  max="40"
+                  value={hours}
+                  onChange={(e) => setHours(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-text-tertiary mt-1">
+                  <span>5 hrs</span>
+                  <span>40 hrs</span>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-baseline mb-3">
+                  <label className="text-sm font-medium text-text">Your hourly rate (or staff cost)</label>
+                  <span className="text-lg font-bold text-accent">${hourlyRate}/hr</span>
+                </div>
+                <input
+                  type="range"
+                  min="15"
+                  max="100"
+                  step="5"
+                  value={hourlyRate}
+                  onChange={(e) => setHourlyRate(Number(e.target.value))}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-text-tertiary mt-1">
+                  <span>$15/hr</span>
+                  <span>$100/hr</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Results */}
+            <div ref={countRef} className="grid grid-cols-2 gap-3 mb-8">
+              {[
+                { value: `${weeklySaved}hrs`, label: 'Saved / week', color: 'text-text' },
+                { value: `${monthlySaved}hrs`, label: 'Saved / month', color: 'text-text' },
+                { value: `$${moneySavedMonthly.toLocaleString()}`, label: 'Monthly savings', color: 'text-accent' },
+                { value: `$${annualSavings.toLocaleString()}`, label: 'Annual savings', color: 'text-success' },
+              ].map((r, i) => (
+                <div key={i} className="text-center p-3 rounded-xl bg-bg/50 border border-border">
+                  <div className={`text-lg md:text-xl font-bold ${r.color} mb-0.5`}>{r.value}</div>
+                  <div className="text-[10px] text-text-tertiary uppercase tracking-wider">{r.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary w-full justify-center">
+              Get Your Custom ROI Breakdown
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-1">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
-// ─── FAQ ──────────────────────────────────────────────────────────────────────
-interface FAQItemProps {
-  q: string
-  a: string
-}
-
-function FAQItem({ q, a }: FAQItemProps) {
+// ─── FAQ ────────────────────────────────────────────────────────────────────────
+function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div
-      style={{
-        borderBottom: '1px solid #1E1E1E',
-        padding: '20px 0',
-      }}
-    >
+    <div className="border-b border-border">
       <button
         onClick={() => setOpen(!open)}
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          textAlign: 'left',
-          gap: 16,
-          fontFamily: 'Inter, sans-serif',
-          padding: 0,
-        }}
+        className="w-full flex items-center justify-between py-5 text-left group cursor-pointer"
       >
-        <span style={{ fontSize: 16, fontWeight: 600, color: '#F5F5F5' }}>{q}</span>
-        <span
-          style={{
-            color: '#4F8EF7',
-            fontSize: 20,
-            flexShrink: 0,
-            transition: 'transform 0.2s ease',
-            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
-            lineHeight: 1,
-          }}
+        <span className="text-sm md:text-base font-medium text-text pr-4 group-hover:text-accent transition-colors">{q}</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          className={`shrink-0 text-text-tertiary transition-transform duration-300 ${open ? 'rotate-45' : ''}`}
         >
-          +
-        </span>
+          <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
       </button>
-      {open && (
-        <p
-          style={{
-            marginTop: 12,
-            fontSize: 15,
-            lineHeight: 1.7,
-            color: '#888888',
-          }}
-        >
-          {a}
-        </p>
-      )}
+      <div
+        ref={contentRef}
+        className="overflow-hidden transition-all duration-300"
+        style={{ maxHeight: open ? contentRef.current?.scrollHeight : 0 }}
+      >
+        <p className="text-sm text-text-secondary leading-relaxed pb-5">{a}</p>
+      </div>
     </div>
   )
 }
 
 function FAQ() {
-  const ref = useFadeIn()
-  const isMobile = useIsMobile()
+  const ref = useRef<HTMLDivElement>(null)
 
-  const faqs: FAQItemProps[] = [
+  useEffect(() => {
+    if (!ref.current) return
+    const header = ref.current.querySelector('.faq-header')
+    const body = ref.current.querySelector('.faq-body')
+    const ctx = gsap.context(() => {
+      if (header) {
+        gsap.fromTo(header,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+        )
+      }
+      if (body) {
+        gsap.fromTo(body,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.2,
+            scrollTrigger: { trigger: ref.current!, start: 'top 75%', once: true } }
+        )
+      }
+    })
+    return () => ctx.revert()
+  }, [])
+
+  const faqs = [
     {
       q: 'Do I need to be technical to use any of this?',
-      a: 'No. We build it, we set it up, we train it on your business. You just watch it run.',
+      a: 'No. We build it, set it up, and train it on your business. You just watch it run. If you can check your email, you can use our systems.',
     },
     {
-      q: 'How long does it actually take?',
-      a: 'Most builds are done and live within 5 business days of you approving the scope.',
+      q: 'How long does it take to build?',
+      a: 'Most systems are live within 5-10 business days. Simple automations (missed call text-back, review responses) can be done in under a week.',
     },
     {
-      q: 'What if I want to make changes later?',
-      a: "Minor tweaks are covered. If you want a major rebuild, we'll quote a small update fee.",
-    },
-    {
-      q: 'How does payment work?',
-      a: "No. We build your automation completely free. You see a full live demo first. You only pay if you love it and want it deployed. If not, you owe nothing.",
+      q: "What if I don't like it?",
+      a: "Walk away. Seriously. We build it free, demo it live, and you only pay if you're 100% satisfied. There's zero risk.",
     },
     {
       q: 'What kinds of businesses do you work with?',
-      a: "Restaurants, dental and medical offices, salons, contractors, retail — any local business with customers. If you're doing something manually that happens more than 10 times a week, we can probably automate it.",
+      a: 'Restaurants, dental and medical offices, law firms, salons, real estate agents, contractors, retail — any local business with customers and repetitive tasks.',
     },
     {
-      q: "What's the most complex thing you've built for a restaurant?",
-      a: "A full guest intelligence system: integrated with their POS, tracking thousands of guests across visit frequency, spend, and behavior. Automated birthday messages, lapsed-guest win-backs, and VIP recognition — all running without any staff involvement. If you want to see what that looks like, book a call and we'll walk you through it.",
+      q: 'Do I have to sign a long-term contract?',
+      a: 'No contracts. One-time build fee. Optional monthly support if you want ongoing optimization, but zero obligation.',
     },
     {
-      q: 'Do you work with businesses outside of restaurants?',
-      a: 'Yes — dental and medical offices, salons, contractors, retail. The problems are usually the same: missed calls, unanswered reviews, inconsistent follow-up. The systems just get trained differently.',
+      q: 'Will this work with my existing tools?',
+      a: 'Yes. We integrate with Toast, Square, Google Business, Yelp, your phone system, CRM, and most tools you already use.',
+    },
+    {
+      q: 'What happens after the system is built?',
+      a: 'It runs automatically. We provide 30 days of free support post-launch. After that, optional support plans start at $200/month.',
     },
   ]
 
   return (
-    <section
-      id="faq"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-        backgroundColor: '#0a0a0a',
-      }}
-    >
-      <div style={{ maxWidth: 720, margin: '0 auto' }}>
-        <div ref={ref} className="fade-in" style={{ marginBottom: 48 }}>
-          <h2
-            style={{
-              fontSize: 'clamp(26px, 4vw, 42px)',
-              fontWeight: 700,
-              color: '#F5F5F5',
-              letterSpacing: '-0.5px',
-              textAlign: 'center',
-            }}
-          >
-            Questions
+    <section ref={ref} id="faq" className="py-20 md:py-28 relative">
+      <div className="section-divider max-w-7xl mx-auto" />
+      <div className="max-w-3xl mx-auto px-5 md:px-8">
+        <div className="faq-header text-center mb-14">
+          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">FAQ</p>
+          <h2 className="heading-lg">
+            Questions? <span className="text-text-secondary">Answered.</span>
           </h2>
         </div>
 
-        {faqs.map((faq, i) => (
-          <FAQItem key={i} {...faq} />
-        ))}
+        <div className="faq-body">
+          {faqs.map((faq, i) => (
+            <FAQItem key={i} q={faq.q} a={faq.a} />
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
-// ─── Contact Form ──────────────────────────────────────────────────────────────
-function Contact() {
-  const ref = useFadeIn()
-  const isMobile = useIsMobile()
+// ─── Final CTA ──────────────────────────────────────────────────────────────────
+function FinalCTA() {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const content = ref.current.querySelector('.final-cta-content')
+    const ctx = gsap.context(() => {
+      if (content) {
+        gsap.fromTo(content,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current!, start: 'top 80%', once: true } }
+        )
+      }
+    })
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section ref={ref} className="py-24 md:py-36 relative overflow-hidden">
+      <div className="section-divider max-w-7xl mx-auto" />
+
+      {/* Background glow */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px]" />
+      </div>
+
+      <div className="final-cta-content relative z-10 max-w-3xl mx-auto px-5 md:px-8 text-center">
+        <h2 className="heading-lg mb-6">
+          Stop Losing Customers<br />
+          <span className="gradient-text">to Manual Work</span>
+        </h2>
+        <p className="body-lg max-w-xl mx-auto mb-10">
+          Book a free 20-minute call. We&apos;ll map out what to automate,
+          build it at no cost, and demo it live. You only pay if you want to keep it.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary text-base px-10 py-4">
+            Book Your Free Strategy Call
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-1">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <p className="text-xs text-text-tertiary mt-6">
+          We build first, you pay after &middot; No obligations &middot; Based in Dallas, TX
+        </p>
+      </div>
+    </section>
+  )
+}
+
+// ─── Contact Form ───────────────────────────────────────────────────────────────
+function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
-    const form = e.currentTarget
-    const data = new FormData(form)
-
+    setSubmitting(true)
     try {
-      const res = await fetch('https://formspree.io/f/xeelnjwd', {
+      const form = e.currentTarget
+      const data = new FormData(form)
+      const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
         body: data,
         headers: { Accept: 'application/json' },
       })
       if (res.ok) {
         setSubmitted(true)
-      } else {
-        alert('Something went wrong. Please email us at info@virdar.co')
+        form.reset()
       }
-    } catch {
-      alert('Something went wrong. Please email us at info@virdar.co')
     } finally {
-      setLoading(false)
+      setSubmitting(false)
     }
   }, [])
 
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    backgroundColor: '#111111',
-    border: '1px solid #1E1E1E',
-    borderRadius: 8,
-    padding: '14px 16px',
-    fontSize: 15,
-    color: '#F5F5F5',
-    fontFamily: 'Inter, sans-serif',
-    outline: 'none',
-    transition: 'border-color 0.2s ease',
-    boxSizing: 'border-box',
+  if (submitted) {
+    return (
+      <div className="text-center py-8">
+        <div className="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <p className="text-lg font-semibold text-text mb-2">Thanks! We&apos;ll be in touch soon.</p>
+        <p className="text-sm text-text-secondary">Usually within a few hours.</p>
+      </div>
+    )
   }
 
   return (
-    <section
-      id="contact"
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-      }}
-    >
-      <div
-        ref={ref}
-        className="fade-in"
-        style={{ maxWidth: 560, margin: '0 auto' }}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input
+          name="name"
+          type="text"
+          placeholder="Your name"
+          required
+          className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors"
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email address"
+          required
+          className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors"
+        />
+      </div>
+      <input
+        name="business"
+        type="text"
+        placeholder="Business name & type (e.g. Italian restaurant)"
+        className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors"
+      />
+      <textarea
+        name="message"
+        rows={3}
+        placeholder="What's eating most of your time right now?"
+        className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors resize-none"
+      />
+      <button
+        type="submit"
+        disabled={submitting}
+        className="btn-primary w-full justify-center disabled:opacity-50"
       >
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2
-            style={{
-              fontSize: 'clamp(26px, 4vw, 42px)',
-              fontWeight: 700,
-              color: '#F5F5F5',
-              marginBottom: 16,
-              letterSpacing: '-0.5px',
-            }}
-          >
-            Book your free call
-          </h2>
-          <p style={{ fontSize: 16, color: '#888888', lineHeight: 1.6 }}>
-            20 minutes. No pitch, no pressure — just a conversation about what we could build for your business.
-          </p>
-        <p style={{ fontSize: 15, fontWeight: 600, color: '#4F8EF7', marginBottom: 40 }}>
-          100% free to explore. We build first, you pay after.
-        </p>
-          <a
-            href="https://calendly.com/virdar-info/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              backgroundColor: '#4F8EF7',
-              color: '#fff',
-              borderRadius: 10,
-              padding: '16px 36px',
-              fontSize: 17,
-              fontWeight: 600,
-              textDecoration: 'none',
-              transition: 'background-color 0.2s ease, transform 0.15s ease',
-              marginTop: 20,
-              marginBottom: 24,
-            }}
-          >
-            Book Your Free Call →
-          </a>
-          <p style={{ fontSize: 14, color: '#555555' }}>
-            Or leave your details below and we'll reach out:
-          </p>
-        </div>
+        {submitting ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
+  )
+}
 
-        {submitted ? (
-          <div
-            style={{
-              backgroundColor: '#111111',
-              border: '1px solid rgba(79,142,247,0.4)',
-              borderRadius: 12,
-              padding: '40px 32px',
-              textAlign: 'center',
-            }}
-          >
-            <div style={{ fontSize: 32, marginBottom: 16 }}>✓</div>
-            <p style={{ fontSize: 18, fontWeight: 600, color: '#F5F5F5', marginBottom: 8 }}>
-              We'll reach out within 24 hours.
-            </p>
-            <p style={{ fontSize: 15, color: '#888888' }}>
-              You can also email us directly at{' '}
-              <a href="mailto:info@virdar.co" style={{ color: '#4F8EF7' }}>
-                info@virdar.co
-              </a>
+// ─── Footer ─────────────────────────────────────────────────────────────────────
+function Footer() {
+  return (
+    <footer className="border-t border-border">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 py-12">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          {/* Left */}
+          <div>
+            <Logo />
+            <p className="text-sm text-text-tertiary mt-3 max-w-xs">
+              AI automation systems for local businesses. Built in Dallas, TX.
             </p>
           </div>
-        ) : (
-          <form
-            onSubmit={handleSubmit}
-            style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
-          >
-            <div>
-              <label htmlFor="contact-name" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
-                Name
-              </label>
-              <input
-                id="contact-name"
-                type="text"
-                name="name"
-                required
-                placeholder="Your name"
-                style={inputStyle}
-                onFocus={(e) => ((e.target as HTMLInputElement).style.borderColor = '#4F8EF7')}
-                onBlur={(e) => ((e.target as HTMLInputElement).style.borderColor = '#1E1E1E')}
-              />
-            </div>
 
-            <div>
-              <label htmlFor="contact-business" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
-                Business Type
-              </label>
-              <input
-                id="contact-business"
-                type="text"
-                name="business_type"
-                required
-                placeholder="e.g. Restaurant, Dental Office, Salon..."
-                style={inputStyle}
-                onFocus={(e) => ((e.target as HTMLInputElement).style.borderColor = '#4F8EF7')}
-                onBlur={(e) => ((e.target as HTMLInputElement).style.borderColor = '#1E1E1E')}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="contact-email" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
-                Email
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                required
-                placeholder="hello@yourbusiness.com"
-                style={inputStyle}
-                onFocus={(e) => ((e.target as HTMLInputElement).style.borderColor = '#4F8EF7')}
-                onBlur={(e) => ((e.target as HTMLInputElement).style.borderColor = '#1E1E1E')}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="contact-tasks" style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#888888', marginBottom: 6 }}>
-                What are you doing manually right now?
-              </label>
-              <textarea
-                id="contact-tasks"
-                name="manual_tasks"
-                required
-                rows={4}
-                placeholder="Describe the repetitive tasks taking up your time..."
-                style={{
-                  ...inputStyle,
-                  resize: 'vertical',
-                  minHeight: 100,
-                }}
-                onFocus={(e) => ((e.target as HTMLTextAreaElement).style.borderColor = '#4F8EF7')}
-                onBlur={(e) => ((e.target as HTMLTextAreaElement).style.borderColor = '#1E1E1E')}
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              style={{
-                backgroundColor: '#4F8EF7',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 8,
-                padding: '16px',
-                fontSize: 16,
-                fontWeight: 600,
-                cursor: loading ? 'not-allowed' : 'pointer',
-                fontFamily: 'Inter, sans-serif',
-                opacity: loading ? 0.7 : 1,
-                transition: 'background-color 0.2s ease',
-                marginTop: 4,
-              }}
-              onMouseEnter={(e) => {
-                if (!loading) (e.target as HTMLButtonElement).style.backgroundColor = '#3a78e8'
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLButtonElement).style.backgroundColor = '#4F8EF7'
-              }}
-            >
-              {loading ? 'Sending...' : 'Book Your Free Call →'}
-            </button>
-          </form>
-        )}
-      </div>
-    </section>
-  )
-}
-
-// ─── Footer CTA ───────────────────────────────────────────────────────────────
-function FooterCTA() {
-  const ref = useFadeIn()
-  const isMobile = useIsMobile()
-
-  return (
-    <section
-      style={{
-        padding: isMobile ? '64px 20px' : '100px 24px',
-        borderTop: '1px solid #1E1E1E',
-        backgroundColor: '#080808',
-        textAlign: 'center',
-      }}
-    >
-      <div ref={ref} className="fade-in" style={{ maxWidth: 640, margin: '0 auto' }}>
-        <h2
-          style={{
-            fontSize: 'clamp(28px, 4.5vw, 52px)',
-            fontWeight: 800,
-            color: '#F5F5F5',
-            marginBottom: 20,
-            letterSpacing: '-1px',
-          }}
-        >
-          We build it free. You pay after you see it working.
-        </h2>
-        <p style={{ fontSize: 18, color: '#888888', lineHeight: 1.7, marginBottom: 16 }}>
-          Book a free 20-minute call. No pitch, no pressure — just a conversation about what
-          we could build for your business.
-        </p>
-        <p style={{ fontSize: 15, fontWeight: 600, color: '#4F8EF7', marginBottom: 40 }}>
-          100% free to explore. We build first, you pay after.
-        </p>
-        <a
-          href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            backgroundColor: '#4F8EF7',
-            color: '#fff',
-            borderRadius: 10,
-            padding: '18px 40px',
-            fontSize: 18,
-            fontWeight: 600,
-            cursor: 'pointer',
-            fontFamily: 'Inter, sans-serif',
-            textDecoration: 'none',
-            transition: 'background-color 0.2s ease, transform 0.15s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#3a78e8'
-            e.currentTarget.style.transform = 'translateY(-2px)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#4F8EF7'
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
-        >
-          Book Your Free Call →
-        </a>
-      </div>
-    </section>
-  )
-}
-
-// ─── Footer ───────────────────────────────────────────────────────────────────
-function Footer() {
-  const isMobile = useIsMobile()
-
-  return (
-    <footer
-      style={{
-        padding: isMobile ? '24px 20px' : '28px 24px',
-        borderTop: '1px solid #1E1E1E',
-        backgroundColor: '#080808',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: '0 auto',
-          display: 'flex',
-          flexDirection: isMobile ? 'column' : 'row',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: isMobile ? 'center' : 'space-between',
-          gap: isMobile ? 16 : 12,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: isMobile ? 'center' : 'center', flexDirection: isMobile ? 'column' : 'row', gap: 12 }}>
-          <Logo />
-          <span style={{ fontSize: 13, color: '#333333' }}>© {new Date().getFullYear()} Virdar. All rights reserved.</span>
+          {/* Contact alternative */}
+          <div className="glass rounded-2xl p-6 w-full md:w-auto md:min-w-[360px]">
+            <p className="text-sm font-medium text-text mb-4">Prefer to write? Drop us a message.</p>
+            <ContactForm />
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-          <a
-            href="https://calendly.com/virdar-info/30min" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: 14, color: '#555555', textDecoration: 'none', transition: 'color 0.2s' }}
-            onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
-            onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#555555')}
-          >
-            Contact
-          </a>
-          <a
-            href="mailto:info@virdar.co"
-            style={{ fontSize: 14, color: '#555555', textDecoration: 'none', transition: 'color 0.2s' }}
-            onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#888888')}
-            onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = '#555555')}
-          >
-            info@virdar.co
-          </a>
+
+        {/* Bottom bar */}
+        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-text-tertiary">
+            &copy; {new Date().getFullYear()} Virdar. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="text-xs text-text-tertiary hover:text-text transition-colors">
+              Book a Call
+            </a>
+            <a href="mailto:info@virdar.co" className="text-xs text-text-tertiary hover:text-text transition-colors">
+              info@virdar.co
+            </a>
+          </div>
         </div>
       </div>
     </footer>
   )
 }
 
-// ─── App ──────────────────────────────────────────────────────────────────────
+// ─── App ────────────────────────────────────────────────────────────────────────
 export default function App() {
+  useEffect(() => {
+    // Refresh ScrollTrigger after all content loads
+    const timeout = setTimeout(() => ScrollTrigger.refresh(), 100)
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
-    <>
+    <div className="min-h-screen bg-bg text-text relative noise">
       <Nav />
-      <main>
+      <main className="relative z-10">
         <Hero />
+        <SocialProof />
         <Problem />
-        <FlagshipSystems />
         <Services />
         <HowItWorks />
-        <PricingClarity />
+        <ROICalculator />
         <FAQ />
-        <Contact />
-        <FooterCTA />
-        <Footer />
+        <FinalCTA />
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
