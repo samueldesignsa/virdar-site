@@ -783,6 +783,102 @@ function Problem() {
   )
 }
 
+// ─── Compliance Trust Strip ──────────────────────────────────────────────────────
+function ComplianceTrust() {
+  const ref = useRef<HTMLDivElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
+
+  useEffect(() => {
+    if (reducedMotion || !ref.current) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(ref.current!,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: ref.current!, start: 'top 85%', once: true } }
+      )
+    })
+    return () => ctx.revert()
+  }, [reducedMotion])
+
+  const frameworks = [
+    {
+      name: 'HIPAA',
+      desc: 'Healthcare',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'PCI DSS',
+      desc: 'Payment Data',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'SOC 2',
+      desc: 'Data Security',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'CCPA',
+      desc: 'Privacy',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/>
+        </svg>
+      ),
+    },
+  ]
+
+  return (
+    <section ref={ref} className="py-12 md:py-16 relative">
+      <div className="max-w-4xl mx-auto px-5 md:px-8">
+        <div className="glass rounded-2xl p-6 md:p-8">
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            {/* Left text */}
+            <div className="text-center md:text-left md:flex-shrink-0">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <span className="text-sm font-semibold text-success">Built for Compliance</span>
+              </div>
+              <p className="text-xs text-text-tertiary max-w-xs">
+                Every system we build is designed to meet your industry&apos;s regulatory requirements.
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="hidden md:block w-px h-12 bg-border" />
+
+            {/* Framework badges */}
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              {frameworks.map((f) => (
+                <div key={f.name} className="flex items-center gap-2">
+                  {f.icon}
+                  <div>
+                    <div className="text-sm font-semibold text-text leading-tight">{f.name}</div>
+                    <div className="text-[10px] text-text-tertiary uppercase tracking-wider">{f.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Services ───────────────────────────────────────────────────────────────────
 const services = [
   {
@@ -1309,6 +1405,10 @@ function FAQ() {
       a: 'Restaurants, dental and medical offices, law firms, salons, real estate agents, contractors, retail — any local business with customers and repetitive tasks.',
     },
     {
+      q: 'What about HIPAA, PCI, or other compliance requirements?',
+      a: 'We design every system to meet your industry\'s regulatory standards. Healthcare? HIPAA-compliant data handling. Taking payments? PCI DSS protocols. We use encrypted infrastructure, role-based access controls, and audit-ready logging. We\'ll walk through compliance specifics on your strategy call.',
+    },
+    {
       q: 'Do I have to sign a long-term contract?',
       a: 'No contracts. One-time build fee. Optional monthly support if you want ongoing optimization, but zero obligation.',
     },
@@ -1564,6 +1664,7 @@ export default function App() {
       <main id="main-content" className="relative z-10">
         <Hero />
         <Problem />
+        <ComplianceTrust />
         <Services />
         <HowItWorks />
         <ROICalculator />
