@@ -634,24 +634,25 @@ function Hero() {
         <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border mb-8 bg-surface/50 backdrop-blur-sm">
           <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
           <span className="text-xs font-medium text-text-secondary tracking-wide uppercase">
-            AI Automation Agency &middot; Dallas, TX
+            Now Booking Free Strategy Calls &middot; Dallas, TX
           </span>
         </div>
 
-        {/* Headline - Hormozi Grand Slam Offer */}
+        {/* Headline */}
         <h1 ref={headlineRef} className="heading-xl mb-6 max-w-4xl mx-auto">
-          We Build Your Custom AI System{' '}
-          <span className="gradient-text">Free</span>
+          Tell Us What&apos;s Eating Your Time.{' '}
+          <br />
+          We&apos;ll Automate It — <span className="gradient-text">Free</span>
           <br />
           <span className="text-text-secondary" style={{ fontSize: '0.72em', fontWeight: 600 }}>
-            You Only Pay After You See It Working
+            Custom-built for your business. You only pay if you keep it.
           </span>
         </h1>
 
         {/* Subheadline */}
         <p className="hero-sub body-lg max-w-2xl mx-auto mb-10">
-          We learn your business, build a custom AI system for free, and demo it live.
-          No obligations — you only pay after you see it working.
+          20-minute call. We learn what slows you down, build a custom system
+          around it, and demo it live. No templates, no obligations.
         </p>
 
         {/* CTAs */}
@@ -670,9 +671,9 @@ function Hero() {
         {/* Stats bar */}
         <div className="hero-stats flex flex-wrap items-center justify-center gap-8 md:gap-16">
           {[
-            { value: '16hrs', label: 'Avg. Admin Time Reclaimed' },
-            { value: '85%', label: 'Of Missed Callers Never Call Back' },
-            { value: '$0', label: 'Until You See It Working' },
+            { value: '16hrs/wk', label: 'Lost to tasks AI can handle' },
+            { value: '85%', label: 'Of missed callers never try again' },
+            { value: '$0 risk', label: 'We build first, you decide after' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-text tracking-tight">{stat.value}</div>
