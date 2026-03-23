@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Canvas, useFrame } from '@react-three/fiber'
@@ -527,22 +528,22 @@ function Logo({ size = 'default' }: { size?: 'default' | 'large' }) {
   )
 }
 
-// ─── Nav ────────────────────────────────────────────────────────────────────────
+// ─── Nav (Floating) ─────────────────────────────────────────────────────────────
 function Nav() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const isMobile = useIsMobile()
+  const { scrollYProgress } = useScroll()
+  const [visible, setVisible] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  useMotionValueEvent(scrollYProgress, 'change', (current) => {
+    if (typeof current === 'number') {
+      const direction = current - (scrollYProgress.getPrevious() ?? 0)
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [mobileOpen])
+      if (scrollYProgress.get() < 0.05) {
+        setVisible(false)
+      } else {
+        setVisible(direction < 0)
+      }
+    }
+  })
 
   const navLinks = [
     { label: 'Services', href: '#services' },
@@ -552,64 +553,34 @@ function Nav() {
   ]
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'glass-strong py-3' : 'py-5 bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
-        <Logo />
-
-        {isMobile ? (
-          <>
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="relative z-50 w-10 h-10 flex items-center justify-center text-text-secondary"
-              aria-label="Toggle menu"
-            >
-              <div className="flex flex-col gap-1.5">
-                <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-                <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
-            </button>
-
-            {mobileOpen && (
-              <div className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-2xl font-medium text-text-secondary hover:text-text transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary mt-4">
-                  Book a Free Call
-                </a>
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-text-secondary hover:text-text transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary !py-2.5 !px-5 !text-sm">
-              Book a Free Call
-            </a>
-          </div>
-        )}
-      </div>
-    </nav>
+    <AnimatePresence mode="wait">
+      <motion.nav
+        initial={{ opacity: 1, y: -100 }}
+        animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+        className="flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-white/[0.15] rounded-full bg-bg/80 backdrop-blur-xl shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.3),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2 items-center justify-center space-x-4"
+      >
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="relative items-center flex space-x-1 text-text-secondary hover:text-text transition-colors text-sm"
+          >
+            <span className="hidden sm:block">{link.label}</span>
+            <span className="block sm:hidden text-xs">{link.label}</span>
+          </a>
+        ))}
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border text-sm font-medium relative border-white/[0.15] text-text px-4 py-2 rounded-full hover:bg-white/[0.05] transition-colors"
+        >
+          <span>Book a Call</span>
+          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-accent to-transparent h-px" />
+        </a>
+      </motion.nav>
+    </AnimatePresence>
   )
 }
 
