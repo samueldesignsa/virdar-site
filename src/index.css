@@ -19,6 +19,33 @@
   --color-warning: #FBBF24;
 }
 
+/* ─── Focus States ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Skip Link ────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-accent);
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
 /* ─── Base ──────────────────────────────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
@@ -154,7 +181,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, #4F8EF7, #60A5FA);
+  background: linear-gradient(135deg, #2563EB, #3B82F6);
   color: white;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -168,7 +195,7 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 32px rgba(79, 142, 247, 0.3), 0 0 0 1px rgba(79, 142, 247, 0.3);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.35), 0 0 0 1px rgba(37, 99, 235, 0.3);
 }
 
 .btn-secondary {
@@ -233,8 +260,20 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #4F8EF7, #60A5FA);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 0 16px rgba(79, 142, 247, 0.3);
+  /* Expand touch target to 44px via transparent border trick */
+  background-clip: padding-box;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
   background: linear-gradient(135deg, #4F8EF7, #60A5FA);
   border-radius: 50%;
   cursor: pointer;
@@ -242,14 +281,8 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 0 16px rgba(79, 142, 247, 0.3);
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, #4F8EF7, #60A5FA);
-  border-radius: 50%;
-  cursor: pointer;
-  border: 3px solid var(--color-bg);
-  box-shadow: 0 0 16px rgba(79, 142, 247, 0.3);
+input[type="range"] {
+  min-height: 44px;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
@@ -268,6 +301,16 @@ input[type="range"]::-moz-range-thumb {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-border-hover);
+}
+
+/* ─── Reduced Motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ─── Selection ─────────────────────────────────────────────────────────────── */

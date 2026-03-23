@@ -13,6 +13,19 @@ const CALENDLY_URL = 'https://calendly.com/virdar-info/30min'
 const FORMSPREE_URL = 'https://formspree.io/f/xeelnjwd'
 
 // ─── Hooks ──────────────────────────────────────────────────────────────────────
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return reduced
+}
+
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
@@ -389,23 +402,25 @@ function AutomationPipeline() {
         {/* Nodes */}
         <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite' }}>
           <circle cx="100" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
-          <text x="100" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">📞</text>
-          <text x="100" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Call</text>
+          <path d="M94 55v6a4 4 0 004 4h4a4 4 0 004-4v-6" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" transform="translate(0,-2)" />
+          <path d="M108 57a16 16 0 01-16 0" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" fill="none" transform="translate(0,-2)" />
+          <text x="100" y="76" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Call</text>
         </g>
         <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite 0.5s' }}>
           <circle cx="360" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
-          <text x="360" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">🧠</text>
-          <text x="360" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">AI Processes</text>
+          <path d="M352 56a4 4 0 014-4h8a4 4 0 014 4v4a4 4 0 01-4 4h-8a4 4 0 01-4-4z" stroke="#4F8EF7" strokeWidth="1.5" fill="none" />
+          <circle cx="356" cy="58" r="1" fill="#4F8EF7" /><circle cx="360" cy="58" r="1" fill="#4F8EF7" /><circle cx="364" cy="58" r="1" fill="#4F8EF7" />
+          <text x="360" y="76" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">AI Processes</text>
         </g>
         <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite 1s' }}>
           <circle cx="560" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
-          <text x="560" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">⚡</text>
-          <text x="560" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Action</text>
+          <path d="M555 60l5-8 5 8M560 52v16" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <text x="560" y="76" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Action</text>
         </g>
         <g className="pipeline-node" style={{ animation: 'pulseNode 3s ease-in-out infinite 1.5s' }}>
           <circle cx="750" cy="60" r="20" fill="#09090B" stroke="#4F8EF7" strokeWidth="1.5" />
-          <text x="750" y="56" textAnchor="middle" fill="#4F8EF7" fontSize="14">✅</text>
-          <text x="750" y="72" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Done</text>
+          <path d="M743 60l4 4 8-8" stroke="#4F8EF7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <text x="750" y="76" textAnchor="middle" fill="#A1A1AA" fontSize="8" fontFamily="Inter">Done</text>
         </g>
       </svg>
     </div>
@@ -519,7 +534,7 @@ function Logo({ size = 'default' }: { size?: 'default' | 'large' }) {
   const s = size === 'large' ? 32 : 24
   const fontSize = size === 'large' ? 'text-2xl' : 'text-lg'
   return (
-    <a href="#" className={`flex items-center gap-2.5 ${fontSize} font-bold text-text tracking-tight no-underline`}>
+    <a href="#" aria-label="Virdar — Go to homepage" className={`flex items-center gap-2.5 ${fontSize} font-bold text-text tracking-tight no-underline`}>
       <svg width={s} height={s} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M2 3L14 25L26 3H20.5L14 17L7.5 3H2Z" fill="#4F8EF7" />
       </svg>
@@ -531,14 +546,14 @@ function Logo({ size = 'default' }: { size?: 'default' | 'large' }) {
 // ─── Nav (Floating) ─────────────────────────────────────────────────────────────
 function Nav() {
   const { scrollYProgress } = useScroll()
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(true)
 
   useMotionValueEvent(scrollYProgress, 'change', (current) => {
     if (typeof current === 'number') {
       const direction = current - (scrollYProgress.getPrevious() ?? 0)
 
       if (scrollYProgress.get() < 0.05) {
-        setVisible(false)
+        setVisible(true)
       } else {
         setVisible(direction < 0)
       }
@@ -555,29 +570,28 @@ function Nav() {
   return (
     <AnimatePresence mode="wait">
       <motion.nav
-        initial={{ opacity: 1, y: -100 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
         transition={{ duration: 0.2 }}
-        className="flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-white/[0.15] rounded-full bg-bg/80 backdrop-blur-xl shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.3),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2 items-center justify-center space-x-4"
+        aria-label="Main navigation"
+        className="flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-white/[0.15] rounded-full bg-bg/80 backdrop-blur-xl shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.3),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-4 sm:pl-8 py-2 items-center justify-center gap-1 sm:gap-4"
       >
         {navLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}
-            className="relative items-center flex space-x-1 text-text-secondary hover:text-text transition-colors text-sm"
+            className="relative items-center flex text-text-secondary hover:text-text transition-colors text-xs sm:text-sm px-1.5 sm:px-0 py-1 min-h-[44px] min-w-[44px] justify-center"
           >
-            <span className="hidden sm:block">{link.label}</span>
-            <span className="block sm:hidden text-xs">{link.label}</span>
+            {link.label}
           </a>
         ))}
         <a
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="border text-sm font-medium relative border-white/[0.15] text-text px-4 py-2 rounded-full hover:bg-white/[0.05] transition-colors"
+          className="text-sm font-medium relative bg-gradient-to-r from-accent to-[#60A5FA] text-white px-4 py-2 rounded-full hover:shadow-[0_0_20px_rgba(79,142,247,0.3)] transition-all"
         >
           <span>Book a Call</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-accent to-transparent h-px" />
         </a>
       </motion.nav>
     </AnimatePresence>
@@ -588,8 +602,10 @@ function Nav() {
 function Hero() {
   const heroRef = useRef<HTMLElement>(null)
   const headlineRef = useRef<HTMLHeadingElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (reducedMotion) return
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -601,13 +617,13 @@ function Hero() {
     }, heroRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   const isMobile = useIsMobile()
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {isMobile ? <GradientOrb /> : <NeuralHeroOrb />}
+      {(isMobile || reducedMotion) ? <GradientOrb /> : <NeuralHeroOrb />}
 
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 grid-pattern opacity-40" />
@@ -677,9 +693,10 @@ function Hero() {
 // ─── Problem Section ────────────────────────────────────────────────────────────
 function Problem() {
   const ref = useRef<HTMLDivElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
-    if (!ref.current) return
+    if (reducedMotion || !ref.current) return
     const header = ref.current.querySelector('.problem-content')
     const cards = ref.current.querySelectorAll('.problem-card')
     const ctx = gsap.context(() => {
@@ -697,13 +714,42 @@ function Problem() {
       )
     })
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   const pains = [
-    { icon: '📞', stat: '62%', text: 'of SMB calls go unanswered — 411 Locals study' },
-    { icon: '⭐', stat: '97%', text: 'of consumers read reviews before choosing a local business — BrightLocal' },
-    { icon: '⏰', stat: '16hrs', text: 'per week lost to admin tasks by average SMB owner — Time Etc survey' },
-    { icon: '📉', stat: '85%', text: 'of unanswered callers will never try again — PATLive research' },
+    {
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          <line x1="15" y1="3" x2="15" y2="3.01" opacity="0.5"/><line x1="18" y1="3" x2="18" y2="3.01" opacity="0.5"/><line x1="21" y1="3" x2="21" y2="3.01" opacity="0.5"/>
+        </svg>
+      ),
+      stat: '62%', text: 'of SMB calls go unanswered — 411 Locals study'
+    },
+    {
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      ),
+      stat: '97%', text: 'of consumers read reviews before choosing a local business — BrightLocal'
+    },
+    {
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+      ),
+      stat: '16hrs', text: 'per week lost to admin tasks by average SMB owner — Time Etc survey'
+    },
+    {
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F8EF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+        </svg>
+      ),
+      stat: '85%', text: 'of unanswered callers will never try again — PATLive research'
+    },
   ]
 
   return (
@@ -725,7 +771,7 @@ function Problem() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {pains.map((p, i) => (
             <div key={i} className="problem-card glass rounded-2xl p-6 md:p-8 text-center card-hover">
-              <div className="text-3xl mb-3">{p.icon}</div>
+              <div className="flex items-center justify-center mb-3">{p.icon}</div>
               <div className="text-2xl md:text-3xl font-bold gradient-text mb-2">{p.stat}</div>
               <p className="text-xs md:text-sm text-text-secondary leading-relaxed">{p.text}</p>
             </div>
@@ -816,9 +862,10 @@ const services = [
 
 function Services() {
   const ref = useRef<HTMLDivElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
-    if (!ref.current) return
+    if (reducedMotion || !ref.current) return
     const header = ref.current.querySelector('.services-header')
     const cards = ref.current.querySelectorAll('.service-card')
     const ctx = gsap.context(() => {
@@ -836,7 +883,7 @@ function Services() {
       )
     })
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   return (
     <section ref={ref} id="services" className="py-20 md:py-28 relative">
@@ -942,9 +989,10 @@ function TiltStep({ step }: { step: { num: string; title: string; desc: string; 
 // ─── How It Works ───────────────────────────────────────────────────────────────
 function HowItWorks() {
   const ref = useRef<HTMLDivElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
-    if (!ref.current) return
+    if (reducedMotion || !ref.current) return
     const header = ref.current.querySelector('.hiw-header')
     const steps = ref.current.querySelectorAll('.hiw-step')
     const line = ref.current.querySelector('.hiw-line')
@@ -970,7 +1018,7 @@ function HowItWorks() {
       }
     })
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   const steps = [
     {
@@ -1057,8 +1105,10 @@ function ROICalculator() {
   const moneySavedMonthly = hours * 4 * hourlyRate
   const annualSavings = moneySavedMonthly * 12
 
+  const reducedMotion = usePrefersReducedMotion()
+
   useEffect(() => {
-    if (!ref.current) return
+    if (reducedMotion || !ref.current) return
     const header = ref.current.querySelector('.calc-header')
     const body = ref.current.querySelector('.calc-body')
     const ctx = gsap.context(() => {
@@ -1078,7 +1128,7 @@ function ROICalculator() {
       }
     })
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   return (
     <section ref={ref} id="calculator" className="py-20 md:py-28 relative">
@@ -1175,7 +1225,7 @@ function ROICalculator() {
 }
 
 // ─── FAQ ────────────────────────────────────────────────────────────────────────
-function FAQItem({ q, a }: { q: string; a: string }) {
+function FAQItem({ q, a, id }: { q: string; a: string; id: string }) {
   const [open, setOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -1184,6 +1234,8 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left group cursor-pointer"
+        aria-expanded={open}
+        aria-controls={`faq-answer-${id}`}
       >
         <span className="text-sm md:text-base font-medium text-text pr-4 group-hover:text-accent transition-colors">{q}</span>
         <svg
@@ -1192,12 +1244,16 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           viewBox="0 0 20 20"
           fill="none"
           className={`shrink-0 text-text-tertiary transition-transform duration-300 ${open ? 'rotate-45' : ''}`}
+          aria-hidden="true"
         >
           <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       </button>
       <div
         ref={contentRef}
+        id={`faq-answer-${id}`}
+        role="region"
+        aria-labelledby={`faq-question-${id}`}
         className="overflow-hidden transition-all duration-300"
         style={{ maxHeight: open ? contentRef.current?.scrollHeight : 0 }}
       >
@@ -1209,9 +1265,10 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 function FAQ() {
   const ref = useRef<HTMLDivElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
-    if (!ref.current) return
+    if (reducedMotion || !ref.current) return
     const header = ref.current.querySelector('.faq-header')
     const body = ref.current.querySelector('.faq-body')
     const ctx = gsap.context(() => {
@@ -1231,7 +1288,7 @@ function FAQ() {
       }
     })
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   const faqs = [
     {
@@ -1277,7 +1334,7 @@ function FAQ() {
 
         <div className="faq-body">
           {faqs.map((faq, i) => (
-            <FAQItem key={i} q={faq.q} a={faq.a} />
+            <FAQItem key={i} q={faq.q} a={faq.a} id={String(i)} />
           ))}
         </div>
       </div>
@@ -1288,9 +1345,10 @@ function FAQ() {
 // ─── Final CTA ──────────────────────────────────────────────────────────────────
 function FinalCTA() {
   const ref = useRef<HTMLDivElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
-    if (!ref.current) return
+    if (reducedMotion || !ref.current) return
     const content = ref.current.querySelector('.final-cta-content')
     const ctx = gsap.context(() => {
       if (content) {
@@ -1302,7 +1360,7 @@ function FinalCTA() {
       }
     })
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   return (
     <section ref={ref} className="py-24 md:py-36 relative overflow-hidden">
@@ -1344,10 +1402,12 @@ function FinalCTA() {
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSubmitting(true)
+    setError(false)
     try {
       const form = e.currentTarget
       const data = new FormData(form)
@@ -1359,7 +1419,11 @@ function ContactForm() {
       if (res.ok) {
         setSubmitted(true)
         form.reset()
+      } else {
+        setError(true)
       }
+    } catch {
+      setError(true)
     } finally {
       setSubmitting(false)
     }
@@ -1382,33 +1446,57 @@ function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="contact-name" className="block text-xs font-medium text-text-secondary mb-1.5">Name *</label>
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            required
+            className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:border-accent/50 transition-colors"
+          />
+        </div>
+        <div>
+          <label htmlFor="contact-email" className="block text-xs font-medium text-text-secondary mb-1.5">Email *</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            placeholder="Email address"
+            required
+            className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:border-accent/50 transition-colors"
+          />
+        </div>
+      </div>
+      <div>
+        <label htmlFor="contact-business" className="block text-xs font-medium text-text-secondary mb-1.5">Business</label>
         <input
-          name="name"
+          id="contact-business"
+          name="business"
           type="text"
-          placeholder="Your name"
-          required
-          className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors"
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Email address"
-          required
-          className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors"
+          placeholder="Business name & type (e.g. Italian restaurant)"
+          className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:border-accent/50 transition-colors"
         />
       </div>
-      <input
-        name="business"
-        type="text"
-        placeholder="Business name & type (e.g. Italian restaurant)"
-        className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors"
-      />
-      <textarea
-        name="message"
-        rows={3}
-        placeholder="What's eating most of your time right now?"
-        className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:outline-none focus:border-accent/50 transition-colors resize-none"
-      />
+      <div>
+        <label htmlFor="contact-message" className="block text-xs font-medium text-text-secondary mb-1.5">Message</label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows={3}
+          placeholder="What's eating most of your time right now?"
+          className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text text-sm placeholder:text-text-tertiary focus:border-accent/50 transition-colors resize-none"
+        />
+      </div>
+      {error && (
+        <div role="alert" className="flex items-center gap-2 text-sm text-warning bg-warning/10 border border-warning/20 rounded-xl px-4 py-3">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          Something went wrong. Please try again or email us directly.
+        </div>
+      )}
       <button
         type="submit"
         disabled={submitting}
@@ -1470,8 +1558,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-bg text-text relative noise">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Nav />
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <Hero />
         <Problem />
         <Services />
