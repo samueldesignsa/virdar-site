@@ -91,14 +91,16 @@ export default function Hero() {
 
         {/* Right — 3D Scene */}
         <div className="flex-1 relative h-[400px] md:h-full w-full md:-mr-24">
-          <div className="absolute inset-0 md:-right-32 md:-top-12 md:-bottom-12">
+          <div className="absolute inset-0 md:-right-32 md:-top-20 md:bottom-16">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
             />
           </div>
           {/* Bottom fade — masks the leg cutoff */}
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-bg via-bg/80 to-transparent z-10" aria-hidden="true" />
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[45%] z-10" aria-hidden="true"
+            style={{ background: 'linear-gradient(to top, #0A0A0A 15%, rgba(10,10,10,0.9) 35%, rgba(10,10,10,0.4) 65%, transparent 100%)' }}
+          />
         </div>
       </div>
     </section>
