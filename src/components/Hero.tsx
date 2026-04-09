@@ -90,11 +90,13 @@ export default function Hero() {
         </div>
 
         {/* Right — 3D Scene */}
-        <div className="flex-1 relative h-[400px] md:h-full w-full">
-          <SplineScene
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
+        <div className="flex-1 relative h-[400px] md:h-full w-full md:-mr-24">
+          <div className="absolute inset-0 md:-right-32 md:-top-12 md:-bottom-12">
+            <SplineScene
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
+            />
+          </div>
         </div>
       </div>
     </section>
