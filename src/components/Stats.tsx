@@ -2,10 +2,10 @@ import { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const stats = [
-  { value: 62, suffix: '%', label: 'of calls to small businesses go unanswered' },
-  { value: 15, prefix: '', suffix: '\u201330 hrs', label: 'per week wasted on tasks AI handles in minutes' },
-  { value: 57, suffix: '%', label: 'of US small businesses now invest in AI' },
-  { value: 10, suffix: ' sec', label: 'average AI response time vs hours for manual follow-up' },
+  { value: 62, suffix: '%', label: 'of calls to small businesses go unanswered', source: 'Forbes, 2024' },
+  { value: 15, prefix: '', suffix: '\u201330 hrs', label: 'per week spent on repetitive tasks', source: 'McKinsey Global Institute' },
+  { value: 57, suffix: '%', label: 'of US small businesses now invest in AI', source: 'U.S. Chamber of Commerce, 2024' },
+  { value: 10, suffix: ' sec', label: 'average AI response time vs hours for manual follow-up', source: 'Harvard Business Review' },
 ]
 
 function useCountUp(target: number, isVisible: boolean, duration = 1.8) {
@@ -49,6 +49,9 @@ function StatItem({ stat, isVisible }: { stat: typeof stats[0]; isVisible: boole
       </p>
       <p className="mt-2 text-sm text-text-light-secondary max-w-[200px] mx-auto">
         {stat.label}
+      </p>
+      <p className="mt-1 text-xs text-text-light-secondary/40">
+        {stat.source}
       </p>
     </div>
   )

@@ -8,38 +8,33 @@ const fadeUp = {
 const examples = [
   {
     tag: 'Legal',
-    title: 'Personal Injury Law Firm',
-    problem: 'Their phones rang after hours. Every missed call was a potential case walking to a competitor.',
-    solution: 'Built an AI system that catches every missed call, qualifies potential clients via text (accident type, injuries, timeline), and delivers scored leads to the attorney\u2019s inbox.',
-    result: 'Projected 30\u201350 recovered leads per month that previously went to voicemail.',
+    title: 'Law Firms',
+    problem: 'Phones ring after hours. Every missed call is a potential case walking to a competitor.',
+    solution: 'A custom AI system that catches missed calls, qualifies potential clients via text, and delivers scored leads to the attorney\u2019s inbox \u2014 24/7.',
   },
   {
     tag: 'Healthcare',
-    title: 'Med Spa',
-    problem: 'Front desk spent 3+ hours daily on phone tag \u2014 booking consultations, answering treatment questions, sending prep instructions.',
-    solution: 'Built an AI intake system that handles inquiries 24/7, books based on treatment interest and availability, and sends personalized prep info automatically.',
-    result: 'Front desk refocused on in-office experience. Booking conversion up across the board.',
+    title: 'Med Spas & Clinics',
+    problem: 'Front desk staff spend hours on phone tag \u2014 booking consultations, answering questions, sending prep instructions.',
+    solution: 'A custom AI intake system that handles inquiries around the clock, books appointments based on treatment and availability, and sends prep info automatically.',
   },
   {
     tag: 'Restaurant',
-    title: 'Restaurant Group',
-    problem: 'Managers guessed staffing levels based on gut feeling. Some nights overstaffed by 4 people, others understaffed.',
-    solution: 'Built a demand forecasting system analyzing sales history, weather, local events, and seasonality to predict daily covers and recommend staffing.',
-    result: '15% reduction in labor overspend in the first month.',
+    title: 'Restaurants & Hospitality',
+    problem: 'Managers guess staffing levels based on gut feeling. Some nights overstaffed, others understaffed.',
+    solution: 'A custom demand forecasting system that analyzes sales history, weather, local events, and seasonality to predict daily covers and recommend staffing levels.',
   },
   {
     tag: 'Property',
-    title: 'Property Management Company',
-    problem: 'Tenants called for every maintenance issue. Staff manually logged, categorized, and dispatched \u2014 often losing requests.',
-    solution: 'Built an AI that receives maintenance requests via text, asks clarifying questions, categorizes urgency, creates work orders, and dispatches the right vendor.',
-    result: 'Zero lost requests. Average resolution time cut by 40%.',
+    title: 'Property Management',
+    problem: 'Tenants call for every maintenance issue. Staff manually log, categorize, and dispatch \u2014 and requests get lost.',
+    solution: 'A custom AI that receives maintenance requests via text, asks clarifying questions, categorizes urgency, creates work orders, and dispatches the right vendor.',
   },
   {
     tag: 'Finance',
-    title: 'Mortgage Broker',
-    problem: 'Broker spent hours per week on unqualified leads \u2014 people just browsing, not ready to move.',
-    solution: 'Built AI lead qualification + automated onboarding. New inquiries get qualified (purchase vs refi, range, timeline, pre-approval) and receive a personalized document checklist.',
-    result: 'Broker only talks to ready-to-move borrowers. Average call time cut in half.',
+    title: 'Mortgage & Lending',
+    problem: 'Brokers spend hours on unqualified leads \u2014 people just browsing, not ready to move.',
+    solution: 'A custom AI lead qualification system that screens new inquiries, assesses readiness, and sends qualified borrowers a personalized document checklist \u2014 before the first call.',
   },
 ]
 
@@ -64,7 +59,7 @@ export default function Examples() {
         >
           <h2 className="heading-lg text-text">What Custom AI Systems Look Like</h2>
           <p className="body-lg mt-4 text-text-secondary">
-            Every business is different. Here's what we've built — to show you what's possible.
+            Every business is different. Here are examples of systems we can build — tailored to your operations, your tools, and your workflows.
           </p>
         </motion.div>
 
@@ -82,27 +77,19 @@ export default function Examples() {
               className="rounded-2xl border border-border bg-surface p-8 md:p-10"
             >
               <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
-                {/* Left — tag + title + problem */}
                 <div className="md:w-1/3">
                   <span className={`inline-block rounded-full border px-3 py-1 text-xs font-semibold ${tagColors[ex.tag]}`}>
                     {ex.tag}
                   </span>
                   <h3 className="heading-md mt-3 text-text">{ex.title}</h3>
-                  <p className="body-md mt-2 text-text-secondary italic">&ldquo;{ex.problem}&rdquo;</p>
+                  <p className="body-md mt-2 text-text-secondary"><span className="font-semibold text-text">The problem:&ensp;</span>{ex.problem}</p>
                 </div>
 
-                {/* Right — solution + result */}
                 <div className="md:flex-1">
                   <p className="body-md text-text-secondary">
-                    <span className="font-semibold text-text">What we built:&ensp;</span>
+                    <span className="font-semibold text-text">The custom system:&ensp;</span>
                     {ex.solution}
                   </p>
-                  <div className="mt-4 rounded-xl bg-accent-dim px-5 py-3">
-                    <p className="text-sm font-semibold text-accent-hover">
-                      Result:&ensp;
-                      <span className="font-medium text-text">{ex.result}</span>
-                    </p>
-                  </div>
                 </div>
               </div>
             </motion.article>

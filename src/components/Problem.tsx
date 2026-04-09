@@ -10,17 +10,20 @@ const cards = [
   {
     icon: PhoneOff,
     title: 'Missed Calls = Missed Revenue',
-    body: '62% of calls to small businesses go unanswered. Each one is $200\u2013$2,000 in lost revenue. Your competitor with an AI system? They respond in 10 seconds, 24/7.',
+    body: '62% of calls to small businesses go unanswered. Each one is a potential customer walking to a competitor. An AI system responds in seconds, 24/7.',
+    source: 'Forbes, 2024',
   },
   {
     icon: Clock,
     title: 'Manual Work Eats Your Margins',
-    body: 'The average SMB wastes 15\u201330 hours per week on tasks AI handles in minutes \u2014 scheduling, data entry, follow-ups, reporting. That\u2019s $40K\u2013$80K a year in labor on work that doesn\u2019t need a human.',
+    body: 'The average SMB spends 15\u201330 hours per week on tasks AI handles in minutes \u2014 scheduling, data entry, follow-ups, reporting. That\u2019s real money going to work that doesn\u2019t need a human.',
+    source: 'McKinsey Global Institute',
   },
   {
     icon: TrendingUp,
     title: 'Your Competitors Are Already Moving',
     body: '57% of US small businesses now invest in AI. The gap between businesses that adopt and those that don\u2019t will only widen. The question isn\u2019t whether to start \u2014 it\u2019s whether you\u2019ll be ahead or behind.',
+    source: 'U.S. Chamber of Commerce, 2024',
   },
 ]
 
@@ -59,6 +62,7 @@ export default function Problem() {
               </div>
               <h3 className="heading-md text-text">{card.title}</h3>
               <p className="body-md mt-3 text-text-secondary">{card.body}</p>
+              <p className="mt-3 text-xs text-text-secondary/50">{card.source}</p>
             </motion.div>
           ))}
         </div>
