@@ -97,6 +97,8 @@ export default function Hero() {
               className="w-full h-full"
             />
           </div>
+          {/* Bottom fade — masks the leg cutoff */}
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-bg via-bg/80 to-transparent z-10" aria-hidden="true" />
         </div>
       </div>
     </section>
