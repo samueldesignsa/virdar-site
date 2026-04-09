@@ -29,7 +29,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-bg py-20 md:py-28 lg:py-32">
+    <section id="how-it-works" className="bg-bg py-20 md:py-28 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-[1200px] px-6">
         <motion.div
           initial="hidden"
@@ -45,7 +45,6 @@ export default function HowItWorks() {
         </motion.div>
 
         <div className="relative mt-16 grid gap-8 md:grid-cols-3">
-          {/* Connecting line (desktop only) */}
           <div className="absolute top-[60px] left-[16.67%] right-[16.67%] hidden h-px bg-border md:block" aria-hidden="true" />
 
           {steps.map((step, i) => (
@@ -60,7 +59,6 @@ export default function HowItWorks() {
               }}
               className="relative flex flex-col items-center text-center"
             >
-              {/* Step number circle */}
               <div className="relative z-10 mb-6 flex h-[120px] w-[120px] flex-col items-center justify-center rounded-full border border-border bg-surface">
                 <step.icon size={28} className="text-accent" aria-hidden="true" />
                 <span className="mt-1.5 text-xs font-semibold uppercase tracking-widest text-text-secondary">{step.num}</span>
@@ -72,7 +70,6 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        {/* Trust statement */}
         <motion.p
           initial="hidden"
           whileInView="visible"

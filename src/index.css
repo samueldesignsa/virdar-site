@@ -1,29 +1,30 @@
 @import "tailwindcss";
 
-/* ─── Design System Tokens ─────────────────────────────────────────────────── */
+/* ─── Design System Tokens — Dark + Cream + Gold ──────────────────────────── */
 @theme {
-  /* Primary Backgrounds */
-  --color-bg: #FAFAFA;
-  --color-bg-dark: #111827;
-  --color-bg-dark-subtle: #1F2937;
-  --color-surface: #FFFFFF;
-  --color-surface-dark: #1F2937;
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-surface-raised: #1A1A1A;
 
-  /* Text */
-  --color-text: #111827;
-  --color-text-secondary: #4B5563;
-  --color-text-light: #FAFAFA;
-  --color-text-light-secondary: #9CA3AF;
+  --color-text: #F5F0E8;
+  --color-text-secondary: #8A8475;
+  --color-text-tertiary: #5A5549;
 
-  /* Borders */
-  --color-border: #E5E7EB;
-  --color-border-dark: #374151;
+  --color-accent: #C9A96E;
+  --color-accent-hover: #B8943D;
+  --color-accent-dim: rgba(201, 169, 110, 0.08);
+  --color-accent-glow: rgba(201, 169, 110, 0.12);
 
-  /* Accent — Emerald Green */
-  --color-accent: #10B981;
-  --color-accent-hover: #059669;
-  --color-accent-dim: rgba(16, 185, 129, 0.1);
-  --color-accent-glow: rgba(16, 185, 129, 0.15);
+  --color-border: #1E1E1E;
+  --color-border-hover: #2A2A2A;
+
+  /* Spotlight animation */
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+}
+
+@keyframes spotlight {
+  0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
 }
 
 /* ─── Focus States ─────────────────────────────────────────────────────────── */
@@ -41,7 +42,7 @@
   z-index: 10000;
   padding: 0.75rem 1.5rem;
   background: var(--color-accent);
-  color: white;
+  color: #0A0A0A;
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 8px;
@@ -114,14 +115,6 @@ body {
   line-height: 1.65;
 }
 
-/* ─── Grid Pattern (hero bg texture) ───────────────────────────────────────── */
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
 /* ─── Scrollbar ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
@@ -137,12 +130,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-secondary);
+  background: var(--color-border-hover);
 }
 
 /* ─── Selection ────────────────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(16, 185, 129, 0.2);
+  background: rgba(201, 169, 110, 0.2);
   color: var(--color-text);
 }
 

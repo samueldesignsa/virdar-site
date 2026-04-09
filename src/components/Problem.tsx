@@ -29,7 +29,7 @@ const cards = [
 
 export default function Problem() {
   return (
-    <section className="bg-bg py-20 md:py-28 lg:py-32">
+    <section className="bg-bg py-20 md:py-28 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-[1200px] px-6">
         <motion.div
           initial="hidden"
@@ -57,12 +57,15 @@ export default function Problem() {
               }}
               className="rounded-2xl border border-border bg-surface p-8"
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-dim">
-                <card.icon size={24} className="text-accent" aria-hidden="true" />
+              <div className="mb-5 flex h-3 w-8 rounded-full bg-accent/20">
+                <div className="h-full w-full rounded-full bg-accent/40" />
+              </div>
+              <div className="mb-4 text-accent">
+                <card.icon size={24} aria-hidden="true" />
               </div>
               <h3 className="heading-md text-text">{card.title}</h3>
               <p className="body-md mt-3 text-text-secondary">{card.body}</p>
-              <p className="mt-3 text-xs text-text-secondary/50">{card.source}</p>
+              <p className="mt-3 text-xs text-text-tertiary">{card.source}</p>
             </motion.div>
           ))}
         </div>

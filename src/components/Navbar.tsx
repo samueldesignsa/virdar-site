@@ -30,28 +30,26 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-bg-dark/95 backdrop-blur-md shadow-lg'
+          ? 'bg-bg/95 backdrop-blur-md border-b border-border'
           : 'bg-transparent'
       }`}
     >
       <nav
-        className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-4"
+        className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4"
         aria-label="Main navigation"
       >
-        {/* Logo */}
-        <a href="#" className="font-heading text-2xl text-text-light no-underline">
+        <a href="#" className="font-heading text-2xl text-text no-underline">
           Virdar
         </a>
 
-        {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-text-light-secondary hover:text-text-light transition-colors no-underline"
+                className="text-sm font-medium text-text-secondary hover:text-text transition-colors no-underline"
               >
                 {link.label}
               </a>
@@ -59,19 +57,17 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
         <a
           href="https://calendly.com/virdar-info/30min"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+          className="hidden md:inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg no-underline transition-colors hover:bg-accent-hover"
         >
           Book a Call
         </a>
 
-        {/* Mobile hamburger */}
         <button
-          className="md:hidden flex items-center justify-center w-11 h-11 text-text-light bg-transparent border-none cursor-pointer"
+          className="md:hidden flex items-center justify-center w-11 h-11 text-text bg-transparent border-none cursor-pointer"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
@@ -80,7 +76,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -88,14 +83,14 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg-dark/98 backdrop-blur-lg md:hidden"
+            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg/98 backdrop-blur-lg md:hidden"
           >
             <div className="flex items-center justify-between px-6 py-4">
-              <a href="#" className="font-heading text-2xl text-text-light no-underline">
+              <a href="#" className="font-heading text-2xl text-text no-underline">
                 Virdar
               </a>
               <button
-                className="flex items-center justify-center w-11 h-11 text-text-light bg-transparent border-none cursor-pointer"
+                className="flex items-center justify-center w-11 h-11 text-text bg-transparent border-none cursor-pointer"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Close menu"
               >
@@ -108,7 +103,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-2xl font-medium text-text-light no-underline hover:text-accent transition-colors"
+                  className="text-2xl font-medium text-text no-underline hover:text-accent transition-colors"
                 >
                   {link.label}
                 </a>
@@ -117,7 +112,7 @@ export default function Navbar() {
                 href="https://calendly.com/virdar-info/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center rounded-lg bg-accent px-8 py-3 text-lg font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+                className="mt-4 inline-flex items-center rounded-lg bg-accent px-8 py-3 text-lg font-semibold text-bg no-underline transition-colors hover:bg-accent-hover"
               >
                 Book a Call
               </a>

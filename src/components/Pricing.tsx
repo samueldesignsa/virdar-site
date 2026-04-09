@@ -55,7 +55,7 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-bg py-20 md:py-28 lg:py-32">
+    <section id="pricing" className="bg-bg py-20 md:py-28 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-[1200px] px-6">
         <motion.div
           initial="hidden"
@@ -83,12 +83,12 @@ export default function Pricing() {
               }}
               className={`relative flex flex-col rounded-2xl border p-8 ${
                 tier.highlight
-                  ? 'border-accent bg-surface shadow-[0_0_0_1px_rgba(16,185,129,0.2)]'
+                  ? 'border-accent/40 bg-surface'
                   : 'border-border bg-surface'
               }`}
             >
               {tier.highlight && (
-                <span className="absolute -top-3 left-8 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
+                <span className="absolute -top-3 left-8 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-bg">
                   Most Popular
                 </span>
               )}
@@ -97,8 +97,8 @@ export default function Pricing() {
                 <tier.icon size={22} className="text-accent" aria-hidden="true" />
               </div>
 
-              <h3 className="heading-md text-text">{tier.name}</h3>
-              <p className="mt-1 text-xl font-semibold text-text">{tier.price}</p>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">{tier.name}</h3>
+              <p className="mt-2 font-heading text-2xl text-text">{tier.price}</p>
 
               <ul className="mt-6 flex-1 space-y-3">
                 {tier.features.map((feature) => (
@@ -110,7 +110,7 @@ export default function Pricing() {
               </ul>
 
               {tier.note && (
-                <p className="mt-4 text-xs text-text-secondary italic">{tier.note}</p>
+                <p className="mt-4 text-xs text-text-tertiary italic">{tier.note}</p>
               )}
 
               <a
@@ -119,7 +119,7 @@ export default function Pricing() {
                 rel="noopener noreferrer"
                 className={`mt-8 block rounded-xl py-3 text-center text-sm font-semibold no-underline transition-colors ${
                   tier.highlight
-                    ? 'bg-accent text-white hover:bg-accent-hover'
+                    ? 'bg-accent text-bg hover:bg-accent-hover'
                     : 'border border-border text-text hover:border-accent hover:text-accent'
                 }`}
               >

@@ -19,7 +19,6 @@ function useCountUp(target: number, isVisible: boolean, duration = 1.8) {
     function tick(now: number) {
       const elapsed = now - startTime
       const progress = Math.min(elapsed / (duration * 1000), 1)
-      // ease-out quad
       const eased = 1 - (1 - progress) * (1 - progress)
       const current = Math.round(eased * target)
       setCount(current)
@@ -42,15 +41,15 @@ function StatItem({ stat, isVisible }: { stat: typeof stats[0]; isVisible: boole
 
   return (
     <div className="text-center">
-      <p className="font-heading text-4xl md:text-5xl text-text-light">
+      <p className="font-heading text-4xl md:text-5xl text-accent">
         {stat.prefix}
         {prefersReducedMotion ? stat.value : count}
         {stat.suffix}
       </p>
-      <p className="mt-2 text-sm text-text-light-secondary max-w-[200px] mx-auto">
+      <p className="mt-2 text-sm text-text-secondary max-w-[200px] mx-auto">
         {stat.label}
       </p>
-      <p className="mt-1 text-xs text-text-light-secondary/40">
+      <p className="mt-1 text-xs text-text-tertiary">
         {stat.source}
       </p>
     </div>
@@ -78,7 +77,7 @@ export default function Stats() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-bg-dark py-16 md:py-20">
+    <section ref={sectionRef} className="bg-surface py-16 md:py-20 border-t border-b border-border">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

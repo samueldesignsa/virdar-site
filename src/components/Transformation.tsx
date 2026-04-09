@@ -111,21 +111,21 @@ export default function Transformation() {
   return (
     <section
       ref={wrapperRef}
-      className="relative h-screen bg-bg-dark overflow-hidden"
+      className="relative h-screen bg-bg overflow-hidden"
       aria-label="Visual demonstration: from manual operations to AI-powered systems"
     >
       {/* Atmospheric fog / gradient */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-bg-dark/80 to-bg-dark" />
-        <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-zinc-800/20 to-transparent" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-amber-900/[0.04] blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/80 to-bg" />
+        <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-surface/30 to-transparent" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-accent/[0.03] blur-[100px]" />
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
         {/* Headline */}
         <h2
           ref={headlineRef}
-          className="heading-lg mb-10 max-w-[600px] text-center text-text-light"
+          className="heading-lg mb-10 max-w-[600px] text-center text-text"
         >
           Your operations, transformed
         </h2>
@@ -220,14 +220,14 @@ export default function Transformation() {
               {/* Top bar */}
               <div className="flex items-center justify-between mb-3 md:mb-4">
                 <div className="flex items-center gap-2">
-                  <div className="h-5 w-5 rounded bg-emerald-500/20 flex items-center justify-center">
-                    <div className="h-2 w-2 rounded-sm bg-emerald-400" />
+                  <div className="h-5 w-5 rounded bg-accent/20 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-sm bg-accent" />
                   </div>
                   <span className="text-[10px] md:text-xs font-semibold text-white/90">Operations Hub</span>
                 </div>
-                <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2 py-0.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span className="text-[8px] md:text-[10px] font-medium text-emerald-400/80">All Active</span>
+                <div className="flex items-center gap-1.5 rounded-full bg-accent/10 px-2 py-0.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  <span className="text-[8px] md:text-[10px] font-medium text-accent/80">All Active</span>
                 </div>
               </div>
 
@@ -257,7 +257,7 @@ export default function Transformation() {
                     'Daily staffing report → 340 covers forecast → crew optimized',
                   ].map((line, i) => (
                     <div key={i} className="flex items-start gap-1.5">
-                      <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-emerald-400/70" />
+                      <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
                       <p className="text-[8px] md:text-[10px] text-white/50 leading-snug">{line}</p>
                     </div>
                   ))}

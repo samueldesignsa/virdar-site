@@ -39,16 +39,16 @@ const examples = [
 ]
 
 const tagColors: Record<string, string> = {
-  Legal: 'bg-blue-50 text-blue-700 border-blue-200',
-  Healthcare: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  Restaurant: 'bg-orange-50 text-orange-700 border-orange-200',
-  Property: 'bg-purple-50 text-purple-700 border-purple-200',
-  Finance: 'bg-amber-50 text-amber-700 border-amber-200',
+  Legal: 'bg-blue-900/30 text-blue-300 border-blue-800/40',
+  Healthcare: 'bg-emerald-900/30 text-emerald-300 border-emerald-800/40',
+  Restaurant: 'bg-orange-900/30 text-orange-300 border-orange-800/40',
+  Property: 'bg-purple-900/30 text-purple-300 border-purple-800/40',
+  Finance: 'bg-amber-900/30 text-amber-300 border-amber-800/40',
 }
 
 export default function Examples() {
   return (
-    <section id="examples" className="bg-bg py-20 md:py-28 lg:py-32">
+    <section id="examples" className="bg-bg py-20 md:py-28 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-[1200px] px-6">
         <motion.div
           initial="hidden"
