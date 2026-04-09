@@ -57,8 +57,11 @@
 * { box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
 }
 
 body {
