@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import SmoothScroll from './components/SmoothScroll'
 import Hero from './components/Hero'
-import Transformation from './components/Transformation'
+
 import Problem from './components/Problem'
 import HowItWorks from './components/HowItWorks'
 import Examples from './components/Examples'
@@ -21,7 +21,6 @@ export default function App() {
       <Navbar />
       <main id="main-content">
         <Hero />
-        <Transformation />
         <Problem />
         <HowItWorks />
         <Examples />

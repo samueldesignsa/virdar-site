@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen bg-bg overflow-hidden"
+      className="relative min-h-screen bg-bg"
     >
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
