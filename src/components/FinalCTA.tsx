@@ -32,7 +32,7 @@ export default function FinalCTA() {
           </a>
         </div>
         <p className="mt-5 text-sm text-text-tertiary">
-          30 minutes. No pressure. No jargon.
+          15 minutes. No pressure. No jargon.
         </p>
       </motion.div>
     </section>

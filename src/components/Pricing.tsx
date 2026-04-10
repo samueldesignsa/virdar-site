@@ -12,7 +12,7 @@ const tiers = [
     price: 'Complimentary',
     icon: Compass,
     features: [
-      '30-minute strategy call',
+      '15-minute strategy call',
       'Operations audit',
       'Custom AI roadmap with projected ROI',
       'Yours to keep \u2014 whether you hire us or not',
