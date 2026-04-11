@@ -1,4 +1,4 @@
-import { useState, useEffect, type ComponentProps, type ReactNode, type FormEvent } from 'react'
+import { useState, useEffect, useRef, type ComponentProps, type ReactNode, type FormEvent } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Mail, MapPin, ExternalLink, X } from 'lucide-react'
 import { CheckboxGroup, CheckboxItem } from './CheckboxGroup'
@@ -115,14 +115,24 @@ function YesNo({ label, value, onChange, name }: { label: string; value: boolean
 const INPUT = 'w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors'
 
 function CareersModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const modalRef = useRef<HTMLDivElement>(null)
+
   // Stop Lenis + lock body scroll when modal is open
   useEffect(() => {
     if (!open) return
-    document.documentElement.classList.add('lenis-stopped')
     document.body.style.overflow = 'hidden'
+
+    // Capture wheel events at the window level before Lenis can process them
+    function blockWheel(e: WheelEvent) {
+      if (modalRef.current?.contains(e.target as Node)) {
+        e.stopPropagation()
+      }
+    }
+    window.addEventListener('wheel', blockWheel, { capture: true, passive: false })
+
     return () => {
-      document.documentElement.classList.remove('lenis-stopped')
       document.body.style.overflow = ''
+      window.removeEventListener('wheel', blockWheel, { capture: true })
     }
   }, [open])
 
@@ -175,23 +185,15 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
     onClose()
   }
 
-  // Block wheel events from reaching Lenis
-  function stopWheel(e: React.WheelEvent) {
-    e.stopPropagation()
-  }
-
   if (!open) return null
 
   return (
     <div
+      ref={modalRef}
       className="fixed inset-0 z-50 bg-bg/80 backdrop-blur-sm"
       onClick={handleClose}
-      onWheel={stopWheel}
     >
-      <div
-        className="absolute inset-0 overflow-y-auto overscroll-contain px-6 py-8"
-        onWheel={stopWheel}
-      >
+      <div className="absolute inset-0 overflow-y-auto overscroll-contain px-6 py-8">
         <div className="flex min-h-full items-start justify-center">
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.97 }}
