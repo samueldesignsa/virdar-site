@@ -175,32 +175,41 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
     onClose()
   }
 
+  // Block wheel events from reaching Lenis
+  function stopWheel(e: React.WheelEvent) {
+    e.stopPropagation()
+  }
+
+  if (!open) return null
+
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm px-6"
-          onClick={handleClose}
-        >
+    <div
+      className="fixed inset-0 z-50 bg-bg/80 backdrop-blur-sm"
+      onClick={handleClose}
+      onWheel={stopWheel}
+    >
+      <div
+        className="absolute inset-0 overflow-y-auto overscroll-contain px-6 py-8"
+        onWheel={stopWheel}
+      >
+        <div className="flex min-h-full items-start justify-center">
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.25, ease: 'easeOut' as const }}
-            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-surface p-8"
+            className="relative w-full max-w-lg rounded-2xl border border-border bg-surface p-8 my-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-transparent border-none text-text-secondary hover:text-text cursor-pointer transition-colors"
-              aria-label="Close"
-            >
-              <X size={18} />
-            </button>
+            {/* Sticky close button */}
+            <div className="sticky top-0 z-20 flex justify-end -mt-4 -mr-4 mb-2">
+              <button
+                onClick={handleClose}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-surface border-none text-text-secondary hover:text-text cursor-pointer transition-colors"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+            </div>
 
             {submitted ? (
               <div className="text-center py-12">
@@ -334,9 +343,9 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
               </>
             )}
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
+      </div>
+    </div>
   )
 }
 
