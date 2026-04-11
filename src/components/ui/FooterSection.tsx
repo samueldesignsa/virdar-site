@@ -114,6 +114,19 @@ export function FooterSection() {
           ))}
         </div>
       </div>
+
+      {/* Careers line */}
+      <AnimatedContainer delay={0.5} className="mt-12 border-t border-border pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <p className="text-xs text-text-tertiary">
+          Interested in working with us?&ensp;
+          <a
+            href="mailto:info@virdar.co?subject=Career%20Inquiry"
+            className="text-text-secondary no-underline hover:text-accent transition-colors"
+          >
+            We're always looking for great people&ensp;&rarr;
+          </a>
+        </p>
+      </AnimatedContainer>
     </footer>
   )
 }
