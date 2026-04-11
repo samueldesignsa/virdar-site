@@ -10,6 +10,7 @@ const tiers = [
   {
     name: 'Discover',
     price: 'Complimentary',
+    subtitle: 'For operations-heavy businesses exploring AI',
     icon: Compass,
     features: [
       '15-minute strategy call',
@@ -17,37 +18,40 @@ const tiers = [
       'Custom AI roadmap with projected ROI',
       'Yours to keep \u2014 whether you hire us or not',
     ],
-    cta: 'Book Your Free Strategy Call',
+    cta: 'Get Your Free AI Roadmap',
     ctaHref: 'https://calendly.com/virdar-info/30min',
     highlight: false,
   },
   {
     name: 'Build',
     price: '$5,000 \u2013 $50,000+',
+    subtitle: 'Most projects fall between $15K\u2013$25K',
     icon: Code2,
     features: [
       'Custom AI systems built for your operations',
       'Integrated with your existing tools',
       'Live demo before any payment',
       'You don\u2019t pay until you see it working',
+      'Full documentation and team training',
     ],
     note: 'Projects over $15K may require a refundable deposit',
-    cta: 'Book a Strategy Call',
+    cta: 'Start Your Project',
     ctaHref: 'https://calendly.com/virdar-info/30min',
     highlight: true,
   },
   {
     name: 'Optimize',
     price: '$1,000 \u2013 $3,000/mo',
+    subtitle: 'For businesses already running AI systems',
     icon: LineChart,
     features: [
-      'Ongoing monitoring and tuning',
-      'New workflow expansion',
-      'Monthly ROI reports',
+      'Ongoing monitoring and performance tuning',
+      'New workflow expansion as your needs grow',
+      'Monthly ROI reports \u2014 hours saved, leads captured, tasks automated',
       'Priority support',
       'Cancel anytime \u2014 no contracts',
     ],
-    cta: 'Book a Strategy Call',
+    cta: 'Discuss Ongoing Support',
     ctaHref: 'https://calendly.com/virdar-info/30min',
     highlight: false,
   },
@@ -83,22 +87,17 @@ export default function Pricing() {
               }}
               className={`relative flex flex-col rounded-2xl border p-8 ${
                 tier.highlight
-                  ? 'border-accent/40 bg-surface'
+                  ? 'border-accent/40 bg-surface scale-[1.02] md:scale-105'
                   : 'border-border bg-surface'
               }`}
             >
-              {tier.highlight && (
-                <span className="absolute -top-3 left-8 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-bg">
-                  Most Popular
-                </span>
-              )}
-
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent-dim">
                 <tier.icon size={22} className="text-accent" aria-hidden="true" />
               </div>
 
               <h3 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">{tier.name}</h3>
               <p className="mt-2 font-heading text-2xl text-text">{tier.price}</p>
+              <p className="mt-1 text-xs text-text-tertiary">{tier.subtitle}</p>
 
               <ul className="mt-6 flex-1 space-y-3">
                 {tier.features.map((feature) => (
@@ -117,7 +116,7 @@ export default function Pricing() {
                 href={tier.ctaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-8 block rounded-xl py-3 text-center text-sm font-semibold no-underline transition-colors ${
+                className={`mt-8 block rounded-xl py-3.5 text-center text-sm font-semibold no-underline transition-colors ${
                   tier.highlight
                     ? 'bg-accent text-bg hover:bg-accent-hover'
                     : 'border border-border text-text hover:border-accent hover:text-accent'
