@@ -115,11 +115,15 @@ function YesNo({ label, value, onChange, name }: { label: string; value: boolean
 const INPUT = 'w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors'
 
 function CareersModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  // Stop Lenis smooth scroll when modal is open so the form can scroll natively
+  // Stop Lenis + lock body scroll when modal is open
   useEffect(() => {
     if (!open) return
     document.documentElement.classList.add('lenis-stopped')
-    return () => { document.documentElement.classList.remove('lenis-stopped') }
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.documentElement.classList.remove('lenis-stopped')
+      document.body.style.overflow = ''
+    }
   }, [open])
 
   const [submitted, setSubmitted] = useState(false)
@@ -179,7 +183,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-start justify-center bg-bg/80 backdrop-blur-sm px-6 py-8 overflow-y-auto overscroll-contain"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm px-6"
           onClick={handleClose}
         >
           <motion.div
@@ -187,7 +191,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.25, ease: 'easeOut' as const }}
-            className="relative w-full max-w-lg rounded-2xl border border-border bg-surface p-8 my-auto"
+            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-surface p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <button
