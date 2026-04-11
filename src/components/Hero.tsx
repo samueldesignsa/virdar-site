@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { SplineScene } from './ui/SplineScene'
 import { Spotlight } from './ui/Spotlight'
+import { GetStartedButton } from './ui/GetStartedButton'
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
@@ -62,14 +63,9 @@ export default function Hero() {
             variants={fade}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <a
-              href="https://calendly.com/virdar-info/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-xl bg-accent px-8 py-4 text-base font-semibold text-bg no-underline transition-colors hover:bg-accent-hover"
-            >
-              Book a Complimentary Strategy Call&ensp;&rarr;
-            </a>
+            <GetStartedButton href="https://calendly.com/virdar-info/30min" external>
+              Book a Complimentary Strategy Call
+            </GetStartedButton>
             <a
               href="#how-it-works"
               className="inline-flex items-center rounded-xl border border-border px-8 py-4 text-base font-medium text-text-secondary no-underline transition-colors hover:border-border-hover hover:text-text"

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { GetStartedButton } from './ui/GetStartedButton'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -21,15 +22,10 @@ export default function FinalCTA() {
         <p className="body-lg mx-auto mt-5 max-w-[600px] text-text-secondary">
           The strategy call is complimentary. The roadmap is yours to keep. And you don't pay for anything until you've seen it work.
         </p>
-        <div className="mt-10">
-          <a
-            href="https://calendly.com/virdar-info/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl bg-accent px-10 py-4 text-base font-semibold text-bg no-underline transition-colors hover:bg-accent-hover"
-          >
-            Book Your Complimentary Strategy Call&ensp;&rarr;
-          </a>
+        <div className="mt-10 flex justify-center">
+          <GetStartedButton href="https://calendly.com/virdar-info/30min" external>
+            Book Your Complimentary Strategy Call
+          </GetStartedButton>
         </div>
         <p className="mt-5 text-sm text-text-tertiary">
           15 minutes. No pressure. No jargon.
