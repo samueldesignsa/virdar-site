@@ -1,4 +1,4 @@
-import { useState, type ComponentProps, type ReactNode, type FormEvent } from 'react'
+import { useState, useEffect, type ComponentProps, type ReactNode, type FormEvent } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Mail, MapPin, ExternalLink, X } from 'lucide-react'
 import { CheckboxGroup, CheckboxItem } from './CheckboxGroup'
@@ -115,6 +115,13 @@ function YesNo({ label, value, onChange, name }: { label: string; value: boolean
 const INPUT = 'w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors'
 
 function CareersModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  // Stop Lenis smooth scroll when modal is open so the form can scroll natively
+  useEffect(() => {
+    if (!open) return
+    document.documentElement.classList.add('lenis-stopped')
+    return () => { document.documentElement.classList.remove('lenis-stopped') }
+  }, [open])
+
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [roles, setRoles] = useState<Set<number>>(new Set())
@@ -172,7 +179,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm px-6 py-8 overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-bg/80 backdrop-blur-sm px-6 py-8 overflow-y-auto overscroll-contain"
           onClick={handleClose}
         >
           <motion.div
