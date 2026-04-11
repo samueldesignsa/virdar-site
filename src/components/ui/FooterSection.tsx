@@ -1,6 +1,7 @@
 import { useState, type ComponentProps, type ReactNode, type FormEvent } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Mail, MapPin, ExternalLink, X } from 'lucide-react'
+import { CheckboxGroup, CheckboxItem } from './CheckboxGroup'
 
 interface FooterLink {
   title: string
@@ -68,17 +69,86 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
   )
 }
 
+function ConditionalField({ show, children }: { show: boolean; children: ReactNode }) {
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' as const }}
+          className="overflow-hidden"
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+function YesNo({ label, value, onChange, name }: { label: string; value: boolean | null; onChange: (v: boolean) => void; name: string }) {
+  return (
+    <div>
+      <p className="block text-xs font-medium text-text-secondary mb-2">{label}</p>
+      <input type="hidden" name={name} value={value === null ? '' : value ? 'Yes' : 'No'} />
+      <div className="flex gap-2">
+        {[true, false].map((v) => (
+          <button
+            key={String(v)}
+            type="button"
+            onClick={() => onChange(v)}
+            className={`rounded-lg px-5 py-2 text-sm font-medium border transition-colors cursor-pointer ${
+              value === v
+                ? 'bg-accent/10 border-accent text-accent'
+                : 'bg-transparent border-border text-text-secondary hover:border-border-hover'
+            }`}
+          >
+            {v ? 'Yes' : 'No'}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const INPUT = 'w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors'
+
 function CareersModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [roles, setRoles] = useState<Set<number>>(new Set())
+  const [hasUniversity, setHasUniversity] = useState<boolean | null>(null)
+  const [hasPortfolio, setHasPortfolio] = useState<boolean | null>(null)
+  const [hasPriorAI, setHasPriorAI] = useState<boolean | null>(null)
+
+  const roleLabels = [
+    'AI / ML Engineering',
+    'Full-Stack Development',
+    'Backend / Infrastructure',
+    'Operations & Strategy',
+    'Sales & Business Development',
+    'Design & Creative',
+  ]
+
+  const toggleRole = (i: number) => {
+    setRoles((prev) => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setSubmitting(true)
     const form = e.currentTarget
+    const formData = new FormData(form)
+    formData.set('roles', [...roles].map(i => roleLabels[i]).join(', '))
     await fetch('https://formspree.io/f/xeelnjwd', {
       method: 'POST',
-      body: new FormData(form),
+      body: formData,
       headers: { Accept: 'application/json' },
     })
     setSubmitting(false)
@@ -87,6 +157,10 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
 
   function handleClose() {
     setSubmitted(false)
+    setRoles(new Set())
+    setHasUniversity(null)
+    setHasPortfolio(null)
+    setHasPriorAI(null)
     onClose()
   }
 
@@ -98,7 +172,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm px-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm px-6 py-8 overflow-y-auto"
           onClick={handleClose}
         >
           <motion.div
@@ -106,7 +180,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.25, ease: 'easeOut' as const }}
-            className="relative w-full max-w-md rounded-2xl border border-border bg-surface p-8"
+            className="relative w-full max-w-lg rounded-2xl border border-border bg-surface p-8 my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -118,62 +192,132 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
             </button>
 
             {submitted ? (
-              <div className="text-center py-8">
-                <p className="heading-md text-text">Thanks for reaching out</p>
-                <p className="body-md mt-2 text-text-secondary">We'll be in touch if there's a fit.</p>
+              <div className="text-center py-12">
+                <p className="heading-md text-text">Application received</p>
+                <p className="body-md mt-3 text-text-secondary">Thank you for your interest in Virdar. We'll review your submission and reach out if there's a fit.</p>
               </div>
             ) : (
               <>
-                <h3 className="heading-md text-text">Work with us</h3>
+                <h3 className="heading-md text-text">Join Virdar</h3>
                 <p className="body-md mt-2 text-text-secondary">
-                  Tell us a bit about yourself and what you're interested in.
+                  We're building AI systems for operations-heavy businesses. Tell us about yourself.
                 </p>
 
-                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <form onSubmit={handleSubmit} className="mt-6 space-y-5">
                   <input type="hidden" name="_subject" value="Career Inquiry — Virdar.co" />
 
-                  <div>
-                    <label htmlFor="careers-name" className="block text-xs font-medium text-text-secondary mb-1.5">Name</label>
-                    <input
-                      id="careers-name"
-                      name="name"
-                      type="text"
-                      required
-                      className="w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors"
-                      placeholder="Your name"
-                    />
+                  {/* Basic info */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label htmlFor="c-name" className="block text-xs font-medium text-text-secondary mb-1.5">Full name *</label>
+                      <input id="c-name" name="name" type="text" required className={INPUT} placeholder="Jane Smith" />
+                    </div>
+                    <div>
+                      <label htmlFor="c-email" className="block text-xs font-medium text-text-secondary mb-1.5">Email *</label>
+                      <input id="c-email" name="email" type="email" required className={INPUT} placeholder="jane@email.com" />
+                    </div>
                   </div>
 
                   <div>
-                    <label htmlFor="careers-email" className="block text-xs font-medium text-text-secondary mb-1.5">Email</label>
-                    <input
-                      id="careers-email"
-                      name="email"
-                      type="email"
-                      required
-                      className="w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors"
-                      placeholder="you@email.com"
-                    />
+                    <label htmlFor="c-location" className="block text-xs font-medium text-text-secondary mb-1.5">Location</label>
+                    <input id="c-location" name="location" type="text" className={INPUT} placeholder="City, State (or Remote)" />
                   </div>
 
+                  {/* Roles */}
                   <div>
-                    <label htmlFor="careers-skills" className="block text-xs font-medium text-text-secondary mb-1.5">Skills &amp; experience</label>
-                    <textarea
-                      id="careers-skills"
-                      name="message"
-                      rows={3}
-                      required
-                      className="w-full rounded-lg border border-border bg-bg px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:border-accent focus:outline-none transition-colors resize-none"
-                      placeholder="What you're good at and what interests you about Virdar"
-                    />
+                    <p className="block text-xs font-medium text-text-secondary mb-2">Areas of interest *</p>
+                    <CheckboxGroup checkedIndices={roles}>
+                      {roleLabels.map((label, i) => (
+                        <CheckboxItem key={label} label={label} index={i} checked={roles.has(i)} onToggle={() => toggleRole(i)} />
+                      ))}
+                    </CheckboxGroup>
+                  </div>
+
+                  {/* Experience level */}
+                  <div>
+                    <label htmlFor="c-experience" className="block text-xs font-medium text-text-secondary mb-1.5">Years of experience *</label>
+                    <select id="c-experience" name="experience" required className={`${INPUT} appearance-none cursor-pointer`} defaultValue="">
+                      <option value="" disabled>Select one</option>
+                      <option value="Student / Entry Level">Student / Entry Level</option>
+                      <option value="1-3 Years">1–3 Years</option>
+                      <option value="3-5 Years">3–5 Years</option>
+                      <option value="5-10 Years">5–10 Years</option>
+                      <option value="10+ Years">10+ Years</option>
+                    </select>
+                  </div>
+
+                  {/* Conditional: University */}
+                  <YesNo
+                    label="Have you attended or are you attending a university?"
+                    value={hasUniversity}
+                    onChange={setHasUniversity}
+                    name="has_university"
+                  />
+                  <ConditionalField show={hasUniversity === true}>
+                    <div className="space-y-3 pt-1">
+                      <div>
+                        <label htmlFor="c-university" className="block text-xs font-medium text-text-secondary mb-1.5">University</label>
+                        <input id="c-university" name="university" type="text" className={INPUT} placeholder="University name" />
+                      </div>
+                      <div>
+                        <label htmlFor="c-field" className="block text-xs font-medium text-text-secondary mb-1.5">Field of study</label>
+                        <input id="c-field" name="field_of_study" type="text" className={INPUT} placeholder="e.g. Computer Science, Business" />
+                      </div>
+                    </div>
+                  </ConditionalField>
+
+                  {/* Conditional: Prior AI experience */}
+                  <YesNo
+                    label="Do you have experience working with AI or automation tools?"
+                    value={hasPriorAI}
+                    onChange={setHasPriorAI}
+                    name="has_ai_experience"
+                  />
+                  <ConditionalField show={hasPriorAI === true}>
+                    <div className="pt-1">
+                      <label htmlFor="c-ai-detail" className="block text-xs font-medium text-text-secondary mb-1.5">Brief description</label>
+                      <textarea id="c-ai-detail" name="ai_experience_detail" rows={2} className={`${INPUT} resize-none`} placeholder="Tools, frameworks, or projects you've worked with" />
+                    </div>
+                  </ConditionalField>
+
+                  {/* Conditional: Portfolio */}
+                  <YesNo
+                    label="Do you have a portfolio, GitHub, or previous work to share?"
+                    value={hasPortfolio}
+                    onChange={setHasPortfolio}
+                    name="has_portfolio"
+                  />
+                  <ConditionalField show={hasPortfolio === true}>
+                    <div className="pt-1">
+                      <label htmlFor="c-portfolio" className="block text-xs font-medium text-text-secondary mb-1.5">Link</label>
+                      <input id="c-portfolio" name="portfolio_url" type="url" className={INPUT} placeholder="https://" />
+                    </div>
+                  </ConditionalField>
+
+                  {/* Availability */}
+                  <div>
+                    <label htmlFor="c-availability" className="block text-xs font-medium text-text-secondary mb-1.5">Availability</label>
+                    <select id="c-availability" name="availability" className={`${INPUT} appearance-none cursor-pointer`} defaultValue="">
+                      <option value="" disabled>Select one</option>
+                      <option value="Full-time">Full-time</option>
+                      <option value="Part-time / Contract">Part-time / Contract</option>
+                      <option value="Freelance / Project-based">Freelance / Project-based</option>
+                      <option value="Open to discuss">Open to discuss</option>
+                    </select>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="c-message" className="block text-xs font-medium text-text-secondary mb-1.5">Anything else?</label>
+                    <textarea id="c-message" name="message" rows={2} className={`${INPUT} resize-none`} placeholder="Why Virdar interests you, or anything we should know" />
                   </div>
 
                   <button
                     type="submit"
-                    disabled={submitting}
-                    className="w-full rounded-lg bg-accent py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover disabled:opacity-50 border-none cursor-pointer"
+                    disabled={submitting || roles.size === 0}
+                    className="w-full rounded-lg bg-accent py-3 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover disabled:opacity-40 border-none cursor-pointer"
                   >
-                    {submitting ? 'Sending...' : 'Submit'}
+                    {submitting ? 'Submitting...' : 'Submit Application'}
                   </button>
                 </form>
               </>
