@@ -68,7 +68,7 @@ export default function Hero() {
             </GetStartedButton>
             <a
               href="#how-it-works"
-              className="inline-flex items-center rounded-xl border border-border px-8 py-4 text-base font-medium text-text-secondary no-underline transition-colors hover:border-border-hover hover:text-text"
+              className="inline-flex items-center rounded-xl border border-border min-h-[48px] px-8 py-4 text-base font-medium text-text-secondary no-underline transition-all hover:border-border-hover hover:text-text active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             >
               See How It Works&ensp;&darr;
             </a>

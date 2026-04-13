@@ -116,7 +116,7 @@ export default function Pricing() {
                 href={tier.ctaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-8 block rounded-xl py-3.5 text-center text-sm font-semibold no-underline transition-colors ${
+                className={`mt-8 block rounded-xl min-h-[44px] py-3.5 text-center text-sm font-semibold no-underline transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
                   tier.highlight
                     ? 'bg-accent text-bg hover:bg-accent-hover'
                     : 'border border-border text-text hover:border-accent hover:text-accent'

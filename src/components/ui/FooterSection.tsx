@@ -337,7 +337,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
                   <button
                     type="submit"
                     disabled={submitting || roles.size === 0}
-                    className="w-full rounded-lg bg-accent py-3 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover disabled:opacity-40 border-none cursor-pointer"
+                    className="w-full rounded-xl min-h-[44px] bg-accent py-3 text-sm font-semibold text-bg transition-all hover:bg-accent-hover active:scale-[0.97] disabled:opacity-40 disabled:active:scale-100 border-none cursor-pointer focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                   >
                     {submitting ? 'Submitting...' : 'Submit Application'}
                   </button>

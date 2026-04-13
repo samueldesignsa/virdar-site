@@ -61,7 +61,7 @@ export default function Navbar() {
           href="https://calendly.com/virdar-info/30min"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg no-underline transition-colors hover:bg-accent-hover"
+          className="hidden md:inline-flex items-center rounded-xl bg-accent min-h-[44px] px-5 py-2.5 text-sm font-semibold text-bg no-underline transition-all hover:bg-accent-hover active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
           Book a Call
         </a>
@@ -112,7 +112,7 @@ export default function Navbar() {
                 href="https://calendly.com/virdar-info/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center rounded-lg bg-accent px-8 py-3 text-lg font-semibold text-bg no-underline transition-colors hover:bg-accent-hover"
+                className="mt-4 inline-flex items-center rounded-xl bg-accent px-8 py-3 text-lg font-semibold text-bg no-underline transition-all hover:bg-accent-hover active:scale-95"
               >
                 Book a Call
               </a>
