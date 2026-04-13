@@ -3,7 +3,7 @@ import { Search, Wrench, BarChart3 } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
 const steps = [
@@ -11,19 +11,19 @@ const steps = [
     num: '01',
     icon: Search,
     title: 'Discover',
-    body: 'We start with a complimentary strategy call. We learn your business, map your operations, and identify the top 3\u20135 places where AI creates real leverage. You walk away with a custom AI roadmap \u2014 whether you hire us or not.',
+    body: 'We start with a complimentary 15-minute strategy call. We learn how your business operates day-to-day, map your workflows, and identify the top 3\u20135 areas where AI automation creates measurable leverage \u2014 whether that\u2019s missed call recovery, lead qualification, intake processing, scheduling, or reporting. You walk away with a custom AI roadmap and projected ROI \u2014 whether you hire us or not.',
   },
   {
     num: '02',
     icon: Wrench,
     title: 'Build',
-    body: 'We design and build custom AI systems around your specific workflows. Not templates \u2014 systems built for how your business actually works, integrated with your existing tools. You don\u2019t pay until you see it working.',
+    body: 'We design and build custom AI automation systems around your specific workflows. Not templates \u2014 systems built for how your business actually operates, integrated with the tools you already use (your CRM, scheduling software, phone system, POS). We give you a live demonstration with your real data before any payment. You see exactly what it does, how it works, and what it delivers.',
   },
   {
     num: '03',
     icon: BarChart3,
     title: 'Optimize',
-    body: 'AI systems get smarter over time \u2014 but only if someone is tuning them. We monitor performance, optimize based on real data, and expand capabilities. Monthly ROI reports show exactly what you\u2019re getting.',
+    body: 'AI automation systems get smarter over time \u2014 but only if someone is tuning them. We monitor how your systems perform, optimize based on real usage data, fix anything that breaks, and expand capabilities as your business grows. You get a monthly ROI report showing exactly what the systems are doing: hours saved, leads captured, tasks automated, and revenue impact.',
   },
 ]
 

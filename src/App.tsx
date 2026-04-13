@@ -3,6 +3,7 @@ import SmoothScroll from './components/SmoothScroll'
 import Hero from './components/Hero'
 
 import Problem from './components/Problem'
+import WhyVirdar from './components/WhyVirdar'
 import HowItWorks from './components/HowItWorks'
 import Examples from './components/Examples'
 import Stats from './components/Stats'
@@ -22,6 +23,7 @@ export default function App() {
       <main id="main-content">
         <Hero />
         <Problem />
+        <WhyVirdar />
         <HowItWorks />
         <Examples />
         <Stats />

@@ -3,26 +3,26 @@ import { PhoneOff, Clock, TrendingUp } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
 const cards = [
   {
     icon: PhoneOff,
     title: 'Missed Calls = Missed Revenue',
-    body: '62% of calls to small businesses go unanswered. Each one is a potential customer walking to a competitor. An AI system responds in seconds, 24/7.',
+    body: '62% of calls to small businesses go unanswered. For a law firm, that\u2019s a case. For a med spa, that\u2019s a $500 consultation. For a restaurant, that\u2019s a catering inquiry. Every missed call is revenue walking straight to a competitor who picks up. An AI automation system responds in seconds, qualifies the caller, and captures the lead \u2014 24/7, including nights and weekends.',
     source: 'Forbes, 2024',
   },
   {
     icon: Clock,
     title: 'Manual Work Eats Your Margins',
-    body: 'The average SMB spends 15\u201330 hours per week on tasks AI handles in minutes \u2014 scheduling, data entry, follow-ups, reporting. That\u2019s real money going to work that doesn\u2019t need a human.',
+    body: 'The average SMB spends 15\u201330 hours per week on tasks AI handles in minutes \u2014 scheduling appointments, entering invoice data, following up with leads, generating reports, responding to routine inquiries. That\u2019s $40K\u2013$80K a year in labor costs going to work that doesn\u2019t require human judgment. Custom automation reclaims those hours for the work that actually grows your business.',
     source: 'McKinsey Global Institute',
   },
   {
     icon: TrendingUp,
     title: 'Your Competitors Are Already Moving',
-    body: '57% of US small businesses now invest in AI. The gap between businesses that adopt and those that don\u2019t will only widen. The question isn\u2019t whether to start \u2014 it\u2019s whether you\u2019ll be ahead or behind.',
+    body: '57% of US small businesses now invest in AI automation. The early adopters are already seeing results: faster response times, lower operational costs, better lead conversion. The gap between businesses that automate and those that don\u2019t will only widen as AI tools become more capable. The question isn\u2019t whether to start \u2014 it\u2019s whether you\u2019ll be ahead or behind when your industry fully shifts.',
     source: 'U.S. Chamber of Commerce, 2024',
   },
 ]

@@ -35,6 +35,18 @@ const faqs = [
     q: 'What kinds of businesses do you work with?',
     a: 'Operations-heavy businesses \u2014 restaurants, law firms, medical practices, property management, field services, logistics, contractors, salons. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn\u2019t the right fit, we\u2019ll tell you on the strategy call.',
   },
+  {
+    q: 'How much does custom AI automation cost for a small business?',
+    a: 'Most projects fall between $15,000 and $25,000 for a single custom AI system. Simpler automations can start at $5,000, and complex multi-system builds can go up to $50,000 or more. The strategy call gives you an exact scope and number based on your specific needs \u2014 no surprises.',
+  },
+  {
+    q: 'Do you only work with businesses in Dallas?',
+    a: 'We\u2019re based in Dallas, TX and most of our clients are in the DFW metroplex \u2014 Dallas, Fort Worth, Plano, Frisco, Richardson, and surrounding areas. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we\u2019re open to working with businesses outside of Texas.',
+  },
+  {
+    q: 'What\u2019s the difference between Virdar and an AI agency?',
+    a: 'Most AI agencies offer a menu of prebuilt products \u2014 chatbots, social media tools, generic automations. Virdar is a specialist practice. We don\u2019t sell products off a shelf. We learn your operations, identify what\u2019s costing you time and money, and build a system specifically for that problem. The difference is like hiring an architect to design your building versus buying a prefab shed.',
+  },
 ]
 
 function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
@@ -85,7 +97,7 @@ export default function FAQ() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' as const }}
+          transition={{ duration: 0.45, ease: 'easeOut' as const }}
           className="heading-lg text-text"
         >
           Questions You Probably Have

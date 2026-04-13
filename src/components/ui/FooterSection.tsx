@@ -61,7 +61,7 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
       initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
       whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.8 }}
+      transition={{ delay, duration: 0.5 }}
       className={className}
     >
       {children}
@@ -98,7 +98,7 @@ function YesNo({ label, value, onChange, name }: { label: string; value: boolean
             key={String(v)}
             type="button"
             onClick={() => onChange(v)}
-            className={`rounded-lg px-5 py-2 text-sm font-medium border transition-colors cursor-pointer ${
+            className={`rounded-lg px-5 min-h-[44px] text-sm font-medium border transition-colors cursor-pointer ${
               value === v
                 ? 'bg-accent/10 border-accent text-accent'
                 : 'bg-transparent border-border text-text-secondary hover:border-border-hover'
@@ -206,7 +206,7 @@ function CareersModal({ open, onClose }: { open: boolean; onClose: () => void })
             <div className="sticky top-0 z-20 flex justify-end -mt-4 -mr-4 mb-2">
               <button
                 onClick={handleClose}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-surface border-none text-text-secondary hover:text-text cursor-pointer transition-colors"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-surface border-none text-text-secondary hover:text-text cursor-pointer transition-colors"
                 aria-label="Close"
               >
                 <X size={18} />
@@ -366,9 +366,11 @@ export function FooterSection() {
           <p className="text-sm text-text-secondary leading-relaxed max-w-[280px]">
             AI that runs the back office — so you can run the business.
           </p>
-          <p className="text-xs text-text-tertiary">
-            &copy; {new Date().getFullYear()} Virdar. All rights reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-text-tertiary">
+            <p>&copy; {new Date().getFullYear()} Virdar. All rights reserved.</p>
+            <a href="/privacy.html" className="no-underline hover:text-text transition-colors">Privacy Policy</a>
+            <a href="/terms.html" className="no-underline hover:text-text transition-colors">Terms of Service</a>
+          </div>
         </AnimatedContainer>
 
         {/* Link columns */}
@@ -385,7 +387,7 @@ export function FooterSection() {
                       <a
                         href={link.href}
                         {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        className="inline-flex items-center text-text-secondary no-underline transition-all duration-300 hover:text-text"
+                        className="inline-flex items-center min-h-[44px] text-text-secondary no-underline transition-all duration-300 hover:text-text"
                       >
                         {link.icon && <link.icon className="mr-2 h-4 w-4" />}
                         {link.title}
@@ -405,7 +407,7 @@ export function FooterSection() {
           Interested in working with us?&ensp;
           <button
             onClick={() => setCareersOpen(true)}
-            className="bg-transparent border-none p-0 text-xs text-text-secondary hover:text-accent transition-colors cursor-pointer"
+            className="bg-transparent border-none py-2 px-1 min-h-[44px] inline-flex items-center text-xs text-text-secondary hover:text-accent transition-colors cursor-pointer"
           >
             We're always looking for great people&ensp;&rarr;
           </button>

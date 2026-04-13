@@ -8,7 +8,7 @@
 
   --color-text: #F5F0E8;
   --color-text-secondary: #8A8475;
-  --color-text-tertiary: #5A5549;
+  --color-text-tertiary: #7A7568;
 
   --color-accent: #C9A96E;
   --color-accent-hover: #B8943D;
@@ -111,7 +111,7 @@ body {
 }
 
 .body-md {
-  font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+  font-size: clamp(1rem, 1.05vw, 1.0625rem);
   line-height: 1.65;
 }
 

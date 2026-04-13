@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#0A0A0A" />
     <link rel="canonical" href="https://virdar.co/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,11 +42,15 @@
       "@graph": [
         {
           "@type": "Organization",
+          "@id": "https://virdar.co/#organization",
           "name": "Virdar",
           "url": "https://virdar.co",
           "logo": "https://virdar.co/favicon.svg",
           "description": "AI specialist practice that builds custom AI systems for operations-heavy small and medium businesses.",
           "email": "info@virdar.co",
+          "sameAs": [
+            "https://www.linkedin.com/company/virdar"
+          ],
           "areaServed": {
             "@type": "City",
             "name": "Dallas",
@@ -55,18 +60,79 @@
           "serviceType": ["Custom AI Systems", "AI Operations Automation", "AI Lead Qualification", "AI Intake Systems", "AI Demand Forecasting", "Workflow Automation"]
         },
         {
-          "@type": "LocalBusiness",
+          "@type": "ProfessionalService",
+          "@id": "https://virdar.co/#business",
           "name": "Virdar",
           "url": "https://virdar.co",
           "email": "info@virdar.co",
-          "description": "AI specialist practice building custom AI systems for operations-heavy businesses in Dallas, TX. Missed call recovery, lead qualification, scheduling automation, and more.",
+          "image": "https://virdar.co/og-image.png",
+          "description": "AI specialist practice building custom AI automation systems for operations-heavy businesses in Dallas, TX. Missed call recovery, lead qualification, scheduling automation, and more.",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Dallas",
             "addressRegion": "TX",
             "addressCountry": "US"
           },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "32.7767",
+            "longitude": "-96.7970"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/virdar"
+          ],
           "priceRange": "$5,000 - $50,000+"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://virdar.co/#service-discover",
+          "name": "AI Strategy & Discovery",
+          "provider": { "@id": "https://virdar.co/#business" },
+          "description": "Complimentary 15-minute strategy call with operations audit and custom AI roadmap with projected ROI for operations-heavy businesses.",
+          "areaServed": { "@type": "City", "name": "Dallas", "addressRegion": "TX" },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Complimentary strategy call — yours to keep whether you hire us or not"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://virdar.co/#service-build",
+          "name": "Custom AI System Build",
+          "provider": { "@id": "https://virdar.co/#business" },
+          "description": "Custom AI automation systems built for your specific operations, integrated with existing tools. Live demo before any payment.",
+          "areaServed": { "@type": "City", "name": "Dallas", "addressRegion": "TX" },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "5000",
+            "highPrice": "50000",
+            "priceCurrency": "USD",
+            "description": "Most projects fall between $15K–$25K. You don't pay until you see it working."
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://virdar.co/#service-optimize",
+          "name": "Ongoing AI System Optimization",
+          "provider": { "@id": "https://virdar.co/#business" },
+          "description": "Ongoing monitoring, performance tuning, workflow expansion, and monthly ROI reports for AI automation systems. Cancel anytime.",
+          "areaServed": { "@type": "City", "name": "Dallas", "addressRegion": "TX" },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "1000",
+            "highPrice": "3000",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "description": "Monthly optimization — cancel anytime, no contracts"
+          }
         },
         {
           "@type": "FAQPage",
@@ -133,6 +199,30 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Operations-heavy businesses — restaurants, law firms, medical practices, property management, field services, logistics, contractors, salons. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn\u2019t the right fit, we\u2019ll tell you on the strategy call."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How much does custom AI automation cost for a small business?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most projects fall between $15,000 and $25,000 for a single custom AI system. Simpler automations can start at $5,000, and complex multi-system builds can go up to $50,000 or more. The strategy call gives you an exact scope and number based on your specific needs — no surprises."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you only work with businesses in Dallas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We\u2019re based in Dallas, TX and most of our clients are in the DFW metroplex — Dallas, Fort Worth, Plano, Frisco, Richardson, and surrounding areas. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we\u2019re open to working with businesses outside of Texas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What\u2019s the difference between Virdar and an AI agency?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most AI agencies offer a menu of prebuilt products — chatbots, social media tools, generic automations. Virdar is a specialist practice. We don\u2019t sell products off a shelf. We learn your operations, identify what\u2019s costing you time and money, and build a system specifically for that problem. The difference is like hiring an architect to design your building versus buying a prefab shed."
               }
             }
           ]

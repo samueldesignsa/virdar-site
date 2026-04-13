@@ -83,7 +83,7 @@ export default function Stats() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.45 }}
         className="mx-auto max-w-[1200px] px-6 grid grid-cols-2 gap-10 md:grid-cols-4"
       >
         {stats.map((stat) => (
