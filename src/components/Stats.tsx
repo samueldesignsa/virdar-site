@@ -78,6 +78,7 @@ export default function Stats() {
 
   return (
     <section ref={sectionRef} className="bg-surface py-16 md:py-20 border-t border-b border-border">
+      <h2 className="sr-only">Why Businesses Are Adopting AI Automation</h2>
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

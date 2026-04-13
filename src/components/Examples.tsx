@@ -8,31 +8,31 @@ const fadeUp = {
 const examples = [
   {
     tag: 'Legal',
-    title: 'Law Firms',
+    title: 'AI Automation for Law Firms',
     problem: 'Phones ring after hours. Every missed call is a potential case walking to a competitor.',
     solution: 'A custom AI system that catches missed calls, qualifies potential clients via text, and delivers scored leads to the attorney\u2019s inbox \u2014 24/7.',
   },
   {
     tag: 'Healthcare',
-    title: 'Med Spas & Clinics',
+    title: 'AI Automation for Med Spas & Clinics',
     problem: 'Front desk staff spend hours on phone tag \u2014 booking consultations, answering questions, sending prep instructions.',
     solution: 'A custom AI intake system that handles inquiries around the clock, books appointments based on treatment and availability, and sends prep info automatically.',
   },
   {
     tag: 'Restaurant',
-    title: 'Restaurants & Hospitality',
+    title: 'AI Automation for Restaurants',
     problem: 'Managers guess staffing levels based on gut feeling. Some nights overstaffed, others understaffed.',
     solution: 'A custom demand forecasting system that analyzes sales history, weather, local events, and seasonality to predict daily covers and recommend staffing levels.',
   },
   {
     tag: 'Property',
-    title: 'Property Management',
+    title: 'AI Automation for Property Management',
     problem: 'Tenants call for every maintenance issue. Staff manually log, categorize, and dispatch \u2014 and requests get lost.',
     solution: 'A custom AI that receives maintenance requests via text, asks clarifying questions, categorizes urgency, creates work orders, and dispatches the right vendor.',
   },
   {
     tag: 'Finance',
-    title: 'Mortgage & Lending',
+    title: 'AI Automation for Mortgage & Lending',
     problem: 'Brokers spend hours on unqualified leads \u2014 people just browsing, not ready to move.',
     solution: 'A custom AI lead qualification system that screens new inquiries, assesses readiness, and sends qualified borrowers a personalized document checklist \u2014 before the first call.',
   },
@@ -57,7 +57,7 @@ export default function Examples() {
           variants={fadeUp}
           className="max-w-[720px]"
         >
-          <h2 className="heading-lg text-text">What Custom AI Systems Look Like</h2>
+          <h2 className="heading-lg text-text">What AI Automation Looks Like</h2>
           <p className="body-lg mt-4 text-text-secondary">
             Every business is different. Here are examples of systems we can build — tailored to your operations, your tools, and your workflows.
           </p>

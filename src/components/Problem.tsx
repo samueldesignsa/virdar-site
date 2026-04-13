@@ -38,7 +38,7 @@ export default function Problem() {
           variants={fadeUp}
           className="max-w-[720px]"
         >
-          <h2 className="heading-lg text-text">The businesses that move first, win</h2>
+          <h2 className="heading-lg text-text">The businesses that automate first, win</h2>
           <p className="body-lg mt-4 text-text-secondary">
             Every day your team spends on manual tasks — answering phones, chasing leads, managing schedules, entering data — is a day your competitors are automating it.
           </p>

@@ -38,7 +38,7 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: 'info@virdar.co', href: 'mailto:info@virdar.co', icon: Mail },
       { title: 'Dallas, TX', href: '#', icon: MapPin },
-      { title: 'LinkedIn', href: '#', icon: ExternalLink },
+      { title: 'LinkedIn', href: 'https://www.linkedin.com/company/virdar', icon: ExternalLink, external: true },
     ],
   },
 ]
