@@ -1,49 +1,26 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="1200" height="630" fill="#0D0D0D"/>
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full square canvas — will be center-cropped to 1200x630 -->
+  <rect width="1200" height="1200" fill="#0A0A0A"/>
+  <ellipse cx="400" cy="600" rx="500" ry="300" fill="#C9A96E" opacity="0.03"/>
+  <rect x="0" y="285" width="1200" height="2" fill="#C9A96E" opacity="0.4"/>
 
-  <!-- Subtle grid texture -->
-  <defs>
-    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#F5F5F5" stroke-width="0.5"/>
-    </pattern>
-  </defs>
-  <rect width="1200" height="630" fill="url(#grid)" opacity="0.04"/>
+  <!-- Logo — centered vertically in the crop zone (285-915) -->
+  <path d="M84 340L100 372L116 340H110L100 360L90 340H84Z" fill="#C9A96E"/>
+  <text x="126" y="366" font-family="Georgia, 'Times New Roman', serif" font-size="26" fill="#F5F0E8" letter-spacing="1">Virdar</text>
 
-  <!-- Blue accent glow left -->
-  <ellipse cx="150" cy="315" rx="350" ry="220" fill="#4F8EF7" opacity="0.07"/>
+  <!-- Headline -->
+  <text x="80" y="510" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#F5F0E8" letter-spacing="-0.5">Custom AI Systems for</text>
+  <text x="80" y="572" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#F5F0E8" letter-spacing="-0.5">Operations-Heavy Businesses</text>
 
-  <!-- Blue accent glow right -->
-  <ellipse cx="1100" cy="400" rx="200" ry="160" fill="#4F8EF7" opacity="0.05"/>
+  <!-- Subtitle -->
+  <text x="80" y="636" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#8A8475">We build it. You see it working. Then you pay.</text>
 
-  <!-- Top accent line -->
-  <rect x="0" y="0" width="1200" height="3" fill="#4F8EF7"/>
+  <!-- Gold bar -->
+  <rect x="80" y="664" width="80" height="3" rx="1.5" fill="#C9A96E"/>
 
-  <!-- V Logo mark -->
-  <g transform="translate(80, 60) scale(3.5)">
-    <path d="M2 3L14 25L26 3H20.5L14 17L7.5 3H2Z" fill="#4F8EF7"/>
-  </g>
-
-  <!-- Wordmark next to logo -->
-  <text x="178" y="108" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#F5F5F5" letter-spacing="-1">virdar</text>
-
-  <!-- Main headline line 1 -->
-  <text x="80" y="270" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="68" font-weight="800" fill="#F5F5F5" letter-spacing="-2">We Build Your AI Automation</text>
-
-  <!-- Main headline line 2 — accent colored -->
-  <text x="80" y="355" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="68" font-weight="800" fill="#4F8EF7" letter-spacing="-2">Free.</text>
-  <text x="230" y="355" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="68" font-weight="800" fill="#F5F5F5" letter-spacing="-2"> You Pay After You See It.</text>
-
-  <!-- Subheadline -->
-  <text x="80" y="430" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="26" font-weight="400" fill="#888888">Custom-built for your business. Zero cost until you love it.</text>
-
-  <!-- Divider line -->
-  <rect x="80" y="500" width="120" height="3" fill="#4F8EF7" rx="2"/>
-
-  <!-- URL bottom left -->
-  <text x="80" y="560" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#F5F5F5" letter-spacing="1">virdar.co</text>
-
-  <!-- CTA pill bottom right -->
-  <rect x="870" y="530" width="260" height="56" rx="8" fill="#4F8EF7"/>
-  <text x="1000" y="564" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">Book Your Free Call →</text>
+  <!-- Bottom strip -->
+  <rect x="0" y="850" width="1200" height="65" fill="#141414"/>
+  <rect x="0" y="850" width="1200" height="1" fill="#1E1E1E"/>
+  <text x="80" y="889" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="500" fill="#F5F0E8" letter-spacing="1">virdar.co</text>
+  <text x="1120" y="889" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#5A5549" text-anchor="end">Dallas, TX</text>
 </svg>
