@@ -9,6 +9,7 @@ import Examples from './components/Examples'
 import Stats from './components/Stats'
 import Pricing from './components/Pricing'
 import FAQ from './components/FAQ'
+import BlogPreview from './components/BlogPreview'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
 
@@ -29,6 +30,7 @@ export default function App() {
         <Stats />
         <Pricing />
         <FAQ />
+        <BlogPreview />
         <FinalCTA />
       </main>
       <Footer />
