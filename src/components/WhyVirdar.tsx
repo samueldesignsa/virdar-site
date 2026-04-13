@@ -10,17 +10,17 @@ const pillars = [
   {
     icon: Target,
     title: 'Operations First, Technology Second',
-    body: 'Most AI projects fail because they start with the technology and look for a problem to solve. We start with your operations. We map how your business actually runs \u2014 where time gets wasted, where leads get lost, where manual work creates bottlenecks. Only then do we decide what to build. If AI isn\u2019t the right answer for a particular workflow, we\u2019ll tell you.',
+    body: 'Most AI projects fail because they start with the technology and look for a problem to solve. We start with your operations. We map how your business actually runs: where time gets wasted, where leads get lost, where manual work creates bottlenecks. Only then do we decide what to build. If AI isn\u2019t the right answer for a particular workflow, we\u2019ll tell you.',
   },
   {
     icon: Shield,
     title: 'You See It Working Before You Pay',
-    body: 'We don\u2019t ask for trust upfront. We earn it by building first and billing second. Every system we create gets a live demonstration with your real workflows before any payment changes hands. If it doesn\u2019t deliver measurable value \u2014 hours saved, leads captured, errors eliminated \u2014 you don\u2019t pay. That\u2019s the deal.',
+    body: 'We don\u2019t ask for trust upfront. We earn it by building first and billing second. Every system we create gets a live demonstration with your real workflows before any payment changes hands. If it doesn\u2019t deliver measurable value (hours saved, leads captured, errors eliminated), you don\u2019t pay. That\u2019s the deal.',
   },
   {
     icon: Zap,
     title: 'Built for Your Business, Not Everyone\u2019s',
-    body: 'Off-the-shelf AI tools are designed for the average business. The problem is, no business is average. The way a Dallas law firm handles intake is different from how a med spa books consultations, which is different from how a property manager dispatches vendors. We build systems around your specific workflows, your existing tools, and your team \u2014 not a one-size-fits-all template.',
+    body: 'Off-the-shelf AI tools are designed for the average business. The problem is, no business is average. The way a Dallas law firm handles intake is different from how a med spa books consultations, which is different from how a property manager dispatches vendors. We build systems around your specific workflows, your existing tools, and your team. Not a one-size-fits-all template.',
   },
 ]
 

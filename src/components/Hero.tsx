@@ -53,7 +53,7 @@ export default function Hero() {
             variants={fade}
             className="body-lg mt-6 max-w-[500px] text-text-secondary"
           >
-            Your competitors will adopt AI. The ones who do it first — and do it right — will win. We make sure that's you.
+            Your competitors will adopt AI. The ones who do it first, and do it right, will win. We make sure that's you.
           </motion.p>
 
           <motion.div

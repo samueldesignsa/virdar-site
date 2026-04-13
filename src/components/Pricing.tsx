@@ -16,7 +16,7 @@ const tiers = [
       '15-minute strategy call',
       'Operations audit',
       'Custom AI roadmap with projected ROI',
-      'Yours to keep \u2014 whether you hire us or not',
+      'Yours to keep, whether you hire us or not',
     ],
     cta: 'Get Your Free AI Roadmap',
     ctaHref: 'https://calendly.com/virdar-info/30min',
@@ -47,9 +47,9 @@ const tiers = [
     features: [
       'Ongoing monitoring and performance tuning',
       'New workflow expansion as your needs grow',
-      'Monthly ROI reports \u2014 hours saved, leads captured, tasks automated',
+      'Monthly ROI reports: hours saved, leads captured, tasks automated',
       'Priority support',
-      'Cancel anytime \u2014 no contracts',
+      'Cancel anytime. No contracts',
     ],
     cta: 'Discuss Ongoing Support',
     ctaHref: 'https://calendly.com/virdar-info/30min',
@@ -70,7 +70,7 @@ export default function Pricing() {
         >
           <h2 className="heading-lg text-text">See It Before You Pay For It</h2>
           <p className="body-lg mx-auto mt-4 max-w-[600px] text-text-secondary">
-            We take the risk. You don't pay until you see the finished system running — and decide it's right for you.
+            We take the risk. You don't pay until you see the finished system running and decide it's right for you.
           </p>
         </motion.div>
 
