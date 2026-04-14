@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '4',
+    slug: 'ai-automation-for-home-service-businesses',
+    title: 'AI Automation for Home Service Businesses: What It Actually Does',
+    excerpt: 'HVAC companies, plumbers, and electricians lose thousands every week to missed calls and dead estimates. Here\'s what automation actually looks like for a home service business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'April 14, 2026',
+    gradient: 'from-teal-500/15 via-teal-500/5 to-transparent',
+  },
+  {
     id: '1',
     slug: 'how-much-does-custom-ai-automation-cost',
     title: 'How Much Does Custom AI Automation Cost for a Small Business?',
