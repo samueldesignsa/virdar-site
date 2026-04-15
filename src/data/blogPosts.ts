@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '5',
+    slug: 'ai-automation-for-law-firms',
+    title: 'AI Automation for Law Firms: What Solo and Small Practices Are Missing',
+    excerpt: 'Solo and small law firms lose clients every week to slow intake, missed consultations, and unreturned follow-ups. Here\'s what AI automation actually looks like for a small practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'April 15, 2026',
+    gradient: 'from-violet-500/15 via-violet-500/5 to-transparent',
+  },
+  {
     id: '4',
     slug: 'ai-automation-for-home-service-businesses',
     title: 'AI Automation for Home Service Businesses: What It Actually Does',
