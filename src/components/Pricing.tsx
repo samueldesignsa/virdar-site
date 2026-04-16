@@ -13,7 +13,7 @@ const tiers = [
     subtitle: 'For operations-heavy businesses exploring AI',
     icon: Compass,
     features: [
-      '15-minute strategy call',
+      '30-minute strategy call',
       'Operations audit',
       'Custom AI roadmap with projected ROI',
       'Yours to keep, whether you hire us or not',

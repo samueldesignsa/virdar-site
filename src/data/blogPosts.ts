@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '6',
+    slug: 'ai-automation-for-dental-practices',
+    title: 'AI Automation for Dental Practices: What It Actually Does',
+    excerpt: 'Dental practices lose patients to slow recall, missed appointment reminders, and unreturned calls. Here\'s what AI automation actually looks like for a dental office.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'April 16, 2026',
+    gradient: 'from-sky-500/15 via-sky-500/5 to-transparent',
+  },
+  {
     id: '5',
     slug: 'ai-automation-for-law-firms',
     title: 'AI Automation for Law Firms: What Solo and Small Practices Are Missing',
