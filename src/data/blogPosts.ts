@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '7',
+    slug: 'ai-automation-for-property-management',
+    title: 'AI Automation for Property Management: What It Actually Does',
+    excerpt: 'Property managers lose hours every week to maintenance request routing, lease renewal follow-up, and tenant communication. Here\'s what AI automation actually looks like for a property management company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'April 17, 2026',
+    gradient: 'from-emerald-500/15 via-emerald-500/5 to-transparent',
+  },
+  {
     id: '6',
     slug: 'ai-automation-for-dental-practices',
     title: 'AI Automation for Dental Practices: What It Actually Does',
