@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import SmoothScroll from './components/SmoothScroll'
 import Hero from './components/Hero'
 
+import DeskComparison from './components/DeskComparison'
 import Problem from './components/Problem'
 import WhyVirdar from './components/WhyVirdar'
 import HowItWorks from './components/HowItWorks'
@@ -23,6 +24,7 @@ export default function App() {
       <Navbar />
       <main id="main-content">
         <Hero />
+        <DeskComparison />
         <Problem />
         <WhyVirdar />
         <HowItWorks />
