@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '8',
+    slug: 'ai-automation-for-real-estate-agents',
+    title: 'AI Automation for Real Estate Agents and Small Brokerages: What It Actually Does',
+    excerpt: 'Real estate agents lose listings and buyers to slow lead follow-up, missed showing requests, and dead past-client pipelines. Here\'s what AI automation actually looks like for a solo agent or small brokerage.',
+    category: 'Industry Deep Dives',
+    readTime: '8 min read',
+    date: 'April 24, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
     id: '7',
     slug: 'ai-automation-for-property-management',
     title: 'AI Automation for Property Management: What It Actually Does',
