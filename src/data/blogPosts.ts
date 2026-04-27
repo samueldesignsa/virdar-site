@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '12',
+    slug: 'ai-automation-for-med-spas-aesthetic-clinics',
+    title: 'AI Automation for Med Spas and Aesthetic Clinics: What It Actually Does',
+    excerpt: 'Med spas lose thousands each month to no-shows, lapsed clients, and missed rebooking windows. Here\'s what AI automation actually looks like for an independent aesthetics practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'April 27, 2026',
+    gradient: 'from-pink-500/15 via-pink-500/5 to-transparent',
+  },
+  {
     id: '8',
     slug: 'ai-automation-for-real-estate-agents',
     title: 'AI Automation for Real Estate Agents and Small Brokerages: What It Actually Does',
