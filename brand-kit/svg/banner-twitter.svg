@@ -1,0 +1,19 @@
+<svg width="1500" height="500" viewBox="0 0 1500 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1500" height="500" fill="#0A0A0A"/>
+  <ellipse cx="500" cy="250" rx="600" ry="280" fill="#C9A96E" opacity="0.04"/>
+  <rect x="0" y="120" width="1500" height="1" fill="#C9A96E" opacity="0.25"/>
+
+  <g transform="translate(96 188) scale(7)">
+    <path d="M4 5L14 23L24 5H19.5L14 16L8.5 5H4Z" fill="#C9A96E"/>
+  </g>
+
+  <text x="320" y="284" font-family="'DM Serif Display', Georgia, 'Times New Roman', serif" font-size="96" fill="#F5F0E8" letter-spacing="-1.5">Virdar</text>
+
+  <text x="96" y="370" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#8A8475" letter-spacing="0.5">Custom AI systems for operations-heavy businesses.</text>
+  <text x="96" y="410" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#7A7568">We build it. You see it working. Then you pay.</text>
+
+  <rect x="96" y="440" width="60" height="3" rx="1.5" fill="#C9A96E"/>
+
+  <text x="1404" y="448" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#F5F0E8" text-anchor="end" letter-spacing="0.5">virdar.co</text>
+  <text x="1404" y="478" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="16" fill="#5A5549" text-anchor="end">Dallas, TX</text>
+</svg>

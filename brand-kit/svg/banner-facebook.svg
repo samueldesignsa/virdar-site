@@ -1,0 +1,18 @@
+<svg width="820" height="312" viewBox="0 0 820 312" xmlns="http://www.w3.org/2000/svg">
+  <rect width="820" height="312" fill="#0A0A0A"/>
+  <ellipse cx="280" cy="156" rx="380" ry="180" fill="#C9A96E" opacity="0.04"/>
+  <rect x="0" y="80" width="820" height="1" fill="#C9A96E" opacity="0.25"/>
+
+  <g transform="translate(56 116) scale(4.2)">
+    <path d="M4 5L14 23L24 5H19.5L14 16L8.5 5H4Z" fill="#C9A96E"/>
+  </g>
+
+  <text x="208" y="174" font-family="'DM Serif Display', Georgia, 'Times New Roman', serif" font-size="60" fill="#F5F0E8" letter-spacing="-1">Virdar</text>
+
+  <text x="56" y="232" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" font-weight="500" fill="#8A8475" letter-spacing="0.3">Custom AI systems for operations-heavy businesses.</text>
+  <text x="56" y="258" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="15" fill="#7A7568">We build it. You see it working. Then you pay.</text>
+
+  <rect x="56" y="278" width="50" height="2" rx="1" fill="#C9A96E"/>
+
+  <text x="764" y="278" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#F5F0E8" text-anchor="end" letter-spacing="0.4">virdar.co</text>
+</svg>
