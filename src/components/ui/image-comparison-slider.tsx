@@ -56,37 +56,37 @@ export function ImageComparison({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* After Image — clipped by slider */}
+      {/* Before Image — overlay clipped from the right, shown on LEFT */}
       <div
         className="absolute top-0 left-0 h-full w-full overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img
-          src={afterImage}
-          alt={altAfter}
+          src={beforeImage}
+          alt={altBefore}
           className="h-full w-full object-cover"
           draggable="false"
         />
-        {afterLabel && (
-          <span className="absolute top-4 left-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-bg">
-            {afterLabel}
+        {beforeLabel && (
+          <span className="absolute top-4 left-4 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-text backdrop-blur-sm">
+            {beforeLabel}
           </span>
         )}
       </div>
 
-      {/* Before Image — base layer */}
+      {/* After Image — base layer, shown on RIGHT */}
       <img
-        src={beforeImage}
-        alt={altBefore}
+        src={afterImage}
+        alt={altAfter}
         className="block h-full w-full object-cover"
         draggable="false"
       />
-      {beforeLabel && (
+      {afterLabel && (
         <span
-          className="absolute top-4 right-4 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-text backdrop-blur-sm"
+          className="absolute top-4 right-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-bg"
           style={{ opacity: sliderPosition < 90 ? 1 : 0, transition: 'opacity 0.2s' }}
         >
-          {beforeLabel}
+          {afterLabel}
         </span>
       )}
 
