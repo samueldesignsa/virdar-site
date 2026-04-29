@@ -23,9 +23,9 @@ export default function Hero() {
         fill="#C9A96E"
       />
 
-      <div className="relative z-10 mx-auto flex h-screen max-w-[1400px] flex-col md:flex-row items-center px-6">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1400px] flex-col md:h-screen md:min-h-0 md:flex-row items-center px-6">
         {/* Left — Copy */}
-        <div className="flex-1 flex flex-col justify-center pt-24 md:pt-0 md:pr-8">
+        <div className="flex-1 flex flex-col justify-center pt-24 pb-6 md:pt-0 md:pb-0 md:pr-8">
           <motion.p
             custom={0}
             initial="hidden"
@@ -61,14 +61,18 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fade}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-4"
           >
-            <GetStartedButton href="https://calendly.com/virdar-info/30min" external>
+            <GetStartedButton
+              href="https://calendly.com/virdar-info/30min"
+              external
+              className="w-full sm:w-auto"
+            >
               Book a Complimentary Strategy Call
             </GetStartedButton>
             <a
               href="#how-it-works"
-              className="inline-flex items-center rounded-xl border border-border min-h-[48px] px-8 py-4 text-base font-medium text-text-secondary no-underline transition-all hover:border-border-hover hover:text-text active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              className="inline-flex items-center justify-center rounded-xl border border-border min-h-[48px] px-8 py-4 text-base font-medium text-text-secondary no-underline transition-all hover:border-border-hover hover:text-text active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg w-full sm:w-auto"
             >
               See How It Works&ensp;&darr;
             </a>
@@ -86,7 +90,7 @@ export default function Hero() {
         </div>
 
         {/* Right — 3D Scene */}
-        <div className="flex-1 relative h-[400px] md:h-full w-full md:-mr-24">
+        <div className="flex-1 relative h-[320px] md:h-full w-full md:-mr-24">
           <div className="absolute inset-0 md:-right-32 md:-top-20 md:bottom-16">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"

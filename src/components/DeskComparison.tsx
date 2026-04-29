@@ -40,7 +40,7 @@ export default function DeskComparison() {
             altAfter="Clean organized desk in daylight — single laptop showing a dashboard, one coffee cup, succulent plant, neat leather notebook"
             beforeLabel="Before"
             afterLabel="After"
-            className="mx-auto aspect-[16/9] max-w-[1100px]"
+            className="mx-auto aspect-[4/3] max-w-[1100px] md:aspect-[16/9]"
           />
           <p className="mt-6 text-center text-sm text-text-tertiary">
             Drag the slider to compare →

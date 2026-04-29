@@ -53,7 +53,7 @@ export function WorkflowDiagram({ nodes, className = '' }: WorkflowDiagramProps)
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.3, delay: i * 0.12 + 0.2 }}
                 aria-hidden="true"
-                className="relative ml-7 flex h-5 w-px items-center justify-center md:ml-0 md:mt-7 md:h-px md:w-auto md:flex-1"
+                className="relative ml-7 flex h-3 w-px items-center justify-center md:ml-0 md:mt-7 md:h-px md:w-auto md:flex-1"
               >
                 <span className="block h-full w-full border-l border-dashed border-border md:border-l-0 md:border-t" />
               </motion.div>

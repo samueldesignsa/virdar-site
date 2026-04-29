@@ -5,11 +5,12 @@ interface GetStartedButtonProps {
   children: React.ReactNode
   href: string
   external?: boolean
+  className?: string
 }
 
-export function GetStartedButton({ children, href, external }: GetStartedButtonProps) {
+export function GetStartedButton({ children, href, external, className }: GetStartedButtonProps) {
   return (
-    <Button className="group relative overflow-hidden" size="lg" asChild>
+    <Button className={`group relative overflow-hidden ${className ?? ''}`} size="lg" asChild>
       <a
         href={href}
         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}

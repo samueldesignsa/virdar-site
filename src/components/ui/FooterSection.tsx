@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ComponentProps, type ReactNode, type FormEvent } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { Mail, MapPin, ExternalLink, X } from 'lucide-react'
+import { Mail, MapPin, X } from 'lucide-react'
 import { CheckboxGroup, CheckboxItem } from './CheckboxGroup'
 
 interface FooterLink {
@@ -38,7 +38,6 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: 'info@virdar.co', href: 'mailto:info@virdar.co', icon: Mail },
       { title: 'Dallas, TX', href: '#', icon: MapPin },
-      { title: 'LinkedIn', href: 'https://www.linkedin.com/company/virdar', icon: ExternalLink, external: true },
     ],
   },
 ]
