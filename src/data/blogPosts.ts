@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '13',
+    slug: 'ai-automation-for-physical-therapy-chiropractic',
+    title: 'AI Automation for Physical Therapy and Chiropractic Practices: What It Actually Does',
+    excerpt: 'PT and chiro practices lose revenue when patients drop out of treatment plans early, miss sessions, and never come back. Here\'s what AI automation actually looks like for an independent practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'April 29, 2026',
+    gradient: 'from-lime-500/15 via-lime-500/5 to-transparent',
+  },
+  {
     id: '12',
     slug: 'ai-automation-for-med-spas-aesthetic-clinics',
     title: 'AI Automation for Med Spas and Aesthetic Clinics: What It Actually Does',
