@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '14',
+    slug: 'ai-automation-for-veterinary-clinics',
+    title: 'AI Automation for Veterinary Clinics: What It Actually Does',
+    excerpt: 'Independent vet clinics lose clients to missed annual wellness recalls, no-shows, and a lapsed patient database nobody is watching. Here\'s what AI automation actually looks like for an independent veterinary practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 1, 2026',
+    gradient: 'from-green-500/15 via-green-500/5 to-transparent',
+  },
+  {
     id: '13',
     slug: 'ai-automation-for-physical-therapy-chiropractic',
     title: 'AI Automation for Physical Therapy and Chiropractic Practices: What It Actually Does',
