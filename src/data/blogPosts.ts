@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '15',
+    slug: 'ai-automation-for-auto-repair-shops',
+    title: 'AI Automation for Auto Repair Shops: What It Actually Does',
+    excerpt: 'Independent auto repair shops lose thousands every month to declined services that never get followed up, lapsed customers who drift to competitors, and zero maintenance interval outreach. Here\'s what AI automation actually looks like for a shop.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 4, 2026',
+    gradient: 'from-orange-600/15 via-orange-600/5 to-transparent',
+  },
+  {
     id: '14',
     slug: 'ai-automation-for-veterinary-clinics',
     title: 'AI Automation for Veterinary Clinics: What It Actually Does',
