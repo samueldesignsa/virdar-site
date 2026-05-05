@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '16',
+    slug: 'ai-automation-for-financial-advisors-wealth-management',
+    title: 'AI Automation for Financial Advisors and Wealth Management: What It Actually Does',
+    excerpt: 'Independent financial advisors and RIA firms lose clients to missed annual reviews, referrals never asked for, and cold prospects no one followed up. Here\'s what AI automation actually looks like for a wealth management practice.',
+    category: 'Industry Deep Dives',
+    readTime: '8 min read',
+    date: 'May 5, 2026',
+    gradient: 'from-indigo-500/15 via-indigo-500/5 to-transparent',
+  },
+  {
     id: '15',
     slug: 'ai-automation-for-auto-repair-shops',
     title: 'AI Automation for Auto Repair Shops: What It Actually Does',
