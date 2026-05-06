@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '17',
+    slug: 'ai-automation-for-fitness-studios-gyms',
+    title: 'AI Automation for Fitness Studios and Gyms: What It Actually Does',
+    excerpt: 'Boutique fitness studios lose members to slow onboarding, undetected attendance drops, and lapsed personal training packages. Here\'s what AI automation actually looks like for a fitness studio or gym.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 6, 2026',
+    gradient: 'from-purple-500/15 via-purple-500/5 to-transparent',
+  },
+  {
     id: '16',
     slug: 'ai-automation-for-financial-advisors-wealth-management',
     title: 'AI Automation for Financial Advisors and Wealth Management: What It Actually Does',
