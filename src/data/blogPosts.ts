@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '18',
+    slug: 'ai-automation-for-insurance-agencies',
+    title: 'AI Automation for Independent Insurance Agencies: What It Actually Does',
+    excerpt: 'Independent insurance agencies lose clients to missed renewal follow-up, no cross-sell outreach, and slow lead response. Here\'s what AI automation actually looks like for an independent P&C agency.',
+    category: 'Industry Deep Dives',
+    readTime: '8 min read',
+    date: 'May 7, 2026',
+    gradient: 'from-blue-600/15 via-blue-600/5 to-transparent',
+  },
+  {
     id: '17',
     slug: 'ai-automation-for-fitness-studios-gyms',
     title: 'AI Automation for Fitness Studios and Gyms: What It Actually Does',
