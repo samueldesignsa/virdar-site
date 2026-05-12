@@ -28,7 +28,7 @@ export default function FinalCTA() {
           </GetStartedButton>
         </div>
         <p className="mt-5 text-sm text-text-tertiary">
-          15 minutes. No pressure. No jargon.
+          30 minutes. No pressure. No jargon.
         </p>
       </motion.div>
     </section>

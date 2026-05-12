@@ -9,31 +9,31 @@ const faqs = [
   },
   {
     q: 'How is this different from ChatGPT or buying some AI tool?',
-    a: 'ChatGPT is a general-purpose chatbot. Off-the-shelf tools are built for everyone, which means they\u2019re optimized for no one. We build systems designed for your specific operations: integrated with your tools, trained on your business context, and handling your actual workflows.',
+    a: 'ChatGPT is a general-purpose chatbot. Off-the-shelf tools are built for everyone, which means they’re optimized for no one. We build systems designed for your specific operations: integrated with your tools, trained on your business context, and handling your actual workflows.',
   },
   {
-    q: 'What if it doesn\u2019t work for my business?',
-    a: 'That\u2019s what the strategy call is for. We\u2019ll tell you honestly whether AI makes sense for your situation. If we don\u2019t see a clear ROI opportunity, we\u2019ll tell you, and we won\u2019t charge you for that honesty. And if we build something that doesn\u2019t deliver? You don\u2019t pay.',
+    q: 'What if it doesn’t work for my business?',
+    a: 'That’s what the strategy call is for. We’ll tell you honestly whether AI makes sense for your situation. If we don’t see a clear ROI opportunity, we’ll tell you, and we won’t charge you for that honesty. And if we build something that doesn’t deliver? You don’t pay.',
   },
   {
     q: 'How long does a typical project take?',
-    a: 'Most single-system builds are live within 2\u20134 weeks. More complex multi-system projects take 4\u20138 weeks. We\u2019ll give you an exact timeline during the strategy call.',
+    a: 'Most single-system builds are live within 2–4 weeks. More complex multi-system projects take 4–8 weeks. We’ll give you an exact timeline during the strategy call.',
   },
   {
     q: 'Do I own the system you build?',
-    a: 'Yes. Once you pay, it\u2019s yours. We\u2019ll document everything and train your team. If you want to part ways after the build, you can. No lock-in.',
+    a: 'Yes. Once you pay, it’s yours. We’ll document everything and train your team. If you want to part ways after the build, you can. No lock-in.',
   },
   {
     q: 'What does ongoing optimization actually include?',
     a: 'We monitor how your AI systems are performing, tune them based on real usage data, fix anything that breaks, expand capabilities as your needs grow, and send you a monthly report showing exactly what the systems are doing for your business: hours saved, leads captured, tasks automated.',
   },
   {
-    q: 'I\u2019ve heard most AI projects fail. Why would this be different?',
-    a: 'Most AI projects fail because they start with the technology and try to find a problem. We start with your operations and only build what solves a real, measurable problem. No science experiments. No \u201Clet\u2019s see what AI can do.\u201D We identify the specific bottleneck, build the specific system, and measure the specific result.',
+    q: 'I’ve heard most AI projects fail. Why would this be different?',
+    a: 'Most AI projects fail because they start with the technology and try to find a problem. We start with your operations and only build what solves a real, measurable problem. No science experiments. No “let’s see what AI can do.” We identify the specific bottleneck, build the specific system, and measure the specific result.',
   },
   {
     q: 'What kinds of businesses do you work with?',
-    a: 'Operations-heavy businesses: restaurants, law firms, medical practices, property management, field services, logistics, contractors, salons. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn\u2019t the right fit, we\u2019ll tell you on the strategy call.',
+    a: 'Operations-heavy businesses: independent insurance agencies, CPA and accounting firms, medical and dental practices, optometry, veterinary clinics, auto repair shops, med spas, fitness studios, financial advisors, law firms, property management, restaurants, contractors, and home service businesses. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn’t the right fit, we’ll tell you on the strategy call.',
   },
   {
     q: 'How much does custom AI automation cost for a small business?',
@@ -41,11 +41,11 @@ const faqs = [
   },
   {
     q: 'Do you only work with businesses in Dallas?',
-    a: 'We\u2019re based in Dallas, TX and most of our clients are in the DFW metroplex: Dallas, Fort Worth, Plano, Frisco, Richardson, and surrounding areas. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we\u2019re open to working with businesses outside of Texas.',
+    a: 'We’re based in Dallas, TX and most of our clients are in the DFW metroplex: Dallas, Fort Worth, Plano, Frisco, Richardson, and surrounding areas. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we’re open to working with businesses outside of Texas.',
   },
   {
-    q: 'What\u2019s the difference between Virdar and an AI agency?',
-    a: 'Most AI agencies offer a menu of prebuilt products: chatbots, social media tools, generic automations. Virdar is a specialist practice. We don\u2019t sell products off a shelf. We learn your operations, identify what\u2019s costing you time and money, and build a system specifically for that problem. Think of it like hiring an architect to design your building versus buying a prefab shed.',
+    q: 'What’s the difference between Virdar and an AI agency?',
+    a: 'Most AI agencies offer a menu of prebuilt products: chatbots, social media tools, generic automations. Virdar is a specialist practice. We don’t sell products off a shelf. We learn your operations, identify what’s costing you time and money, and build a system specifically for that problem. Think of it like hiring an architect to design your building versus buying a prefab shed.',
   },
 ]
 
