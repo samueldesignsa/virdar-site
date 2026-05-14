@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '21',
+    slug: 'ai-automation-for-roofing-contractors',
+    title: 'AI Automation for Roofing Contractors: What It Actually Does',
+    excerpt: 'Roofing contractors lose thousands every season to estimates that go dark, leads dropped after a storm surge, and jobs that never produce reviews. Here\'s what AI automation actually looks like for an independent roofing company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 14, 2026',
+    gradient: 'from-stone-500/15 via-stone-500/5 to-transparent',
+  },
+  {
     id: '20',
     slug: 'ai-automation-for-accounting-cpa-firms',
     title: 'AI Automation for Accounting and CPA Firms: What It Actually Does',
