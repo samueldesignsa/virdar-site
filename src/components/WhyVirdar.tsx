@@ -20,7 +20,7 @@ const pillars = [
   {
     icon: Zap,
     title: 'Built for Your Business, Not Everyone\u2019s',
-    body: 'Off-the-shelf AI tools are designed for the average business. The problem is, no business is average. The way a Dallas law firm handles intake is different from how a med spa books consultations, which is different from how a property manager dispatches vendors. We build systems around your specific workflows, your existing tools, and your team. Not a one-size-fits-all template.',
+    body: 'Off-the-shelf AI tools are designed for the average business. The problem is, no business is average. The way a dental practice handles patient recall is different from how an insurance agency manages renewal outreach, which is different from how a roofing contractor follows up on estimates. We build systems around your specific workflows, your existing tools, and your team. Not a one-size-fits-all template.',
   },
 ]
 
