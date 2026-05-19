@@ -11,7 +11,7 @@ const steps = [
     num: '01',
     icon: Search,
     title: 'Discover',
-    body: 'We start with a complimentary 15-minute strategy call. We learn how your business operates day-to-day, map your workflows, and identify the top 3\u20135 areas where AI automation creates measurable results. That could be missed call recovery, lead qualification, intake processing, scheduling, or reporting. You walk away with a custom AI roadmap and projected ROI, whether you hire us or not.',
+    body: 'We start with a complimentary 30-minute strategy call. We learn how your business operates day-to-day, map your workflows, and identify the top 3\u20135 areas where AI automation creates measurable results. That could be missed call recovery, lead qualification, intake processing, scheduling, or reporting. You walk away with a custom AI roadmap and projected ROI, whether you hire us or not.',
   },
   {
     num: '02',
