@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '22',
+    slug: 'ai-automation-for-hair-salons-barbershops',
+    title: 'AI Automation for Hair Salons and Barbershops: What It Actually Does',
+    excerpt: 'Hair salons and barbershops lose thousands every month to no-shows, clients who leave without rebooking, and a lapsed database nobody is working. Here\'s what AI automation actually looks like for an independent salon or barbershop.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 21, 2026',
+    gradient: 'from-rose-400/15 via-rose-400/5 to-transparent',
+  },
+  {
     id: '21',
     slug: 'ai-automation-for-roofing-contractors',
     title: 'AI Automation for Roofing Contractors: What It Actually Does',
