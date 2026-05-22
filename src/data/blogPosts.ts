@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '23',
+    slug: 'ai-automation-for-hvac-companies',
+    title: 'AI Automation for HVAC Companies: What It Actually Does',
+    excerpt: 'HVAC companies lose thousands every season to slow lead response, spring tune-up demand they can\'t handle, and maintenance agreements that never get renewed. Here\'s what AI automation actually looks like for an independent HVAC company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 22, 2026',
+    gradient: 'from-sky-400/15 via-sky-400/5 to-transparent',
+  },
+  {
     id: '22',
     slug: 'ai-automation-for-hair-salons-barbershops',
     title: 'AI Automation for Hair Salons and Barbershops: What It Actually Does',
