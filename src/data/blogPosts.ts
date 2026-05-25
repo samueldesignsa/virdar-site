@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '24',
+    slug: 'ai-automation-for-pool-service-companies',
+    title: 'AI Automation for Pool Service Companies: What It Actually Does',
+    excerpt: 'Pool service companies lose customers to missed visit communication, skipped spring opening outreach, and referrals that never get asked for. Here\'s what AI automation actually looks like for an independent pool service company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 25, 2026',
+    gradient: 'from-cyan-400/15 via-cyan-400/5 to-transparent',
+  },
+  {
     id: '23',
     slug: 'ai-automation-for-hvac-companies',
     title: 'AI Automation for HVAC Companies: What It Actually Does',
