@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '25',
+    slug: 'ai-automation-for-landscaping-lawn-care',
+    title: 'AI Automation for Landscaping and Lawn Care Companies: What It Actually Does',
+    excerpt: 'Landscaping companies lose thousands every season to estimates that go dark, seasonal campaigns that miss their window, and maintenance contracts that lapse because nobody confirmed renewal. Here\'s what AI automation actually looks like for an independent landscaping company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 26, 2026',
+    gradient: 'from-green-400/15 via-green-400/5 to-transparent',
+  },
+  {
     id: '24',
     slug: 'ai-automation-for-pool-service-companies',
     title: 'AI Automation for Pool Service Companies: What It Actually Does',
