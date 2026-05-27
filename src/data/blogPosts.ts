@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '26',
+    slug: 'ai-automation-for-pest-control-companies',
+    title: 'AI Automation for Pest Control Companies: What It Actually Does',
+    excerpt: 'Pest control companies lose recurring accounts to lapsed annual contracts, missed seasonal windows, and inspections that never get followed up. Here\'s what AI automation actually looks like for an independent pest control company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 27, 2026',
+    gradient: 'from-lime-500/15 via-lime-500/5 to-transparent',
+  },
+  {
     id: '25',
     slug: 'ai-automation-for-landscaping-lawn-care',
     title: 'AI Automation for Landscaping and Lawn Care Companies: What It Actually Does',
