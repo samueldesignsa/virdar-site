@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '27',
+    slug: 'ai-automation-for-plumbing-contractors',
+    title: 'AI Automation for Plumbing Contractors: What It Actually Does',
+    excerpt: 'Plumbing contractors lose thousands every year to estimates that go dark, past customers nobody contacts again, and water heaters that age out untracked. Here\'s what AI automation actually looks like for an independent plumbing company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 28, 2026',
+    gradient: 'from-blue-500/15 via-blue-500/5 to-transparent',
+  },
+  {
     id: '26',
     slug: 'ai-automation-for-pest-control-companies',
     title: 'AI Automation for Pest Control Companies: What It Actually Does',
