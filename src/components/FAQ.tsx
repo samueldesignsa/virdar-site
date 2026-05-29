@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: 'What kinds of businesses do you work with?',
-    a: 'Operations-heavy businesses: independent insurance agencies, CPA and accounting firms, medical and dental practices, optometry, veterinary clinics, auto repair shops, med spas, fitness studios, financial advisors, law firms, property management, restaurants, roofing contractors, and home service businesses. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn’t the right fit, we’ll tell you on the strategy call.’,
+    a: ‘Operations-heavy businesses: independent insurance agencies, CPA and accounting firms, dental practices, optometry, veterinary clinics, auto repair shops, med spas, fitness studios, financial advisors, law firms, property management, restaurants, roofing contractors, plumbing and electrical contractors, HVAC companies, landscaping and lawn care, pest control, pool service companies, hair salons and barbershops, physical therapy and chiropractic practices, real estate agents, and other home service businesses. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn\’t the right fit, we\’ll tell you on the strategy call.’,
   },
   {
     q: 'How much does custom AI automation cost for a small business?',

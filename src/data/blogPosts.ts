@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '28',
+    slug: 'ai-automation-for-electrical-contractors',
+    title: 'AI Automation for Electrical Contractors: What It Actually Does',
+    excerpt: 'Independent electrical contractors lose revenue to panel upgrade estimates that go dark, EV charger timing no one tracks, and past customers nobody stays in front of. Here\'s what AI automation actually looks like for an electrical company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'May 29, 2026',
+    gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
+  },
+  {
     id: '27',
     slug: 'ai-automation-for-plumbing-contractors',
     title: 'AI Automation for Plumbing Contractors: What It Actually Does',
