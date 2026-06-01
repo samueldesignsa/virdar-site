@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '29',
+    slug: 'ai-automation-for-painting-contractors',
+    title: 'AI Automation for Painting Contractors: What It Actually Does',
+    excerpt: 'Painting contractors lose thousands every season to estimates that go dark, past customers nobody reactivates, and completed jobs that never produce a review or a referral. Here\'s what AI automation actually looks like for an independent painting company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 1, 2026',
+    gradient: 'from-yellow-500/15 via-yellow-500/5 to-transparent',
+  },
+  {
     id: '28',
     slug: 'ai-automation-for-electrical-contractors',
     title: 'AI Automation for Electrical Contractors: What It Actually Does',
