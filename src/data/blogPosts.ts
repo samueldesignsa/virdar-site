@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '30',
+    slug: 'ai-automation-for-cleaning-services',
+    title: 'AI Automation for Cleaning Services and Maid Services: What It Actually Does',
+    excerpt: 'Cleaning services lose recurring revenue to paused accounts nobody follows up, last-minute cancellations that destroy routes, and move-in clients who never convert to recurring. Here\'s what AI automation actually looks like for an independent cleaning company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 2, 2026',
+    gradient: 'from-sky-300/15 via-sky-300/5 to-transparent',
+  },
+  {
     id: '29',
     slug: 'ai-automation-for-painting-contractors',
     title: 'AI Automation for Painting Contractors: What It Actually Does',
