@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     q: 'Do you only work with businesses in Dallas?',
-    a: 'We’re based in Dallas, TX and most of our clients are in the DFW metroplex: Dallas, Fort Worth, Plano, Frisco, Richardson, and surrounding areas. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we’re open to working with businesses outside of Texas.',
+    a: ‘We’re based in Dallas, TX and most of our clients are in the DFW metroplex: Dallas, Fort Worth, Plano, Frisco, McKinney, Allen, Richardson, Garland, Rowlett, Rockwall, Wylie, Murphy, Sachse, Mesquite, Arlington, Grand Prairie, Mansfield, Cedar Hill, DeSoto, Burleson, Lewisville, Flower Mound, Carrollton, Farmers Branch, Irving, Keller, Hurst, Euless, Bedford, Colleyville, Grapevine, Southlake, and surrounding cities. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we’re open to working with businesses outside of Texas.’,
   },
   {
     q: 'What’s the difference between Virdar and an AI agency?',
