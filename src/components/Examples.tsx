@@ -1,151 +1,96 @@
-import { motion } from 'framer-motion'
-import {
-  PhoneMissed,
-  Bot,
-  MessageSquare,
-  Inbox,
-  MessageCircle,
-  CalendarCheck,
-  Send,
-  TrendingUp,
-  Users,
-  ClipboardList,
-  Wrench,
-  UserPlus,
-  ListChecks,
-} from 'lucide-react'
-import { WorkflowDiagram, type WorkflowNode } from './ui/WorkflowDiagram'
+import { type ComponentType } from 'react'
+import { PhoneOutgoing, Bot, Inbox, FileText, Star, BarChart3 } from 'lucide-react'
+import Reveal from './ui/Reveal'
+import { useCursorGlow } from '../lib/useCursorGlow'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
-}
-
-type Example = {
-  tag: 'Legal' | 'Healthcare' | 'Restaurant' | 'Property' | 'Finance'
+type Cap = {
+  icon: ComponentType<{ size?: number; strokeWidth?: number }>
   title: string
-  problem: string
-  result: string
-  workflow: WorkflowNode[]
+  body: string
 }
 
-const examples: Example[] = [
+const CAPS: Cap[] = [
   {
-    tag: 'Legal',
-    title: 'Missed-call recovery for law firms',
-    problem: 'Every missed call after hours is a case walking to a faster competitor.',
-    result: 'Qualified leads in the attorney\u2019s inbox, 24/7.',
-    workflow: [
-      { icon: PhoneMissed, label: 'Missed call' },
-      { icon: Bot, label: 'AI responds', highlight: true },
-      { icon: MessageSquare, label: 'SMS qualifies' },
-      { icon: Inbox, label: 'Attorney notified' },
-    ],
+    icon: PhoneOutgoing,
+    title: 'Missed-call recovery',
+    body: 'Every unanswered call gets an instant text back, books the appointment, and logs the lead, before they call your competitor.',
   },
   {
-    tag: 'Healthcare',
-    title: 'AI intake for med spas & clinics',
-    problem: 'Front desk stuck in phone tag instead of care.',
-    result: 'Booked, prepped patients. Zero phone tag.',
-    workflow: [
-      { icon: MessageCircle, label: 'Patient inquiry' },
-      { icon: Bot, label: 'AI intake', highlight: true },
-      { icon: CalendarCheck, label: 'Appointment booked' },
-      { icon: Send, label: 'Prep instructions sent' },
-    ],
+    icon: Bot,
+    title: 'AI receptionist',
+    body: 'Answers calls and questions 24/7 in your voice, screens for fit, and routes the real opportunities straight to your team.',
   },
   {
-    tag: 'Restaurant',
-    title: 'Demand forecasting for restaurants',
-    problem: 'Staffing guessed from gut. Always wrong one way or the other.',
-    result: 'Right people, right shift, every night.',
-    workflow: [
-      { icon: TrendingUp, label: 'Sales + weather + events' },
-      { icon: Bot, label: 'AI forecast', highlight: true },
-      { icon: Users, label: 'Optimal staffing' },
-    ],
+    icon: Inbox,
+    title: 'Inbox & lead triage',
+    body: 'Sorts, tags, and drafts replies to every inquiry, so nothing sits unanswered and your team only touches what matters.',
   },
   {
-    tag: 'Property',
-    title: 'Maintenance triage for property managers',
-    problem: 'Tenant requests get lost between text, email, and sticky notes.',
-    result: 'Every request logged, ranked, and dispatched.',
-    workflow: [
-      { icon: MessageSquare, label: 'Tenant text' },
-      { icon: Bot, label: 'AI triage', highlight: true },
-      { icon: ClipboardList, label: 'Work order created' },
-      { icon: Wrench, label: 'Vendor dispatched' },
-    ],
+    icon: FileText,
+    title: 'Quote & proposal automation',
+    body: 'Turns an intake form or a call transcript into a branded, ready-to-send quote in minutes, not the next business day.',
   },
   {
-    tag: 'Finance',
-    title: 'Lead qualification for mortgage brokers',
-    problem: 'Brokers burn hours on browsers who\u2019ll never close.',
-    result: 'Only meet with borrowers who are ready.',
-    workflow: [
-      { icon: UserPlus, label: 'New inquiry' },
-      { icon: Bot, label: 'AI qualifies', highlight: true },
-      { icon: ListChecks, label: 'Doc checklist sent' },
-      { icon: CalendarCheck, label: 'Qualified meeting' },
-    ],
+    icon: Star,
+    title: 'Reviews & reputation',
+    body: 'Asks happy customers for reviews at the right moment, flags unhappy ones before they post, and keeps your rating climbing.',
+  },
+  {
+    icon: BarChart3,
+    title: "Owner's dashboard",
+    body: 'One screen showing what the systems handled overnight: calls, leads, revenue recovered. The first thing you check each morning.',
   },
 ]
 
-const tagColors: Record<Example['tag'], string> = {
-  Legal: 'bg-blue-900/30 text-blue-300 border-blue-800/40',
-  Healthcare: 'bg-emerald-900/30 text-emerald-300 border-emerald-800/40',
-  Restaurant: 'bg-orange-900/30 text-orange-300 border-orange-800/40',
-  Property: 'bg-purple-900/30 text-purple-300 border-purple-800/40',
-  Finance: 'bg-amber-900/30 text-amber-300 border-amber-800/40',
+function CapCard({ cap }: { cap: Cap }) {
+  const ref = useCursorGlow<HTMLDivElement>()
+  const Icon = cap.icon
+  return (
+    <div className="cap" ref={ref}>
+      <div className="glow" />
+      <div className="ic">
+        <Icon size={18} strokeWidth={1.8} />
+      </div>
+      <h3>{cap.title}</h3>
+      <p>{cap.body}</p>
+    </div>
+  )
 }
 
 export default function Examples() {
   return (
-    <section id="examples" className="bg-bg py-20 md:py-28 lg:py-32 border-t border-border">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={fadeUp}
-          className="max-w-[720px]"
-        >
-          <h2 className="heading-lg text-text">What AI Automation Looks Like</h2>
-          <p className="body-lg mt-4 text-text-secondary">
-            Every build is different. These are the shapes — your tools, your workflows, your data.
-          </p>
-        </motion.div>
-
-        <div className="mt-14 space-y-6">
-          {examples.map((ex, i) => (
-            <motion.article
-              key={ex.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.06, ease: 'easeOut' as const } },
-              }}
-              className="rounded-2xl border border-border bg-surface p-8 md:p-10"
-            >
-              <div className="max-w-[720px]">
-                <span className={`inline-block rounded-full border px-3 py-1 text-xs font-semibold ${tagColors[ex.tag]}`}>
-                  {ex.tag}
-                </span>
-                <h3 className="heading-md mt-3 text-text">{ex.title}</h3>
-                <p className="body-md mt-2 text-text-secondary">{ex.problem}</p>
-              </div>
-
-              <WorkflowDiagram nodes={ex.workflow} className="mt-10 md:mt-12" />
-
-              <div className="mt-10 flex items-center justify-center gap-2 border-t border-border pt-6">
-                <span className="text-accent" aria-hidden="true">&rarr;</span>
-                <p className="text-sm font-medium text-text">{ex.result}</p>
-              </div>
-            </motion.article>
-          ))}
+    <section className="band" id="what">
+      <div className="wrap">
+        <div className="head-row">
+          <div className="sec-head">
+            <Reveal as="p" className="eyebrow">
+              What we build
+            </Reveal>
+            <Reveal as="h2" className="h-xl" d={1}>
+              We build one thing: the custom system your business needs.
+            </Reveal>
+          </div>
+          <Reveal as="p" className="lead" d={2}>
+            No off-the-shelf product, no template. Every system is designed from scratch around how your
+            business actually runs, then wired into your real tools. These are a few of the builds we're
+            asked for most:
+          </Reveal>
         </div>
+
+        <Reveal className="cap-grid" d={1} style={{ marginTop: 56 }}>
+          {CAPS.map((cap) => (
+            <CapCard key={cap.title} cap={cap} />
+          ))}
+        </Reveal>
+
+        <Reveal
+          as="p"
+          className="small"
+          style={{ textAlign: 'center', margin: '36px auto 0', maxWidth: '60ch', color: 'var(--text-tertiary)' }}
+        >
+          Whatever is slowing your business down, that's what a custom build is for. If your bottleneck
+          isn't on this list, it's still exactly what we do.
+        </Reveal>
       </div>
     </section>
   )

@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 CLAUDE.md
+# Local design handoff / scratch (not part of the shipped site)
+Virdar*.zip
+design_handoff_homepage/
+VIRDAR_REBUILD_PROMPT.md

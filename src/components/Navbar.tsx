@@ -1,125 +1,38 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import VMark from './ui/VMark'
 
-const navLinks = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Examples', href: '#examples' },
+const links = [
+  { label: 'What we build', href: '#what' },
+  { label: 'How it works', href: '#how' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'FAQ', href: '#faq' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => { document.body.style.overflow = '' }
-  }, [mobileOpen])
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-bg/95 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav
-        className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4"
-        aria-label="Main navigation"
-      >
-        <a href="#" className="font-heading text-2xl text-text no-underline">
-          Virdar
+    <nav className={`nav${scrolled ? ' scrolled' : ''}`} aria-label="Main navigation">
+      <a className="brand" href="#top" aria-label="Virdar home">
+        <VMark size={24} />
+        <span className="name">Virdar</span>
+      </a>
+      <div className="links">
+        {links.map((l) => (
+          <a key={l.href} href={l.href}>
+            {l.label}
+          </a>
+        ))}
+        <a className="nav-cta" href="#book">
+          Book a call
         </a>
-
-        <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-text-secondary hover:text-text transition-colors no-underline min-h-[44px] flex items-center"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <a
-          href="https://calendly.com/virdar-info/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center rounded-xl bg-accent min-h-[44px] px-5 py-2.5 text-sm font-semibold text-bg no-underline transition-all hover:bg-accent-hover active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-        >
-          Book a Call
-        </a>
-
-        <button
-          className="md:hidden flex items-center justify-center w-11 h-11 text-text bg-transparent border-none cursor-pointer"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg/98 backdrop-blur-lg md:hidden"
-          >
-            <div className="flex items-center justify-between px-6 py-4">
-              <a href="#" className="font-heading text-2xl text-text no-underline">
-                Virdar
-              </a>
-              <button
-                className="flex items-center justify-center w-11 h-11 text-text bg-transparent border-none cursor-pointer"
-                onClick={() => setMobileOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <nav className="flex flex-1 flex-col items-center justify-center gap-8" aria-label="Mobile navigation">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-2xl font-medium text-text no-underline hover:text-accent transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="https://calendly.com/virdar-info/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center rounded-xl bg-accent px-8 py-3 text-lg font-semibold text-bg no-underline transition-all hover:bg-accent-hover active:scale-95"
-              >
-                Book a Call
-              </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+      </div>
+    </nav>
   )
 }

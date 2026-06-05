@@ -1,36 +1,34 @@
-import { motion } from 'framer-motion'
-import { GetStartedButton } from './ui/GetStartedButton'
+import Reveal from './ui/Reveal'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
-}
+const CALENDLY = 'https://calendly.com/virdar-info/30min'
 
 export default function FinalCTA() {
   return (
-    <section className="bg-surface py-20 md:py-28 lg:py-32 border-t border-border">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={fadeUp}
-        className="mx-auto max-w-[800px] px-6 text-center"
-      >
-        <h2 className="heading-lg text-text">
-          Ready to See What AI Can Do for Your Business?
-        </h2>
-        <p className="body-lg mx-auto mt-5 max-w-[600px] text-text-secondary">
-          The strategy call is complimentary. The roadmap is yours to keep. And you don't pay for anything until you've seen it work.
-        </p>
-        <div className="mt-10 flex justify-center">
-          <GetStartedButton href="https://calendly.com/virdar-info/30min" external>
-            Book Your Complimentary Strategy Call
-          </GetStartedButton>
-        </div>
-        <p className="mt-5 text-sm text-text-tertiary">
-          30 minutes. No pressure. No jargon.
-        </p>
-      </motion.div>
+    <section className="band final" id="book">
+      <div className="bg-glow" />
+      <div className="wrap" style={{ position: 'relative', zIndex: 1 }}>
+        <Reveal as="p" className="eyebrow">
+          Let's talk
+        </Reveal>
+        <Reveal as="h2" className="big" d={1} style={{ marginTop: 18 }}>
+          Find out what to automate first.
+        </Reveal>
+        <Reveal as="p" className="sub" d={2}>
+          A 20-minute call. We'll look at your operations and tell you honestly where AI would pay off, and
+          where it wouldn't. No pitch deck.
+        </Reveal>
+        <Reveal
+          d={3}
+          style={{ marginTop: 36, display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}
+        >
+          <a className="btn" href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            Book a 20-min call
+          </a>
+          <a className="btn ghost" href="mailto:info@virdar.co">
+            Email us instead
+          </a>
+        </Reveal>
+      </div>
     </section>
   )
 }

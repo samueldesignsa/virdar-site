@@ -1,142 +1,50 @@
-import { motion } from 'framer-motion'
-import { Compass, Code2, LineChart, Check } from 'lucide-react'
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
-}
-
-const tiers = [
-  {
-    name: 'Discover',
-    price: 'Complimentary',
-    subtitle: 'For operations-heavy businesses exploring AI',
-    icon: Compass,
-    features: [
-      '30-minute strategy call',
-      'Operations audit',
-      'Custom AI roadmap with projected ROI',
-      'Yours to keep, whether you hire us or not',
-    ],
-    cta: 'Get Your Free AI Roadmap',
-    ctaHref: 'https://calendly.com/virdar-info/30min',
-    highlight: false,
-  },
-  {
-    name: 'Build',
-    price: '$5,000 \u2013 $50,000+',
-    subtitle: 'Most projects fall between $15K\u2013$25K',
-    icon: Code2,
-    features: [
-      'Custom AI systems built for your operations',
-      'Integrated with your existing tools',
-      'Live demo before any payment',
-      'You don\u2019t pay until you see it working',
-      'Full documentation and team training',
-    ],
-    note: 'Projects over $15K may require a refundable deposit',
-    cta: 'Start Your Project',
-    ctaHref: 'https://calendly.com/virdar-info/30min',
-    highlight: true,
-  },
-  {
-    name: 'Optimize',
-    price: '$1,000 \u2013 $3,000/mo',
-    subtitle: 'For businesses already running AI systems',
-    icon: LineChart,
-    features: [
-      'Ongoing monitoring and performance tuning',
-      'New workflow expansion as your needs grow',
-      'Monthly ROI reports: hours saved, leads captured, tasks automated',
-      'Priority support',
-      'Cancel anytime. No contracts',
-    ],
-    cta: 'Discuss Ongoing Support',
-    ctaHref: 'https://calendly.com/virdar-info/30min',
-    highlight: false,
-  },
-]
+import Reveal from './ui/Reveal'
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-bg py-20 md:py-28 lg:py-32 border-t border-border">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={fadeUp}
-          className="text-center"
-        >
-          <h2 className="heading-lg text-text">See It Before You Pay For It</h2>
-          <p className="body-lg mx-auto mt-4 max-w-[600px] text-text-secondary">
-            We take the risk. You don't pay until you see the finished system running and decide it's right for you.
-          </p>
-        </motion.div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {tiers.map((tier, i) => (
-            <motion.div
-              key={tier.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1, ease: 'easeOut' as const } },
-              }}
-              className={`relative flex flex-col rounded-2xl border p-8 ${
-                tier.highlight
-                  ? 'border-accent/40 bg-surface scale-[1.02] md:scale-105'
-                  : 'border-border bg-surface'
-              }`}
-            >
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent-dim">
-                <tier.icon size={22} className="text-accent" aria-hidden="true" />
-              </div>
-
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">{tier.name}</h3>
-              <p className="mt-2 font-heading text-2xl text-text">{tier.price}</p>
-              <p className="mt-1 text-xs text-text-tertiary">{tier.subtitle}</p>
-
-              <ul className="mt-6 flex-1 space-y-3">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-text-secondary">
-                    <Check size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              {tier.note && (
-                <p className="mt-4 text-xs text-text-tertiary italic">{tier.note}</p>
-              )}
-
-              <a
-                href={tier.ctaHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`mt-8 block rounded-xl min-h-[44px] py-3.5 text-center text-sm font-semibold no-underline transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
-                  tier.highlight
-                    ? 'bg-accent text-bg hover:bg-accent-hover'
-                    : 'border border-border text-text hover:border-accent hover:text-accent'
-                }`}
-              >
-                {tier.cta}
-              </a>
-            </motion.div>
-          ))}
+    <section className="band" id="pricing">
+      <div className="wrap">
+        <div className="sec-head">
+          <Reveal as="p" className="eyebrow">
+            Pricing
+          </Reveal>
+          <Reveal as="h2" className="h-xl" d={1}>
+            Free to start. Custom from there.
+          </Reveal>
+          <Reveal as="p" className="lead" d={2} style={{ marginTop: 18 }}>
+            There are no packages to pick from. Every system is built and priced around your specific
+            business, and you don't pay until you've seen it work. It always starts with a free
+            consultation.
+          </Reveal>
         </div>
 
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          variants={fadeUp}
-          className="mt-12 text-center text-sm text-text-secondary"
-        >
-          Every business is different. These ranges reflect typical engagements. Your strategy call will give you an exact scope and number.
-        </motion.p>
+        <Reveal className="price-solo" d={1}>
+          <div className="ps-row">
+            <div className="ps-item">
+              <div className="ps-n">$0</div>
+              <div className="ps-l">The consultation is always free</div>
+            </div>
+            <div className="ps-item">
+              <div className="ps-n">Custom</div>
+              <div className="ps-l">
+                Priced to your scope. Most builds land around $15K–$25K, but we work with businesses of
+                every size.
+              </div>
+            </div>
+            <div className="ps-item">
+              <div className="ps-n">$0 upfront</div>
+              <div className="ps-l">You don't pay until it's live and working</div>
+            </div>
+          </div>
+          <a className="btn" href="#book">
+            Book your free consultation
+          </a>
+          <p className="ps-note">
+            Whatever your budget, it's worth a conversation. We'll find a starting point that fits your
+            business, and we'll be straight about what's realistic. Every plan and every price starts with
+            that free call.
+          </p>
+        </Reveal>
       </div>
     </section>
   )
