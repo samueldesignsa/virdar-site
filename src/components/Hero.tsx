@@ -58,10 +58,6 @@ export default function Hero() {
           </div>
         </Reveal>
       </div>
-      <div className="scroll-cue">
-        <span className="small mono">SCROLL</span>
-        <span className="ln" />
-      </div>
     </header>
   )
 }
