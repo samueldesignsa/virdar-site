@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: 'What kinds of businesses do you work with?',
-    a: ‘Operations-heavy businesses: independent insurance agencies, CPA and accounting firms, dental practices, optometry, veterinary clinics, auto repair shops, med spas, fitness studios, financial advisors, law firms, property management, restaurants, roofing contractors, painting contractors, plumbing and electrical contractors, HVAC companies, landscaping and lawn care, pest control, pool service companies, cleaning and maid services, hair salons and barbershops, physical therapy and chiropractic practices, real estate agents, and other home service businesses. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn\’t the right fit, we\’ll tell you on the strategy call.’,
+    a: 'Operations-heavy businesses: independent insurance agencies, CPA and accounting firms, dental practices, optometry, veterinary clinics, auto repair shops, med spas, fitness studios, financial advisors, law firms, property management, restaurants, roofing contractors, painting contractors, plumbing and electrical contractors, HVAC companies, landscaping and lawn care, pest control, pool service companies, cleaning and maid services, hair salons and barbershops, physical therapy and chiropractic practices, real estate agents, and other home service businesses. If your team is doing repetitive work that eats hours every week, we can probably automate it. If AI isn’t the right fit, we’ll tell you on the strategy call.',
   },
   {
     q: 'How much does custom AI automation cost for a small business?',
@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     q: 'Do you only work with businesses in Dallas?',
-    a: ‘We’re based in Dallas, TX and most of our clients are in the DFW metroplex: Dallas, Fort Worth, Plano, Frisco, McKinney, Allen, Richardson, Garland, Rowlett, Rockwall, Wylie, Murphy, Sachse, Mesquite, Arlington, Grand Prairie, Mansfield, Cedar Hill, DeSoto, Burleson, Lewisville, Flower Mound, Carrollton, Farmers Branch, Irving, Keller, Hurst, Euless, Bedford, Colleyville, Grapevine, Southlake, and surrounding cities. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we’re open to working with businesses outside of Texas.’,
+    a: 'We’re based in Dallas, TX and most of our clients are in the DFW metroplex: Dallas, Fort Worth, Plano, Frisco, McKinney, Allen, Richardson, Garland, Rowlett, Rockwall, Wylie, Murphy, Sachse, Mesquite, Arlington, Grand Prairie, Mansfield, Cedar Hill, DeSoto, Burleson, Lewisville, Flower Mound, Carrollton, Farmers Branch, Irving, Keller, Hurst, Euless, Bedford, Colleyville, Grapevine, Southlake, and surrounding cities. That said, AI automation systems work remotely. If your business is operations-heavy and the project makes sense, we’re open to working with businesses outside of Texas.',
   },
   {
     q: 'What’s the difference between Virdar and an AI agency?',
