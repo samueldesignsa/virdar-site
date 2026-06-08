@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '31',
+    slug: 'back-to-school-optometry-recall',
+    title: 'Back-to-School Vision Recall: How Optometry Practices Fill August Without Waiting',
+    excerpt: 'Texas schools start mid-August. Optometry practices that reach overdue pediatric patients in June and July fill their calendar before the rush. Practices that wait scramble in August with no morning slots left.',
+    category: 'Industry Deep Dives',
+    readTime: '6 min read',
+    date: 'June 8, 2026',
+    gradient: 'from-teal-500/15 via-teal-500/5 to-transparent',
+  },
+  {
     id: '30',
     slug: 'ai-automation-for-cleaning-services',
     title: 'AI Automation for Cleaning Services and Maid Services: What It Actually Does',
