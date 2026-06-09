@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '32',
+    slug: 'hvac-summer-system-check-north-texas',
+    title: 'HVAC Summer System Check: Why June Is the Last Proactive Window in North Texas',
+    excerpt: 'A wave of DFW homes built between 2015 and 2022 have HVAC systems hitting the 4–11 year mark right now. Independent contractors who reach those homeowners in June fill maintenance slots before emergency season takes over the schedule.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 9, 2026',
+    gradient: 'from-orange-500/15 via-orange-500/5 to-transparent',
+  },
+  {
     id: '31',
     slug: 'back-to-school-optometry-recall',
     title: 'Back-to-School Vision Recall: How Optometry Practices Fill August Without Waiting',
