@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '33',
+    slug: 'july-4-boarding-veterinary-clinics-north-texas',
+    title: 'July 4 Boarding: How Veterinary Clinics Fill the Holiday Weekend Before the Rush',
+    excerpt: 'Most veterinary clinics in DFW lose July 4 boarding reservations to chains because they never reached out. The families booking right now aren\'t calling July 3 — they\'re booking this week.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 10, 2026',
+    gradient: 'from-red-500/15 via-red-500/5 to-transparent',
+  },
+  {
     id: '32',
     slug: 'hvac-summer-system-check-north-texas',
     title: 'HVAC Summer System Check: Why June Is the Last Proactive Window in North Texas',
@@ -25,7 +35,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'back-to-school-optometry-recall',
     title: 'Back-to-School Vision Recall: How Optometry Practices Fill August Without Waiting',
     excerpt: 'Texas schools start mid-August. Optometry practices that reach overdue pediatric patients in June and July fill their calendar before the rush. Practices that wait scramble in August with no morning slots left.',
-    category: 'Industry Deep Dives',
+    category: 'Seasonal Strategy',
     readTime: '6 min read',
     date: 'June 8, 2026',
     gradient: 'from-teal-500/15 via-teal-500/5 to-transparent',
