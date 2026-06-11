@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '34',
+    slug: 'back-to-school-dental-checkups-north-texas',
+    title: 'Back-to-School Dental Checkups: How Texas Practices Fill July Before the August Rush',
+    excerpt: 'Texas schools start mid-August. Dental practices that reach overdue pediatric patients in June and July fill their calendar before the rush. Practices that wait scramble in August with no morning slots left.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 11, 2026',
+    gradient: 'from-blue-400/15 via-blue-400/5 to-transparent',
+  },
+  {
     id: '33',
     slug: 'july-4-boarding-veterinary-clinics-north-texas',
     title: 'July 4 Boarding: How Veterinary Clinics Fill the Holiday Weekend Before the Rush',
