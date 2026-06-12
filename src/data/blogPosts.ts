@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '35',
+    slug: 'mid-year-chiropractic-benefit-north-texas',
+    title: 'Mid-Year Chiropractic Benefit: How Independent Practices Fill July Before Unused Coverage Expires',
+    excerpt: 'Your patients who finished active care in Q1 have $600–$800 in unused chiropractic benefit through December. They don\'t know it. Here\'s how independent practices fill July by telling them.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 12, 2026',
+    gradient: 'from-violet-500/15 via-violet-500/5 to-transparent',
+  },
+  {
     id: '34',
     slug: 'back-to-school-dental-checkups-north-texas',
     title: 'Back-to-School Dental Checkups: How Texas Practices Fill July Before the August Rush',
