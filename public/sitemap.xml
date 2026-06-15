@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://virdar.co/blog/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://virdar.co/blog/july-4-week-dental-schedule-protection-north-texas.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://virdar.co/blog/mid-year-chiropractic-benefit-north-texas.html</loc>

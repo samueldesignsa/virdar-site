@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '36',
+    slug: 'july-4-week-dental-schedule-protection-north-texas',
+    title: 'July 4 Week Appointment Protection: How Dental Practices Keep Their Holiday Calendar Full',
+    excerpt: 'The week of July 4 is when North Texas dental practices lose more appointments to last-minute cancellations than any other week of the year. The practices that protect their calendar send a message two weeks out. Here\'s exactly what that looks like.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 15, 2026',
+    gradient: 'from-red-400/15 via-red-400/5 to-transparent',
+  },
+  {
     id: '35',
     slug: 'mid-year-chiropractic-benefit-north-texas',
     title: 'Mid-Year Chiropractic Benefit: How Independent Practices Fill July Before Unused Coverage Expires',
