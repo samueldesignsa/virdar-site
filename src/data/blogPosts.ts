@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '37',
+    slug: 'back-to-school-orthodontic-scheduling-north-texas',
+    title: 'Back-to-School Orthodontic Scheduling: How DFW Practices Fill Summer Before the August Rush',
+    excerpt: 'Texas schools start mid-August. Orthodontic practices that reach unconverted consults and overdue adjustment patients in June and July fill their summer calendar before the rush — and before those patients find another practice.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 16, 2026',
+    gradient: 'from-purple-400/15 via-purple-400/5 to-transparent',
+  },
+  {
     id: '36',
     slug: 'july-4-week-dental-schedule-protection-north-texas',
     title: 'July 4 Week Appointment Protection: How Dental Practices Keep Their Holiday Calendar Full',
