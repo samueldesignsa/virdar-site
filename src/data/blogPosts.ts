@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '38',
+    slug: 'july-4-week-fitness-studios-gyms-north-texas',
+    title: 'July 4 Week Attendance: How Boutique Fitness Studios Keep Members from Going Dark Over the Holiday',
+    excerpt: 'July 4 week is when North Texas fitness studios lose more members to lapse than any other week of the year. The studios that keep their calendar full send a message two weeks out. Here\'s exactly what that looks like.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 17, 2026',
+    gradient: 'from-emerald-400/15 via-emerald-400/5 to-transparent',
+  },
+  {
     id: '37',
     slug: 'back-to-school-orthodontic-scheduling-north-texas',
     title: 'Back-to-School Orthodontic Scheduling: How DFW Practices Fill Summer Before the August Rush',
