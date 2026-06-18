@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '39',
+    slug: 'july-4-pool-service-north-texas',
+    title: 'July 4 Pool Service: How North Texas Pool Companies Fill Pre-Holiday Slots Before the Rush',
+    excerpt: 'Texas heat plus July 4 pool parties is the week independent pool service companies lose the most jobs to poor planning. The companies that protect their schedule reach clients before June 28.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 18, 2026',
+    gradient: 'from-sky-400/15 via-sky-400/5 to-transparent',
+  },
+  {
     id: '38',
     slug: 'july-4-week-fitness-studios-gyms-north-texas',
     title: 'July 4 Week Attendance: How Boutique Fitness Studios Keep Members from Going Dark Over the Holiday',
