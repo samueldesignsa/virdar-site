@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '40',
+    slug: 'july-4-week-hair-salons-barbershops-north-texas',
+    title: 'July 4 Week for Hair Salons and Barbershops: How DFW Shops Handle the Pre-Holiday Rush and Convert New Clients',
+    excerpt: 'July 4 week is the biggest pre-holiday booking surge of the summer for North Texas salons and barbershops. The shops that handle it well convert first-time clients into regulars. The ones that don\'t leave money on the table.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 19, 2026',
+    gradient: 'from-rose-400/15 via-rose-400/5 to-transparent',
+  },
+  {
     id: '39',
     slug: 'july-4-pool-service-north-texas',
     title: 'July 4 Pool Service: How North Texas Pool Companies Fill Pre-Holiday Slots Before the Rush',
