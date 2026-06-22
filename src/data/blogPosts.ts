@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '41',
+    slug: 'summer-med-spa-reactivation-north-texas',
+    title: 'Summer Med Spa Reactivation: How DFW Aesthetic Practices Reconnect with Lapsed Clients Before Fall',
+    excerpt: 'Aesthetic clients lapse over summer — travel, heat, no personal time. The practices that fill September reach those clients in July, before the fall season books itself. Here\'s what that looks like.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'June 22, 2026',
+    gradient: 'from-fuchsia-400/15 via-fuchsia-400/5 to-transparent',
+  },
+  {
     id: '40',
     slug: 'july-4-week-hair-salons-barbershops-north-texas',
     title: 'July 4 Week for Hair Salons and Barbershops: How DFW Shops Handle the Pre-Holiday Rush and Convert New Clients',
