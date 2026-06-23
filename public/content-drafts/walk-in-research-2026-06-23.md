@@ -1,102 +1,102 @@
 # Walk-In Research — Monday, June 23, 2026
-## Zone: McKinney / Allen (Northern Collin County)
+## Zone: Prosper / Celina (Far North Collin County)
 
-**Why this zone today:** McKinney and Allen are two of the highest-income zip codes in DFW and Beverly hasn't walked either yet. McKinney (~210K population) is growing fast along US-380 and the Craig Ranch corridor. Allen (~110K) is established, affluent, and dense with professional services and home service businesses along US-75 and Bethany Dr. Both cities have strong owner-operated small business density — the exact profile Virdar targets. Move season is fully open: new households are arriving every week.
+**Why this zone today:** Prosper and Celina are two of the fastest-growing cities in the entire country right now — not just in DFW. Prosper (~35K and climbing fast) sits at US-380 and Preston Rd. Celina (~30K) is just north on Preston. Both cities are attracting young families, dual-income households, and small businesses at a rate that's outpacing infrastructure. Beverly hasn't walked either yet. The demographics are ideal for Virdar's pitch: high-income owners of new service businesses who are still figuring out their systems.
 
-**Leave by 8:00am. Take US-75 north — about 35 minutes from central Dallas to Allen, 45 to McKinney.**
+Key difference from established suburbs: these business owners are newer to ownership, more open to systems conversations, and more likely to say "I know I need to get better at follow-up — I just haven't figured out how." That's the most receptive posture possible.
+
+**Leave by 8:00am. Take DNT/US-380 north, or US-75 to US-380 west — about 40 minutes from Dallas.**
 
 ---
 
 ## Target List
 
-### 1. HVAC Company — McKinney (US-380 / Custer Rd area)
-**What they do:** Residential and light commercial HVAC service, repair, and installation.
-**What to notice:** It's June 23 and 100+ degrees. The homeowner who skipped spring maintenance is calling right now — the question is who they call. HVAC companies in McKinney that aren't actively working their past customer list are letting that call go to whoever has better Google reviews or ran an ad.
-**Specific observation:** Most small HVAC companies in fast-growing suburbs like McKinney have a customer database 400+ deep and no process to reach them before the first failure of the season. They wait for the phone to ring.
-**Hook:** "You've got 400 past customers who serviced with you in the last three years. How many of them have heard from you before today's heat? The one who just broke down is calling whoever shows up first in Google. The one who got your tune-up message in May called you."
+### 1. HVAC Company — Prosper (US-380 / Preston Rd area)
+**What they do:** Residential HVAC service and installation in fast-growth suburban territory.
+**What to notice:** Prosper and Celina are full of homes built between 2018 and 2024. These are systems that are 2–6 years old — young enough that owners feel secure, old enough to have their first real maintenance needs. HVAC companies working this territory have large customer databases with zero systematic follow-up. The "new suburb" dynamic means most homeowners haven't established a relationship with a local HVAC company yet.
+**Hook:** "Your best customers right now are the homeowners who moved here in 2020 and 2021 and have never had a service issue. They feel fine about their system — until July 4 weekend when the condenser fails. What does your proactive outreach look like before the first heat emergency of the summer?"
 **Leave-behind:** virdar.co/blog/ai-automation-for-hvac-companies.html
 **Best time:** 8–10am
 
 ---
 
-### 2. Auto Repair Shop — Allen (US-75 / Exchange Pkwy or Bethany Dr)
-**What they do:** Independent auto repair, maintenance, diagnostics.
-**What to notice:** Summer road trip season is open. Declined service follow-up is the fastest-payback system for any shop — services declined in April and May are still un-done somewhere on those vehicles.
-**Specific observation:** Most shops in Allen have at least one franchised competitor (Firestone, Jiffy Lube, Christian Brothers) nearby. The differentiator for an independent shop isn't price — it's the personal follow-up the franchise never does.
-**Hook:** "The oil change customer in April who declined the cabin air filter and the brake fluid flush — how many of those services happened somewhere else by now? What does your declined service follow-up look like?"
-**Leave-behind:** virdar.co/blog/ai-automation-for-auto-repair-shops.html
+### 2. Garage Door Company — Prosper or Celina (US-380 / Coit Rd or Frontier Pkwy area)
+**What they do:** Residential garage door service, spring replacement, door installation.
+**What to notice:** Prosper and Celina neighborhoods have extremely high concentrations of homes built in the last 5 years — all with new garage doors. The 5–6 year spring replacement window is just opening for the 2019–2020 builds. A garage door company that works this territory has a time-stamped customer database of exactly when those springs were installed.
+**Hook:** "The springs you installed in 2019 and 2020 are hitting 5–6 years right now. Homeowners don't know that's a threshold. You do. The company that reaches out before the failure gets the scheduled job. The company that waits gets the emergency call at 7am."
+**Bonus:** Brand new blog post live today at virdar.co/blog/ai-automation-for-garage-door-companies.html — Beverly can reference it directly. "I actually wrote something this morning that covers exactly this situation."
+**Leave-behind:** virdar.co/blog/ai-automation-for-garage-door-companies.html *(new today)*
 **Best time:** 8–10am
 
 ---
 
-### 3. Dental Practice — McKinney (US-380 / Craig Ranch area or Eldorado Pkwy)
-**What they do:** General and family dentistry.
-**What to notice:** McKinney's median household income is above $95K. Dual-income professional families with kids. Employer dental coverage. School is out and summer appointments are being scheduled now — but only by the practices that are actively reaching out. The practices waiting for patients to call are watching their June and July fill up from self-schedulers only.
-**Specific observation:** The back-to-school window for pediatric dental is right now. August is 6 weeks out. Any pediatric dental patient 12+ months since their last visit is overdue. A practice with 800 active patients likely has 80–120 overdue for summer recall.
-**Hook:** "How many patients in your system are more than 12 months out from their last visit? The ones with kids are trying to get appointments before August. The practice that sends 'we have Tuesday at 9am — both kids back-to-back' books those appointments. The one that waits for the call fills up last."
+### 3. Dental Practice — Prosper (US-380 / Coit Rd or Coleman St)
+**What they do:** General and family dentistry, pediatric-heavy.
+**What to notice:** Prosper's demographics are dominated by families with school-age children — median age under 35, dual income, employer dental coverage. This is the single best demographic for back-to-school dental recall. Texas schools start mid-August. The window to book those appointments without competing for slots is RIGHT NOW.
+**Specific observation:** A Prosper dental practice with 600 active patients likely has 80–100 pediatric patients overdue for summer recall. Many of those families have both parents working from home and are more reachable via text/email than traditional practices assume.
+**Hook:** "Prosper ISD starts August 18. The families who mean to bring the kids in before school starts are scheduling now or in July. The practice that sends 'We have Tuesday morning, both kids back-to-back' books those appointments. The practice that waits for them to call fills up last. What does your proactive recall look like for families with kids?"
 **Leave-behind:** virdar.co/blog/ai-automation-for-dental-practices.html
 **Best time:** 9:30–11am
 
 ---
 
-### 4. Pool Service Company — McKinney (TX-121 / Stacy Rd or Legacy Dr)
-**What they do:** Weekly pool maintenance, chemical service, equipment repair.
-**What to notice:** McKinney has one of the highest pool densities in Collin County — large lots, suburban homes built 2005–2020, most with pools. Peak season is June through August. Pool service companies that don't have a proactive summer communication system are losing customers to whoever is visible when something goes wrong.
-**Specific observation:** Most independent pool service operators in this area are 1-3 person operations managing 60–120 residential accounts. They do the work but have no system for preventing the "my pool turned green and I didn't know you were coming" cancellation or the "we're moving, can you recommend someone?" that leads to a lost account.
-**Hook:** "How many of your 80 accounts have heard from you since Memorial Day — not a service visit, but an actual message? Summer is when pool problems happen and pool owners panic. The company they call first is whoever was already in their texts this week."
-**Leave-behind:** virdar.co/blog/ai-automation-for-pool-service-companies.html
-**Best time:** 8–9am (before routes start)
-
----
-
-### 5. Optometry Practice — Allen (Bethany Dr / US-75 area)
-**What they do:** Independent optometry, eye exams, glasses, contacts.
-**What to notice:** Allen's demographics are ideal for this conversation — $105K+ median HH income, lots of dual-income families with school-age kids. Back-to-school vision check window is open RIGHT NOW. August is 6 weeks out. Families scheduling pediatric vision exams for back to school are making those calls in June and July.
-**Specific observation:** An optometry practice with 1,200 active patients likely has 200–300 pediatric patients (under 18). Any who haven't had an exam in 14+ months are technically overdue. A proactive recall message — "Your child is overdue for their annual vision check. We have open mornings in July before the back-to-school rush" — sent to 150 patients will book 25–35 of them.
-**Hook:** "The kids whose parents are going to schedule back-to-school vision checks are doing it in the next 4 weeks. The practices filling their August calendar are making calls right now, in June. What does your proactive recall look like for pediatric patients?"
+### 4. Optometry Practice — Prosper (Preston Rd / US-380)
+**What they do:** Independent optometry, family eye care.
+**What to notice:** Back-to-school vision is the most time-sensitive window of the year for a family optometry practice, and it's open right now. August is 6 weeks out. Prosper families with school-age kids are an ideal target — high income, health-conscious, likely have vision coverage. A practice with 800 active patients probably has 150+ pediatric patients overdue.
+**Hook:** "August is 6 weeks out. The families scheduling back-to-school vision checks are making those calls in June and July — not August. A proactive message to your overdue pediatric patients: 'Your child is 14 months out from their last exam — we have open mornings in July before the August rush.' That message sent to 100 patients books 20–25 of them. What does your recall look like for kids right now?"
 **Leave-behind:** virdar.co/blog/ai-automation-for-optometry-practices.html
 **Best time:** 9:30–11am
 
 ---
 
-### 6. Physical Therapy / Chiro — McKinney (US-380 / Craig Ranch Pkwy)
-**What they do:** Outpatient PT, sports rehab, chiropractic, or combined practice.
-**What to notice:** McKinney ISD and Allen ISD both finished spring sports in May. Youth sports dropout from PT plans is happening right now — kids who had 6 sessions remaining dropped out when the season ended and the urgency disappeared. September is when the injuries come back. The practice that reaches those patients in June keeps the plan on track; the one that waits until September restarts from zero.
-**Specific observation:** Craig Ranch has a strong active/athletic demographic. Adults returning from summer travel with back pain, neck stiffness, and minor injuries are also walking in — June through August is not a slow season here if the practice is actively communicating.
-**Hook:** "How many plans closed out in May that still had sessions remaining? The kid who stopped coming because baseball ended is planning to come back in the fall — but by then the shoulder has tightened and the plan restarts from scratch. A message in June keeps the relationship. What does your early-dropout outreach look like?"
+### 5. Physical Therapy / Chiro — Prosper (Coleman St or US-380 service corridor)
+**What they do:** Outpatient PT, sports rehab, chiropractic.
+**What to notice:** Prosper is an extremely active community — youth sports, adult rec leagues, CrossFit, running. PT dropout from completed youth sports seasons is happening right now (Prosper ISD spring sports ended in May). Adult active-use injuries are consistent through summer.
+**Hook:** "The kid with 4 sessions remaining in their plan stopped coming when soccer ended. They'll be back in the fall when the shoulder comes back — but they restart from scratch and often call whoever's closest to their new school schedule. A message in June: 'We still have 4 sessions in your plan — want to use them over the summer before they expire?' keeps that patient and that revenue. What does your plan-dropout follow-up look like?"
 **Leave-behind:** virdar.co/blog/ai-automation-for-physical-therapy-chiropractic.html
 **Best time:** 9–11am
 
 ---
 
-### 7. Veterinary Clinic — Allen or McKinney (US-75 corridor)
+### 6. Landscaping / Lawn Care — Prosper or Celina (residential service territory)
+**What they do:** Weekly lawn maintenance, irrigation, seasonal cleanup.
+**What to notice:** Prosper and Celina have thousands of large-lot newer homes with HOA landscaping requirements. Irrigation systems in 2019–2022 builds are hitting their first real maintenance needs. Landscaping companies here are growing fast and mostly managing by phone/text with no system.
+**Hook:** "The irrigation system in a house built in 2020 is 4–5 years old right now — the solenoid valves start going by year 5. You've serviced 150 of those homes. Does your system flag which customers are approaching that window and reach out before the head blows out mid-August? Or do they call you when it's already running 6 hours?"
+**Leave-behind:** virdar.co/blog/ai-automation-for-landscaping-lawn-care.html
+**Best time:** 7:30–9am (before crews leave)
+
+---
+
+### 7. Pool Service — Prosper (high pool density residential areas)
+**What they do:** Weekly chemical service, pool repair, equipment.
+**What to notice:** Prosper's newer homes skew large — 2,500–4,500 sq ft on quarter-acre+ lots, many with pools. Pool density is high. Pool service companies in Prosper are mostly local 1–3 person operations managing 60–100 accounts. Peak season is right now.
+**Hook:** "It's July 4 in 11 days. Your regular customers who are planning pool parties haven't heard from you since the last service ticket. The company that texts 'Just checked your water — looking good ahead of the holiday, here's what to watch for in this heat' becomes the one they mention to their neighbor on July 5. What does your customer communication look like between service visits?"
+**Leave-behind:** virdar.co/blog/ai-automation-for-pool-service-companies.html
+**Best time:** 8–9am (before routes start)
+
+---
+
+### 8. Veterinary Clinic — Prosper (US-380 / Coit Rd area)
 **What they do:** Small animal general practice.
-**What to notice:** Allen pet owners are high-income, high-spend. Annual wellness visits, heartworm prevention, flea/tick, dental cleanings — these are reliable recurring revenue when the practice has a recall system. July 4 is 11 days out. Boarding reservation demand is peaking right now.
-**Specific observation:** The double hook is very specific for this week: (1) annual wellness overdue patients — any dog or cat 13+ months from last wellness visit is overdue and summer is when owners have time to bring them in; (2) July 4 boarding — the practice that reaches regular boarding clients NOW, before they call around, keeps that revenue.
-**Hook:** "Two things are true this week: your overdue wellness patients have more flexibility in summer than they do during the school year, and your regular boarding clients are figuring out July 4 weekend right now. The clinic that messages both groups this week fills those slots. What does your proactive outreach look like for overdue wellness patients?"
+**What to notice:** Prosper families skew young, affluent, and pet-owner. Double hook this week: annual wellness overdue patients + July 4 boarding. July 4 is 11 days out. The boarding reservation window closes fast.
+**Hook:** "Two things are true right now: your overdue wellness patients have summer flexibility, and July 4 is 11 days away. Your regular boarding clients are figuring out the holiday right now — if you're not already in their texts, they're calling whoever they find on Google. What does your boarding pre-reservation outreach look like for established clients?"
 **Leave-behind:** virdar.co/blog/ai-automation-for-veterinary-clinics.html
 **Best time:** 9–11am
 
 ---
 
-### 8. Garage Door Company — McKinney or Allen (US-380 or US-75 service area)
-**What they do:** Residential garage door service, spring replacement, door installation.
-**What to notice:** Move season is peak right now — new homeowners arriving in McKinney and Allen weekly, many discovering garage door issues in the first 30-60 days. A small garage door company with no follow-up system on its quotes is losing door replacement jobs to whoever sent a second message.
-**Specific observation:** Virdar just published a blog post specifically for garage door companies (June 23). Beverly can reference it directly: "I actually wrote something this morning that covers exactly this — mind if I send you the link?" The post covers estimate follow-up, spring life cycle tracking, review generation, and new homeowner outreach. Every point maps directly to what a McKinney/Allen garage door operator deals with.
-**Hook:** "Your spring replacement from 2019 is approaching the end of its rated life cycle right now. You know that, but does your customer from 2019? The company that reaches out before the spring fails gets the job on their schedule. The one that waits gets the 7am emergency call."
-**Leave-behind:** virdar.co/blog/ai-automation-for-garage-door-companies.html *(brand new post, live today)*
-**Best time:** 8–10am
-
----
-
 ## Route Notes
 
-**Morning (8–10am):** HVAC, auto repair, garage door. These are service businesses that open early and owners are in early. Best conversation window before trucks leave for the day.
+**Context for Beverly:** Prosper and Celina business owners are often newer to ownership (businesses 2–5 years old) and more explicitly open to systems conversations than established owners in mature suburbs. The typical response to "what does your follow-up look like?" in Prosper is "honestly, it's pretty much just me texting people back when they text me" — which is the most open starting point possible.
 
-**Mid-morning (9:30–11am):** Dental, optometry, physical therapy, veterinary. These practices open at 8 or 9am — catch front desk or office manager, ask to leave something for the owner/practice manager, or if the owner is visible, ask directly.
+**Morning (7:30–10am):** Landscaping, HVAC, garage door, pool service. These open early and owners are accessible before the day starts.
 
-**Pool service (8–9am):** Call or drop into a physical office if they have one; many pool companies are home-based so look for their truck/branding in the neighborhood or find the local operators on Google Maps with a McKinney or Allen address.
+**Mid-morning (9:30–11am):** Dental, optometry, PT/chiro, veterinary.
 
-**Parking:** Craig Ranch Pkwy / Exchange Pkwy corridor in McKinney/Allen has dense commercial development — park centrally and walk between adjacent businesses. US-380 strip is more car-dependent.
+**Parking:** Prosper's commercial development is concentrated around US-380 / Preston Rd and US-380 / Coit Rd. Drive between clusters rather than parking centrally — the town is spread across a large area.
 
-**If it goes well:** The garage door hook is brand new and Beverly hasn't used it before. If a garage door company owner is receptive and mentions a specific number (estimates per month, spring jobs per year) — that's a strategy call booking waiting to happen. The math closes fast for these companies.
+**Best conversation:** The back-to-school dental or optometry conversation. Prosper ISD starts August 18. That's a hard, specific date Beverly can use: "You have 8 weeks. The families scheduling now fill those July slots. The ones scheduling in August fill the August slots — except there aren't enough." That specificity lands.
+
+**If the garage door conversation goes well:** The blog post is brand new. Beverly can say "I actually published a post about this this morning — it covers the spring cycle math and the estimate follow-up piece. Can I send you the link?" That's a reason to get their number.
+
+**July 4 urgency angle:** 11 days out. Any business Beverly talks to that does appointment-based service — dental, optometry, PT, veterinary, fitness — can hear the same frame: "Your patients who are planning to be out of town are going to cancel on you July 3. The practices that reach them this week to confirm and offer July 7 or 8 if they cancel keep that revenue. The ones who absorb the cancellations don't."
