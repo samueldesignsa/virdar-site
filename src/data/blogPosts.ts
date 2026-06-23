@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '31',
+    slug: 'ai-automation-for-garage-door-companies',
+    title: 'AI Automation for Garage Door Companies: What It Actually Does',
+    excerpt: 'Garage door companies lose door replacement sales to estimates that go dark, service customers who never get a review request, and spring failures no one predicted. Here\'s what AI automation actually looks like for an independent garage door company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 23, 2026',
+    gradient: 'from-orange-400/15 via-orange-400/5 to-transparent',
+  },
+  {
     id: '30',
     slug: 'ai-automation-for-cleaning-services',
     title: 'AI Automation for Cleaning Services and Maid Services: What It Actually Does',
