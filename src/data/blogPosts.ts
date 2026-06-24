@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '43',
+    slug: 'ai-automation-for-window-replacement-companies',
+    title: 'AI Automation for Window Replacement Companies: What It Actually Does',
+    excerpt: 'Window replacement companies lose high-ticket jobs to estimates that go dark, phase-2 projects that never get followed up, and storm windows that competitors capture first. Here\'s what AI automation actually looks like for an independent window company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 24, 2026',
+    gradient: 'from-sky-300/15 via-sky-300/5 to-transparent',
+  },
+  {
     id: '42',
     slug: 'ai-automation-for-garage-door-companies',
     title: 'AI Automation for Garage Door Companies: What It Actually Does',
