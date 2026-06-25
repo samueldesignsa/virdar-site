@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '44',
+    slug: 'ai-automation-for-tutoring-centers-learning-centers',
+    title: 'AI Automation for Tutoring Centers and Learning Centers: What It Actually Does',
+    excerpt: 'Tutoring centers lose enrollments to slow inquiry response, students who drop after two missed sessions, and a summer program no one actually promoted. Here\'s what AI automation actually looks like for an independent tutoring or learning center.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 25, 2026',
+    gradient: 'from-amber-300/15 via-amber-300/5 to-transparent',
+  },
+  {
     id: '43',
     slug: 'ai-automation-for-window-replacement-companies',
     title: 'AI Automation for Window Replacement Companies: What It Actually Does',
