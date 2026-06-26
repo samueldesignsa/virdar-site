@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '45',
+    slug: 'ai-automation-for-dog-grooming-businesses',
+    title: 'AI Automation for Dog Grooming Businesses: What It Actually Does',
+    excerpt: 'Dog grooming businesses lose revenue to no-shows, clients who forget to rebook, and a lapsed customer list nobody is working. Here\'s what AI automation actually looks like for an independent grooming business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 26, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
     id: '44',
     slug: 'ai-automation-for-tutoring-centers-learning-centers',
     title: 'AI Automation for Tutoring Centers and Learning Centers: What It Actually Does',
