@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '46',
+    slug: 'ai-automation-for-martial-arts-schools-karate-studios',
+    title: 'AI Automation for Martial Arts Schools and Karate Studios: What It Actually Does',
+    excerpt: 'Martial arts schools lose enrollment to slow trial follow-up, quiet summer dropouts, and a lapsed student list nobody is working. Here\'s what AI automation actually looks like for an independent martial arts school.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 29, 2026',
+    gradient: 'from-red-600/15 via-red-600/5 to-transparent',
+  },
+  {
     id: '45',
     slug: 'ai-automation-for-dog-grooming-businesses',
     title: 'AI Automation for Dog Grooming Businesses: What It Actually Does',
