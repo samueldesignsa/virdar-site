@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '47',
+    slug: 'ai-automation-for-dance-studios',
+    title: 'AI Automation for Dance Studios: What It Actually Does',
+    excerpt: 'Dance studios lose enrollment to slow trial class follow-up, spring recital families who meant to re-enroll but drifted, and a fall pipeline nobody is working in July. Here\'s what AI automation actually looks like for an independent dance studio.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'June 30, 2026',
+    gradient: 'from-violet-400/15 via-violet-400/5 to-transparent',
+  },
+  {
     id: '46',
     slug: 'ai-automation-for-martial-arts-schools-karate-studios',
     title: 'AI Automation for Martial Arts Schools and Karate Studios: What It Actually Does',
