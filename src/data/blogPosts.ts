@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '48',
+    slug: 'ai-automation-for-music-schools-private-music-lessons',
+    title: 'AI Automation for Music Schools and Private Music Lessons: What It Actually Does',
+    excerpt: 'Music schools and private lesson studios lose students to slow inquiry response, lesson slot gaps nobody fills, and a fall schedule that never got built in July. Here\'s what AI automation actually looks like for an independent music studio.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 1, 2026',
+    gradient: 'from-indigo-400/15 via-indigo-400/5 to-transparent',
+  },
+  {
     id: '47',
     slug: 'ai-automation-for-dance-studios',
     title: 'AI Automation for Dance Studios: What It Actually Does',
