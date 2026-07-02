@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '49',
+    slug: 'ai-automation-for-gymnastics-studios',
+    title: 'AI Automation for Gymnastics Studios: What It Actually Does',
+    excerpt: 'Gymnastics studios lose enrollment to slow trial class follow-up, summer drift that never converts to fall, and a competition season that builds commitment nobody captures. Here\'s what AI automation actually looks like for an independent gymnastics studio.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 2, 2026',
+    gradient: 'from-emerald-400/15 via-emerald-400/5 to-transparent',
+  },
+  {
     id: '48',
     slug: 'ai-automation-for-music-schools-private-music-lessons',
     title: 'AI Automation for Music Schools and Private Music Lessons: What It Actually Does',
