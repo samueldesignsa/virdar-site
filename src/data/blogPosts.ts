@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '50',
+    slug: 'ai-automation-for-nail-salons',
+    title: 'AI Automation for Nail Salons: What It Actually Does',
+    excerpt: 'Nail salons lose revenue to clients who leave without rebooking, pre-holiday slots that fill too late, and a lapsed client list nobody is working. Here\'s what AI automation actually looks like for an independent nail salon.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 3, 2026',
+    gradient: 'from-pink-400/15 via-pink-400/5 to-transparent',
+  },
+  {
     id: '49',
     slug: 'ai-automation-for-gymnastics-studios',
     title: 'AI Automation for Gymnastics Studios: What It Actually Does',
