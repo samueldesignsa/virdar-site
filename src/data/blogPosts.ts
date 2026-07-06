@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '51',
+    slug: 'ai-automation-for-pediatric-family-medicine-practices',
+    title: 'AI Automation for Pediatric and Family Medicine Practices: What It Actually Does',
+    excerpt: 'Pediatric and family medicine practices lose revenue to overdue well-child visits nobody recalls, sports physicals that go to urgent care, and a back-to-school crunch that overwhelms August. Here\'s what AI automation actually looks like for an independent practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 6, 2026',
+    gradient: 'from-blue-400/15 via-blue-400/5 to-transparent',
+  },
+  {
     id: '50',
     slug: 'ai-automation-for-nail-salons',
     title: 'AI Automation for Nail Salons: What It Actually Does',
