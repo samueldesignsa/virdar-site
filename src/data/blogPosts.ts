@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '52',
+    slug: 'ai-automation-for-swim-schools-swimming-lesson-programs',
+    title: 'AI Automation for Swim Schools and Swimming Lesson Programs: What It Actually Does',
+    excerpt: 'Swim schools lose enrollment to slow trial follow-up, summer students who never convert to fall, and a lapsed family list nobody is working. Here\'s what AI automation actually looks like for an independent swim school.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 7, 2026',
+    gradient: 'from-cyan-400/15 via-cyan-400/5 to-transparent',
+  },
+  {
     id: '51',
     slug: 'ai-automation-for-pediatric-family-medicine-practices',
     title: 'AI Automation for Pediatric and Family Medicine Practices: What It Actually Does',
