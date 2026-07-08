@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '53',
+    slug: 'ai-automation-for-speech-therapy-occupational-therapy-practices',
+    title: 'AI Automation for Speech Therapy and Occupational Therapy Practices: What It Actually Does',
+    excerpt: 'Speech therapy and OT practices lose appointments to referrals nobody follows up, families who stop before their plan is complete, and a back-to-school season that overwhelms intake every September. Here\'s what AI automation actually looks like for an independent therapy practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 8, 2026',
+    gradient: 'from-purple-400/15 via-purple-400/5 to-transparent',
+  },
+  {
     id: '52',
     slug: 'ai-automation-for-swim-schools-swimming-lesson-programs',
     title: 'AI Automation for Swim Schools and Swimming Lesson Programs: What It Actually Does',
