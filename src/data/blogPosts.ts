@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '54',
+    slug: 'ai-automation-for-youth-sports-leagues-recreational-programs',
+    title: 'AI Automation for Youth Sports Leagues and Recreational Programs: What It Actually Does',
+    excerpt: 'Youth sports leagues lose registrations to abandoned forms, returning families who drift to other fall activities, and roster spots nobody filled in time. Here\'s what AI automation actually looks like for an independent youth sports program.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 9, 2026',
+    gradient: 'from-green-400/15 via-green-400/5 to-transparent',
+  },
+  {
     id: '53',
     slug: 'ai-automation-for-speech-therapy-occupational-therapy-practices',
     title: 'AI Automation for Speech Therapy and Occupational Therapy Practices: What It Actually Does',
