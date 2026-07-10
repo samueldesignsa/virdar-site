@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '55',
+    slug: 'ai-automation-for-after-school-programs-childcare-centers',
+    title: 'AI Automation for After-School Programs and Childcare Centers: What It Actually Does',
+    excerpt: 'After-school programs and childcare centers lose enrollment to summer inquiry drop-off, waitlists nobody works, and returning families who drift before re-enrollment opens. Here\'s what AI automation actually looks like for an independent childcare center or after-school program.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 10, 2026',
+    gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
+  },
+  {
     id: '54',
     slug: 'ai-automation-for-youth-sports-leagues-recreational-programs',
     title: 'AI Automation for Youth Sports Leagues and Recreational Programs: What It Actually Does',
