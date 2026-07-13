@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '56',
+    slug: 'ai-automation-for-dermatology-practices',
+    title: 'AI Automation for Dermatology Practices: What It Actually Does',
+    excerpt: 'Dermatology practices lose revenue to patients who don\'t complete their treatment plans, lapsed cosmetic clients nobody follows up, and a back-to-school window that closes in July. Here\'s what AI automation actually looks like for an independent dermatology practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 13, 2026',
+    gradient: 'from-fuchsia-400/15 via-fuchsia-400/5 to-transparent',
+  },
+  {
     id: '55',
     slug: 'ai-automation-for-after-school-programs-childcare-centers',
     title: 'AI Automation for After-School Programs and Childcare Centers: What It Actually Does',
