@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '57',
+    slug: 'ai-automation-for-mental-health-counseling-practices',
+    title: 'AI Automation for Mental Health and Counseling Practices: What It Actually Does',
+    excerpt: 'Counseling practices lose clients to slow inquiry response, summer patient drop-off that never recovers, and a back-to-school referral surge that overwhelms September schedules. Here\'s what AI automation actually looks like for an independent mental health practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 14, 2026',
+    gradient: 'from-blue-400/15 via-blue-400/5 to-transparent',
+  },
+  {
     id: '56',
     slug: 'ai-automation-for-dermatology-practices',
     title: 'AI Automation for Dermatology Practices: What It Actually Does',
