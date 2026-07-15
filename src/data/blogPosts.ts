@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '58',
+    slug: 'ai-automation-for-athletic-training-sports-medicine',
+    title: 'AI Automation for Athletic Training and Sports Medicine Practices: What It Actually Does',
+    excerpt: 'Sports medicine clinics lose patients to slow callback during two-a-day spikes, missed return-to-play follow-through, and lapsed athletes who stopped showing up after spring season. Here\'s what AI automation actually looks like for an independent sports medicine or athletic training practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 15, 2026',
+    gradient: 'from-orange-400/15 via-orange-400/5 to-transparent',
+  },
+  {
     id: '57',
     slug: 'ai-automation-for-mental-health-counseling-practices',
     title: 'AI Automation for Mental Health and Counseling Practices: What It Actually Does',
