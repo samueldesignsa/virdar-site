@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '59',
+    slug: 'ai-automation-for-orthodontic-practices',
+    title: 'AI Automation for Orthodontic Practices: What It Actually Does',
+    excerpt: 'Orthodontic practices lose treatment starts to unconverted consultations nobody re-engages, inquiry response that loses the appointment to a faster competitor, and deband moments that never generate a referral. Here\'s what AI automation actually looks like for an independent orthodontic practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 16, 2026',
+    gradient: 'from-teal-300/15 via-teal-300/5 to-transparent',
+  },
+  {
     id: '58',
     slug: 'ai-automation-for-athletic-training-sports-medicine',
     title: 'AI Automation for Athletic Training and Sports Medicine Practices: What It Actually Does',
