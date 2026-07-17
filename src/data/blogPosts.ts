@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '60',
+    slug: 'ai-automation-for-urgent-care-clinics',
+    title: 'AI Automation for Urgent Care Clinics: What It Actually Does',
+    excerpt: 'Urgent care clinics lose revenue to walk-in abandonment, sports physical surges nobody markets into, post-visit patients who never return, and reviews that never get written. Here\'s what AI automation actually does for an independent urgent care clinic.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 17, 2026',
+    gradient: 'from-red-500/15 via-red-500/5 to-transparent',
+  },
+  {
     id: '59',
     slug: 'ai-automation-for-orthodontic-practices',
     title: 'AI Automation for Orthodontic Practices: What It Actually Does',
