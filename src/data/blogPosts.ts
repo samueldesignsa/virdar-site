@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '61',
+    slug: 'ai-automation-for-dry-cleaners-alterations',
+    title: 'AI Automation for Dry Cleaning and Alterations Businesses: What It Actually Does',
+    excerpt: 'Dry cleaners lose revenue to inbound status calls nobody needed to make, back-to-school alteration rushes that overwhelm an unprepared shop, unclaimed orders sitting on the rack for weeks, and lapsed customers who went somewhere closer. Here\'s what AI automation actually does for an independent dry cleaner or alterations shop.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 20, 2026',
+    gradient: 'from-sky-400/15 via-sky-400/5 to-transparent',
+  },
+  {
     id: '60',
     slug: 'ai-automation-for-urgent-care-clinics',
     title: 'AI Automation for Urgent Care Clinics: What It Actually Does',
