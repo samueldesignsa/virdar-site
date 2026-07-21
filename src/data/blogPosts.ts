@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '62',
+    slug: 'ai-automation-for-pediatric-physical-therapy-practices',
+    title: 'AI Automation for Pediatric Physical Therapy Practices: What It Actually Does',
+    excerpt: 'Pediatric PT practices lose revenue to IEP referrals that go to positioned competitors, physician referrals nobody follows up, insurance authorization confusion that loses families before the first visit, and home program dropout that ends treatment early. Here\'s what AI automation actually does for an independent pediatric physical therapy practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 21, 2026',
+    gradient: 'from-violet-400/15 via-violet-400/5 to-transparent',
+  },
+  {
     id: '61',
     slug: 'ai-automation-for-dry-cleaners-alterations',
     title: 'AI Automation for Dry Cleaning and Alterations Businesses: What It Actually Does',
