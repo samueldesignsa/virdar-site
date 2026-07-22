@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '63',
+    slug: 'september-mental-health-reactivation-north-texas',
+    title: 'September Mental Health Surge in North Texas: What Independent Counseling Practices Need to Do in August',
+    excerpt: 'September is the highest-volume inquiry month for most counseling practices in DFW — and the month when lapsed clients from spring come back. The practices that prepare in August fill September. The ones that don\'t manage a surge they weren\'t ready for.',
+    category: 'Seasonal Strategy',
+    readTime: '6 min read',
+    date: 'July 22, 2026',
+    gradient: 'from-emerald-400/15 via-emerald-400/5 to-transparent',
+  },
+  {
     id: '62',
     slug: 'ai-automation-for-pediatric-physical-therapy-practices',
     title: 'AI Automation for Pediatric Physical Therapy Practices: What It Actually Does',
