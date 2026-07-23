@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '64',
+    slug: 'ai-automation-for-concierge-medicine-direct-primary-care',
+    title: 'AI Automation for Concierge Medicine and Direct Primary Care Practices: What It Actually Does',
+    excerpt: 'Concierge medicine and DPC practices lose membership revenue to enrollment attrition, low utilization that precedes cancellation, and a referral engine that runs entirely on memory. Here\'s what AI automation actually does for an independent DPC or concierge practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 23, 2026',
+    gradient: 'from-cyan-400/15 via-cyan-400/5 to-transparent',
+  },
+  {
     id: '63',
     slug: 'september-mental-health-reactivation-north-texas',
     title: 'September Mental Health Surge in North Texas: What Independent Counseling Practices Need to Do in August',
