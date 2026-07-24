@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '65',
+    slug: 'ai-automation-for-pediatric-occupational-therapy',
+    title: 'AI Automation for Pediatric Occupational Therapy Practices: What It Actually Does',
+    excerpt: 'Pediatric OT practices lose patients to slow intake response during back-to-school surges, IEP referrals nobody follows up, home program dropout that stalls outcomes, and lapsed families who never hear from you again. Here\'s what AI automation actually does for an independent pediatric occupational therapy practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 24, 2026',
+    gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
+  },
+  {
     id: '64',
     slug: 'ai-automation-for-concierge-medicine-direct-primary-care',
     title: 'AI Automation for Concierge Medicine and Direct Primary Care Practices: What It Actually Does',
