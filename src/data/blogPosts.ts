@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '66',
+    slug: 'ai-automation-for-day-spas-massage-therapy',
+    title: 'AI Automation for Day Spas and Massage Therapy Businesses: What It Actually Does',
+    excerpt: 'Day spas and massage businesses lose revenue to no-shows, clients who leave without rebooking, gift cards nobody redeems, and a lapsed client list nobody is working. Here\'s what AI automation actually does for an independent spa or massage practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 27, 2026',
+    gradient: 'from-pink-300/15 via-pink-300/5 to-transparent',
+  },
+  {
     id: '65',
     slug: 'ai-automation-for-pediatric-occupational-therapy',
     title: 'AI Automation for Pediatric Occupational Therapy Practices: What It Actually Does',
