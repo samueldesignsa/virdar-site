@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '67',
+    slug: 'ai-automation-for-optometry-eye-care-practices',
+    title: 'AI Automation for Optometry and Eye Care Practices: What It Actually Does',
+    excerpt: 'Optometry practices lose annual exam revenue to no-shows in peak August, patients who drift to the chains between recalls, and a back-to-school surge that fills competitor schedules while the independent OD runs the same phone-call process it always has. Here\'s what AI automation actually does for an independent optometry or eye care practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 28, 2026',
+    gradient: 'from-blue-400/15 via-blue-400/5 to-transparent',
+  },
+  {
     id: '66',
     slug: 'ai-automation-for-day-spas-massage-therapy',
     title: 'AI Automation for Day Spas and Massage Therapy Businesses: What It Actually Does',
