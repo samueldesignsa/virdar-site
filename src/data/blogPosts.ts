@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '68',
+    slug: 'ai-automation-for-chiropractic-practices',
+    title: 'AI Automation for Chiropractic Practices: What It Actually Does',
+    excerpt: 'Chiropractic practices lose revenue to treatment plan dropout nobody catches, lapsed patients with active insurance benefits nobody told them about, and an athlete referral pipeline from sports season that arrives without a system to capture it. Here\'s what AI automation actually does for an independent chiropractic practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 29, 2026',
+    gradient: 'from-violet-500/15 via-violet-500/5 to-transparent',
+  },
+  {
     id: '67',
     slug: 'ai-automation-for-optometry-eye-care-practices',
     title: 'AI Automation for Optometry and Eye Care Practices: What It Actually Does',
