@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '69',
+    slug: 'ai-automation-for-personal-training-private-coaching',
+    title: 'AI Automation for Personal Training and Private Coaching Businesses: What It Actually Does',
+    excerpt: 'Personal trainers lose clients to package abandonment nobody follows up, six-week dropout at the first goal, summer pauses that never end, and referral moments nobody captured. Here\'s what AI automation actually does for an independent personal training or private coaching business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'July 30, 2026',
+    gradient: 'from-orange-500/15 via-orange-500/5 to-transparent',
+  },
+  {
     id: '68',
     slug: 'ai-automation-for-chiropractic-practices',
     title: 'AI Automation for Chiropractic Practices: What It Actually Does',
