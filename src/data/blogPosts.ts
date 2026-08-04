@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '70',
+    slug: 'ai-automation-for-barbershops-mens-grooming',
+    title: 'AI Automation for Barbershops and Men\'s Grooming Businesses: What It Actually Does',
+    excerpt: 'Barbershops lose regulars to lapsed visits nobody follows up, seasonal surges they can\'t reach customers for, and review opportunities nobody captures. Here\'s what AI automation actually does for an independent barbershop or men\'s grooming business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 4, 2026',
+    gradient: 'from-blue-500/15 via-blue-500/5 to-transparent',
+  },
+  {
     id: '69',
     slug: 'ai-automation-for-personal-training-private-coaching',
     title: 'AI Automation for Personal Training and Private Coaching Businesses: What It Actually Does',
