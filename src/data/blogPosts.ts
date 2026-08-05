@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '71',
+    slug: 'ai-automation-for-orthopedic-surgery-practices',
+    title: 'AI Automation for Orthopedic Surgery Practices: What It Actually Does',
+    excerpt: 'Orthopedic practices lose surgical cases to slow injury inquiry response, unconverted consults nobody follows up, post-op compliance gaps, and a lapsed sports patient database nobody is working. Here\'s what AI automation actually does for an independent orthopedic surgery practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 5, 2026',
+    gradient: 'from-slate-400/15 via-slate-400/5 to-transparent',
+  },
+  {
     id: '70',
     slug: 'ai-automation-for-barbershops-mens-grooming',
     title: 'AI Automation for Barbershops and Men\'s Grooming Businesses: What It Actually Does',
