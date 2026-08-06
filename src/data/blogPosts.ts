@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '72',
+    slug: 'ai-automation-for-home-health-companion-care-agencies',
+    title: 'AI Automation for Private Pay Home Health and Companion Care Agencies: What It Actually Does',
+    excerpt: 'Companion care agencies lose clients to slow hospital discharge response, unfilled caregiver shifts that break family trust, and a former client database nobody is working. Here\'s what AI automation actually does for an independent private pay home health or companion care agency.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 6, 2026',
+    gradient: 'from-emerald-500/15 via-emerald-500/5 to-transparent',
+  },
+  {
     id: '71',
     slug: 'ai-automation-for-orthopedic-surgery-practices',
     title: 'AI Automation for Orthopedic Surgery Practices: What It Actually Does',
