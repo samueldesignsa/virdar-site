@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '73',
+    slug: 'ai-automation-for-independent-bookkeeping-businesses',
+    title: 'AI Automation for Independent Bookkeeping Businesses: What It Actually Does',
+    excerpt: 'Independent bookkeeping businesses lose clients to slow inquiry response, onboarding friction that delays first billing, and a former client database nobody is working. Here\'s what AI automation actually does for an independent bookkeeping firm.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 7, 2026',
+    gradient: 'from-violet-500/15 via-violet-500/5 to-transparent',
+  },
+  {
     id: '72',
     slug: 'ai-automation-for-home-health-companion-care-agencies',
     title: 'AI Automation for Private Pay Home Health and Companion Care Agencies: What It Actually Does',
