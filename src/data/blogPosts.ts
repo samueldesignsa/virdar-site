@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '74',
+    slug: 'ai-automation-for-medical-weight-management-glp1-clinics',
+    title: 'AI Automation for Medical Weight Management and GLP-1 Clinics: What It Actually Does',
+    excerpt: 'Medical weight management clinics lose patients to slow inquiry response, medication compliance dropout, missed follow-up visits, and a lapsed patient database nobody is working. Here\'s what AI automation actually does for an independent GLP-1 and weight loss clinic.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 11, 2026',
+    gradient: 'from-rose-600/15 via-rose-600/5 to-transparent',
+  },
+  {
     id: '73',
     slug: 'ai-automation-for-independent-bookkeeping-businesses',
     title: 'AI Automation for Independent Bookkeeping Businesses: What It Actually Does',
