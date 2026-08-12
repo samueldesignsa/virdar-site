@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '75',
+    slug: 'ai-automation-for-podiatry-practices',
+    title: 'AI Automation for Podiatry Practices: What It Actually Does',
+    excerpt: 'Podiatry practices lose revenue to slow injury inquiry response, diabetic foot care dropout, orthotics never picked up, and a lapsed patient panel nobody is working. Here\'s what AI automation actually does for an independent podiatry practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 12, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
     id: '74',
     slug: 'ai-automation-for-medical-weight-management-glp1-clinics',
     title: 'AI Automation for Medical Weight Management and GLP-1 Clinics: What It Actually Does',
