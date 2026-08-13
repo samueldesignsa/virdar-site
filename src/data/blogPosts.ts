@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '76',
+    slug: 'ai-automation-for-moving-companies',
+    title: 'AI Automation for Moving Companies: What It Actually Does',
+    excerpt: 'Independent moving companies lose bookings to slow quote response, booking dropout, and reviews they never asked for. August and September are peak season. Here\'s what AI automation actually does for a local moving company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 13, 2026',
+    gradient: 'from-orange-500/15 via-orange-500/5 to-transparent',
+  },
+  {
     id: '75',
     slug: 'ai-automation-for-podiatry-practices',
     title: 'AI Automation for Podiatry Practices: What It Actually Does',
