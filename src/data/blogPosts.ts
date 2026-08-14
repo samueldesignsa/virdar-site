@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '77',
+    slug: 'ai-automation-for-mens-health-clinics',
+    title: 'AI Automation for Men\'s Health Clinics: What It Actually Does',
+    excerpt: 'Men\'s health clinics lose patients to slow inquiry response that makes embarrassed men disappear, consultation dropout, lab follow-up gaps, and a lapsed member database nobody is working. Here\'s what AI automation actually does for an independent men\'s health clinic.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 14, 2026',
+    gradient: 'from-blue-600/15 via-blue-600/5 to-transparent',
+  },
+  {
     id: '76',
     slug: 'ai-automation-for-moving-companies',
     title: 'AI Automation for Moving Companies: What It Actually Does',
