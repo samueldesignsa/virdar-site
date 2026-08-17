@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '78',
+    slug: 'ai-automation-for-waxing-esthetics-businesses',
+    title: 'AI Automation for Waxing Studios and Esthetics Businesses: What It Actually Does',
+    excerpt: 'Waxing studios and esthetics businesses lose revenue to no-shows, clients who leave without rebooking, series abandonment, and summer lapse nobody reactivates. Here\'s what AI automation actually does for an independent esthetics studio.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 17, 2026',
+    gradient: 'from-rose-300/15 via-rose-300/5 to-transparent',
+  },
+  {
     id: '77',
     slug: 'ai-automation-for-mens-health-clinics',
     title: 'AI Automation for Men\'s Health Clinics: What It Actually Does',
