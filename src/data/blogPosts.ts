@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '79',
+    slug: 'ai-automation-for-tattoo-studios',
+    title: 'AI Automation for Tattoo Studios: What It Actually Does',
+    excerpt: 'Tattoo studios lose bookings to slow DM response, consultation no-shows, touch-up drift nobody follows up on, and a lapsed client database nobody is working. Here\'s what AI automation actually does for an independent tattoo shop.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 18, 2026',
+    gradient: 'from-violet-700/15 via-violet-700/5 to-transparent',
+  },
+  {
     id: '78',
     slug: 'ai-automation-for-waxing-esthetics-businesses',
     title: 'AI Automation for Waxing Studios and Esthetics Businesses: What It Actually Does',
