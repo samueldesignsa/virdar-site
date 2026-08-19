@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '80',
+    slug: 'ai-automation-for-photography-studios',
+    title: 'AI Automation for Photography Studios: What It Actually Does',
+    excerpt: 'Photography studios lose bookings to slow inquiry response during fall mini-session launches, session no-shows, galleries that never get downloaded, and families who drift before the next milestone. Here\'s what AI automation actually does for an independent portrait photography business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 19, 2026',
+    gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
+  },
+  {
     id: '79',
     slug: 'ai-automation-for-tattoo-studios',
     title: 'AI Automation for Tattoo Studios: What It Actually Does',
