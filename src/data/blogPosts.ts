@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '81',
+    slug: 'ai-automation-for-allergists-ent-practices',
+    title: 'AI Automation for Allergists and ENT Practices: What It Actually Does',
+    excerpt: 'Allergy and ENT practices lose patients to slow new inquiry response, shot series dropout, missed seasonal reactivation, and a lapsed patient panel nobody is working. Here\'s what AI automation actually does for an independent allergy or ENT practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 20, 2026',
+    gradient: 'from-green-400/15 via-green-400/5 to-transparent',
+  },
+  {
     id: '80',
     slug: 'ai-automation-for-photography-studios',
     title: 'AI Automation for Photography Studios: What It Actually Does',
