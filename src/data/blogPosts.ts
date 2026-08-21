@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '82',
+    slug: 'ai-automation-for-pediatric-dentistry',
+    title: 'AI Automation for Pediatric Dentistry: What It Actually Does',
+    excerpt: 'Pediatric dental practices lose patients to missed recall windows, treatment plan dropout, sibling scheduling gaps, and after-hours parent inquiries nobody answers. Here\'s what AI automation actually does for an independent pediatric dentistry practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 21, 2026',
+    gradient: 'from-sky-400/15 via-sky-400/5 to-transparent',
+  },
+  {
     id: '81',
     slug: 'ai-automation-for-allergists-ent-practices',
     title: 'AI Automation for Allergists and ENT Practices: What It Actually Does',
