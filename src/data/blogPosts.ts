@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '83',
+    slug: 'ai-automation-for-audiologists-hearing-aid-practices',
+    title: 'AI Automation for Audiologists and Hearing Aid Practices: What It Actually Does',
+    excerpt: 'Audiology practices lose revenue to unworked annual recall, hearing aid trial dropout, lapsed supply relationships, unused insurance benefits, and aging devices nobody has addressed. Here\'s what AI automation actually does for an independent audiology practice.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 24, 2026',
+    gradient: 'from-purple-400/15 via-purple-400/5 to-transparent',
+  },
+  {
     id: '82',
     slug: 'ai-automation-for-pediatric-dentistry',
     title: 'AI Automation for Pediatric Dentistry: What It Actually Does',
