@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '84',
+    slug: 'ai-automation-for-florists-wedding-floral-design',
+    title: 'AI Automation for Florists and Wedding Floral Designers: What It Actually Does',
+    excerpt: 'Florists lose weddings to slow inquiry response, unanswered quotes, and open fall dates that never filled. Here\'s what AI automation actually does for an independent floral design business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 25, 2026',
+    gradient: 'from-rose-400/15 via-rose-400/5 to-transparent',
+  },
+  {
     id: '83',
     slug: 'ai-automation-for-audiologists-hearing-aid-practices',
     title: 'AI Automation for Audiologists and Hearing Aid Practices: What It Actually Does',
