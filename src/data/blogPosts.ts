@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '85',
+    slug: 'ai-automation-for-senior-living-assisted-living',
+    title: 'AI Automation for Senior Living and Assisted Living Communities: What It Actually Does',
+    excerpt: 'Senior living communities lose move-ins to slow tour follow-up, waitlists nobody works, and referral sources that go quiet. Here\'s what AI automation actually does for an independent assisted living or memory care community.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 26, 2026',
+    gradient: 'from-emerald-300/15 via-emerald-300/5 to-transparent',
+  },
+  {
     id: '84',
     slug: 'ai-automation-for-florists-wedding-floral-design',
     title: 'AI Automation for Florists and Wedding Floral Designers: What It Actually Does',
