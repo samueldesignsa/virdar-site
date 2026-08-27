@@ -32,8 +32,9 @@ export default function Hero() {
           </span>
         </h1>
         <Reveal as="p" className="sub" d={2}>
-          AI is reshaping every industry, and the businesses that move first win. You don't have to learn
-          it. We build it right, so you stay ahead instead of falling behind.
+          Your competitors are already running automated follow-up, faster response, and recall campaigns
+          that run without anyone managing them. You don't have to figure out the tech — we build it on
+          your actual workflow and show you it working before you pay.
         </Reveal>
         <Reveal className="cta-row" d={3}>
           <a className="btn" href="#book">
