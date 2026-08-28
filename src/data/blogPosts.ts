@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '86',
+    slug: 'ai-automation-for-wedding-event-venues',
+    title: 'AI Automation for Wedding and Event Venues: What It Actually Does',
+    excerpt: 'Wedding and event venues lose bookings to slow inquiry response, tour no-shows nobody reschedules, and vendor referral networks that go quiet. Here\'s what AI automation actually does for an independent wedding or event venue.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 28, 2026',
+    gradient: 'from-amber-300/15 via-amber-300/5 to-transparent',
+  },
+  {
     id: '85',
     slug: 'ai-automation-for-senior-living-assisted-living',
     title: 'AI Automation for Senior Living and Assisted Living Communities: What It Actually Does',
