@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '87',
+    slug: 'ai-automation-for-tree-service-companies',
+    title: 'AI Automation for Tree Service Companies: What It Actually Does',
+    excerpt: 'Tree service companies lose revenue to estimate dropout, seasonal customers nobody reactivates, and storm-call overflow. Here\'s what AI automation actually does for an independent tree service or arborist business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'August 31, 2026',
+    gradient: 'from-green-600/15 via-green-600/5 to-transparent',
+  },
+  {
     id: '86',
     slug: 'ai-automation-for-wedding-event-venues',
     title: 'AI Automation for Wedding and Event Venues: What It Actually Does',
