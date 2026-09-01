@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '88',
+    slug: 'ai-automation-for-gutter-cleaning-companies',
+    title: 'AI Automation for Gutter Cleaning Companies: What It Actually Does',
+    excerpt: 'Gutter cleaning companies lose their fall season to unworked customer lists, estimate dropout, and missed calls during the rush. Here\'s what AI automation actually does for an independent gutter cleaning or exterior cleaning business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 1, 2026',
+    gradient: 'from-orange-600/15 via-orange-600/5 to-transparent',
+  },
+  {
     id: '87',
     slug: 'ai-automation-for-tree-service-companies',
     title: 'AI Automation for Tree Service Companies: What It Actually Does',
