@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '89',
+    slug: 'ai-automation-for-jewelry-stores',
+    title: 'AI Automation for Independent Jewelry Stores: What It Actually Does',
+    excerpt: 'Independent jewelry stores lose holiday revenue to unworked anniversary lists, repair limbo, and custom order dropout. Here\'s what AI automation actually does for an independent jeweler.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 2, 2026',
+    gradient: 'from-rose-500/15 via-rose-500/5 to-transparent',
+  },
+  {
     id: '88',
     slug: 'ai-automation-for-gutter-cleaning-companies',
     title: 'AI Automation for Gutter Cleaning Companies: What It Actually Does',
