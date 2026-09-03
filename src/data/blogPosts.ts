@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '90',
+    slug: 'ai-automation-for-auto-detailing-companies',
+    title: 'AI Automation for Auto Detailing Companies: What It Actually Does',
+    excerpt: 'Auto detailing shops lose repeat business to no follow-up, fleet accounts nobody reactivates, and estimate dropout. Here\'s what AI automation actually does for an independent detailing company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 3, 2026',
+    gradient: 'from-sky-500/15 via-sky-500/5 to-transparent',
+  },
+  {
     id: '89',
     slug: 'ai-automation-for-jewelry-stores',
     title: 'AI Automation for Independent Jewelry Stores: What It Actually Does',
