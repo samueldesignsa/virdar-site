@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '91',
+    slug: 'ai-automation-for-carpet-cleaning-companies',
+    title: 'AI Automation for Carpet Cleaning Companies: What It Actually Does',
+    excerpt: 'Carpet cleaning businesses lose repeat revenue to unworked customer lists, commercial accounts that go quiet, and estimate dropout on high-ticket jobs. Here\'s what AI automation actually does for an independent carpet cleaning company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 4, 2026',
+    gradient: 'from-amber-700/15 via-amber-700/5 to-transparent',
+  },
+  {
     id: '90',
     slug: 'ai-automation-for-auto-detailing-companies',
     title: 'AI Automation for Auto Detailing Companies: What It Actually Does',
