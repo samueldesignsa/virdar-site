@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '92',
+    slug: 'ai-automation-for-pressure-washing-companies',
+    title: 'AI Automation for Pressure Washing Companies: What It Actually Does',
+    excerpt: 'Pressure washing businesses lose their fall season to unworked customer lists, commercial accounts nobody reactivates, and estimate dropout on large projects. Here\'s what AI automation actually does for an independent pressure washing company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 7, 2026',
+    gradient: 'from-cyan-600/15 via-cyan-600/5 to-transparent',
+  },
+  {
     id: '91',
     slug: 'ai-automation-for-carpet-cleaning-companies',
     title: 'AI Automation for Carpet Cleaning Companies: What It Actually Does',
