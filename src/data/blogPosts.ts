@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '93',
+    slug: 'ai-automation-for-handyman-services',
+    title: 'AI Automation for Handyman Services: What It Actually Does',
+    excerpt: 'Independent handymen and small home repair contractors lose fall revenue to unworked customer lists, property manager accounts that go quiet, and estimates that disappear after the quote. Here\'s what AI automation actually does for a handyman business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 8, 2026',
+    gradient: 'from-orange-600/15 via-orange-600/5 to-transparent',
+  },
+  {
     id: '92',
     slug: 'ai-automation-for-pressure-washing-companies',
     title: 'AI Automation for Pressure Washing Companies: What It Actually Does',
