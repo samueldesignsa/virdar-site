@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '94',
+    slug: 'ai-automation-for-window-cleaning-companies',
+    title: 'AI Automation for Window Cleaning Companies: What It Actually Does',
+    excerpt: 'Window cleaning businesses lose recurring commercial contracts to no follow-up, residential customers to unworked lists, and estimate dropout on commercial and post-construction work. Here\'s what AI automation actually does for a window cleaning company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 9, 2026',
+    gradient: 'from-sky-500/15 via-sky-500/5 to-transparent',
+  },
+  {
     id: '93',
     slug: 'ai-automation-for-handyman-services',
     title: 'AI Automation for Handyman Services: What It Actually Does',
