@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '95',
+    slug: 'ai-automation-for-landscaping-lawn-care-companies',
+    title: 'AI Automation for Landscaping and Lawn Care Companies: What It Actually Does',
+    excerpt: 'Lawn care businesses lose fall revenue to residential customers who paused and never rebooked, upsell services nobody offered, commercial accounts that drifted, and estimates that went cold. Here\'s what AI automation actually does for a landscaping company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 10, 2026',
+    gradient: 'from-green-600/15 via-green-600/5 to-transparent',
+  },
+  {
     id: '94',
     slug: 'ai-automation-for-window-cleaning-companies',
     title: 'AI Automation for Window Cleaning Companies: What It Actually Does',
