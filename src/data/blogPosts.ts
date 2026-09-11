@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '96',
+    slug: 'ai-automation-for-painting-contractors',
+    title: 'AI Automation for Painting Contractors: What It Actually Does',
+    excerpt: 'Painting contractors lose fall revenue to estimates that go cold, exterior project windows that close unbooked, interior refresh jobs nobody offered, and commercial repaint accounts that drift. Here\'s what AI automation actually does for a painting contractor.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 11, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
     id: '95',
     slug: 'ai-automation-for-landscaping-lawn-care-companies',
     title: 'AI Automation for Landscaping and Lawn Care Companies: What It Actually Does',
