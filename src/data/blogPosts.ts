@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '97',
+    slug: 'ai-automation-for-fencing-companies',
+    title: 'AI Automation for Fencing Companies: What It Actually Does',
+    excerpt: 'Fencing companies lose fall revenue to estimates that go cold, past customers nobody reactivates, property management accounts that drift, and builder relationships that never get built. Here\'s what AI automation actually does for a fencing contractor.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 14, 2026',
+    gradient: 'from-stone-500/15 via-stone-500/5 to-transparent',
+  },
+  {
     id: '96',
     slug: 'ai-automation-for-painting-contractors',
     title: 'AI Automation for Painting Contractors: What It Actually Does',
