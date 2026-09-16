@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '98',
+    slug: 'ai-automation-for-irrigation-sprinkler-companies',
+    title: 'AI Automation for Irrigation and Sprinkler Companies: What It Actually Does',
+    excerpt: 'Irrigation companies lose fall revenue to unscheduled winterization blowouts, spring startup reservations nobody captures, repair estimates that go cold, and commercial accounts that drift between seasons. Here\'s what AI automation actually does for an independent irrigation contractor.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 16, 2026',
+    gradient: 'from-teal-600/15 via-teal-600/5 to-transparent',
+  },
+  {
     id: '97',
     slug: 'ai-automation-for-fencing-companies',
     title: 'AI Automation for Fencing Companies: What It Actually Does',
