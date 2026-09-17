@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '99',
+    slug: 'ai-automation-for-foundation-repair-companies',
+    title: 'AI Automation for Foundation Repair Companies: What It Actually Does',
+    excerpt: 'Foundation repair companies lose fall revenue to assessment estimates that go cold, past customers nobody follows up with, real estate referral pipelines nobody builds, and commercial accounts that drift. Here\'s what AI automation actually does for a foundation repair contractor in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 17, 2026',
+    gradient: 'from-amber-700/15 via-amber-700/5 to-transparent',
+  },
+  {
     id: '98',
     slug: 'ai-automation-for-irrigation-sprinkler-companies',
     title: 'AI Automation for Irrigation and Sprinkler Companies: What It Actually Does',
