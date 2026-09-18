@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '100',
+    slug: 'ai-automation-for-concrete-hardscape-contractors',
+    title: 'AI Automation for Concrete and Hardscape Contractors: What It Actually Does',
+    excerpt: 'Concrete and hardscape contractors lose fall revenue to estimates that go cold, past customers nobody reactivates, builder referral pipelines nobody builds, and commercial accounts that slip to next year. Here\'s what AI automation actually does for a concrete or hardscape contractor in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 18, 2026',
+    gradient: 'from-stone-600/15 via-stone-600/5 to-transparent',
+  },
+  {
     id: '99',
     slug: 'ai-automation-for-foundation-repair-companies',
     title: 'AI Automation for Foundation Repair Companies: What It Actually Does',
