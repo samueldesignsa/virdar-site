@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '101',
+    slug: 'ai-automation-for-flooring-companies',
+    title: 'AI Automation for Flooring Companies: What It Actually Does',
+    excerpt: 'Flooring companies lose fall revenue to estimates that went cold over summer, past customers nobody follows up with for additional rooms, commercial accounts that defer to Q4, and builder relationships that never get built. Here\'s what AI automation actually does for a flooring company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 21, 2026',
+    gradient: 'from-amber-800/15 via-amber-800/5 to-transparent',
+  },
+  {
     id: '100',
     slug: 'ai-automation-for-concrete-hardscape-contractors',
     title: 'AI Automation for Concrete and Hardscape Contractors: What It Actually Does',
