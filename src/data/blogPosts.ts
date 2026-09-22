@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '102',
+    slug: 'ai-automation-for-appliance-repair-companies',
+    title: 'AI Automation for Appliance Repair Companies: What It Actually Does',
+    excerpt: 'Appliance repair companies lose fall revenue to unanswered calls during the holiday rush, past customers nobody reactivates, property management accounts nobody pursues, and service agreement sales nobody makes. Here\'s what AI automation actually does for an appliance repair business in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 22, 2026',
+    gradient: 'from-slate-600/15 via-slate-600/5 to-transparent',
+  },
+  {
     id: '101',
     slug: 'ai-automation-for-flooring-companies',
     title: 'AI Automation for Flooring Companies: What It Actually Does',
