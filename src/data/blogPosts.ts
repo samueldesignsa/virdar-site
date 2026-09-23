@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '103',
+    slug: 'ai-automation-for-junk-removal-companies',
+    title: 'AI Automation for Junk Removal Companies: What It Actually Does',
+    excerpt: 'Junk removal companies lose fall revenue to missed calls, real estate pipelines nobody builds, reviews nobody asks for, and past customers who never get contacted again. Here\'s what AI automation actually does for a junk removal business in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 23, 2026',
+    gradient: 'from-orange-700/15 via-orange-700/5 to-transparent',
+  },
+  {
     id: '102',
     slug: 'ai-automation-for-appliance-repair-companies',
     title: 'AI Automation for Appliance Repair Companies: What It Actually Does',
