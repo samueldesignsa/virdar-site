@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '104',
+    slug: 'ai-automation-for-holiday-lighting-companies',
+    title: 'AI Automation for Holiday Lighting Companies: What It Actually Does',
+    excerpt: 'Holiday lighting companies lose their short booking season to slow quote responses, real estate pipelines nobody builds, reviews nobody asks for, and last year\'s customers who never get contacted again. Here\'s what AI automation actually does for a holiday lighting business in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 24, 2026',
+    gradient: 'from-yellow-600/15 via-yellow-600/5 to-transparent',
+  },
+  {
     id: '103',
     slug: 'ai-automation-for-junk-removal-companies',
     title: 'AI Automation for Junk Removal Companies: What It Actually Does',
