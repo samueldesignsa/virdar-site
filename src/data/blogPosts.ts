@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '105',
+    slug: 'ai-automation-for-kitchen-bath-remodeling-contractors',
+    title: 'AI Automation for Kitchen and Bath Remodeling Contractors: What It Actually Does',
+    excerpt: 'Remodeling contractors lose Q4 revenue to slow estimate responses, dead proposals nobody follows up on, past clients who never get asked for referrals, and a Q4 booking window that closes fast. Here\'s what AI automation actually does for a kitchen and bath remodeling business in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 25, 2026',
+    gradient: 'from-cyan-700/15 via-cyan-700/5 to-transparent',
+  },
+  {
     id: '104',
     slug: 'ai-automation-for-holiday-lighting-companies',
     title: 'AI Automation for Holiday Lighting Companies: What It Actually Does',
