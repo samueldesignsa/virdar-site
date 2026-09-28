@@ -11,6 +11,36 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '106',
+    slug: 'ai-automation-for-insulation-companies',
+    title: 'AI Automation for Insulation Companies: What It Actually Does',
+    excerpt: 'Insulation contractors lose revenue to slow quote responses, a Q4 pre-winter booking window that closes fast, dead estimates nobody follows up on, and builder referral pipelines nobody builds. Here\'s what AI automation actually does for an insulation company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 28, 2026',
+    gradient: 'from-blue-800/15 via-blue-800/5 to-transparent',
+  },
+  {
+    id: '105',
+    slug: 'ai-automation-for-kitchen-bath-remodeling-contractors',
+    title: 'AI Automation for Kitchen and Bath Remodeling Contractors: What It Actually Does',
+    excerpt: 'Remodeling contractors lose Q4 revenue to slow estimate responses, dead proposals nobody follows up on, past clients who never get asked for referrals, and a Q4 booking window that closes fast. Here\'s what AI automation actually does for a kitchen and bath remodeling business in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 25, 2026',
+    gradient: 'from-cyan-700/15 via-cyan-700/5 to-transparent',
+  },
+  {
+    id: '104',
+    slug: 'ai-automation-for-holiday-lighting-companies',
+    title: 'AI Automation for Holiday Lighting Companies: What It Actually Does',
+    excerpt: 'Holiday lighting companies lose their short booking season to slow quote responses, real estate pipelines nobody builds, reviews nobody asks for, and last year\'s customers who never get contacted again. Here\'s what AI automation actually does for a holiday lighting business in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 24, 2026',
+    gradient: 'from-yellow-600/15 via-yellow-600/5 to-transparent',
+  },
+  {
     id: '103',
     slug: 'ai-automation-for-junk-removal-companies',
     title: 'AI Automation for Junk Removal Companies: What It Actually Does',
