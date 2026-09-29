@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '107',
+    slug: 'ai-automation-for-chimney-fireplace-companies',
+    title: 'AI Automation for Chimney and Fireplace Companies: What It Actually Does',
+    excerpt: 'Chimney and fireplace companies lose their short fall season to slow inspection responses, a booking window that closes in October, dead estimates on firebox repairs nobody follows up on, and annual service customers nobody re-contacts. Here\'s what AI automation actually does for a chimney company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 29, 2026',
+    gradient: 'from-red-900/15 via-red-900/5 to-transparent',
+  },
+  {
     id: '106',
     slug: 'ai-automation-for-insulation-companies',
     title: 'AI Automation for Insulation Companies: What It Actually Does',
