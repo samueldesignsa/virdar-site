@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '108',
+    slug: 'ai-automation-for-generator-installation-companies',
+    title: 'AI Automation for Generator Installation Companies: What It Actually Does',
+    excerpt: 'Generator installation companies lose their pre-winter season to slow quote responses, a fall booking window that fills fast, dead estimates nobody follows up on, and past customers who never hear from them again. Here\'s what AI automation actually does for a generator company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'September 30, 2026',
+    gradient: 'from-yellow-500/15 via-yellow-500/5 to-transparent',
+  },
+  {
     id: '107',
     slug: 'ai-automation-for-chimney-fireplace-companies',
     title: 'AI Automation for Chimney and Fireplace Companies: What It Actually Does',
