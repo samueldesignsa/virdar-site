@@ -11,6 +11,26 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '110',
+    slug: 'ai-automation-for-custom-home-builders',
+    title: 'AI Automation for Custom Home Builders: What It Actually Does',
+    excerpt: 'Custom home builders lose design contracts to slow inquiry responses, dead proposals nobody follows up on, architect and designer referral pipelines nobody builds, and past clients nobody re-engages. Here\'s what AI automation actually does for a custom home builder in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 5, 2026',
+    gradient: 'from-amber-700/15 via-amber-700/5 to-transparent',
+  },
+  {
+    id: '109',
+    slug: 'ai-automation-for-water-fire-damage-restoration-companies',
+    title: 'AI Automation for Water and Fire Damage Restoration Companies: What It Actually Does',
+    excerpt: 'Restoration companies lose jobs to slow emergency responses, insurance adjuster relationships nobody builds, dead scopes nobody follows up on, and past customers who never hear from them again. Here\'s what AI automation actually does for a water and fire damage restoration company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 1, 2026',
+    gradient: 'from-blue-600/15 via-blue-600/5 to-transparent',
+  },
+  {
     id: '108',
     slug: 'ai-automation-for-generator-installation-companies',
     title: 'AI Automation for Generator Installation Companies: What It Actually Does',
