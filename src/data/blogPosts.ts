@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '111',
+    slug: 'ai-automation-for-pool-builders',
+    title: 'AI Automation for Pool Builders: What It Actually Does',
+    excerpt: 'Pool builders lose spring contracts to slow inquiry responses, dead design proposals nobody follows up on, landscaper and showroom referral pipelines nobody builds, and past clients nobody re-engages. October is the planning window for spring installs — here\'s what AI automation actually does for a pool builder in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 7, 2026',
+    gradient: 'from-cyan-600/15 via-cyan-600/5 to-transparent',
+  },
+  {
     id: '110',
     slug: 'ai-automation-for-custom-home-builders',
     title: 'AI Automation for Custom Home Builders: What It Actually Does',
