@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '112',
+    slug: 'ai-automation-for-home-inspectors',
+    title: 'AI Automation for Home Inspectors: What It Actually Does',
+    excerpt: 'Home inspectors lose jobs to slow inquiry responses, real estate agent referral pipelines nobody builds, open requests nobody follows up on, and past clients approaching their 1-year warranty window nobody contacts. Q4 is a busy real estate season — here\'s what AI automation actually does for a home inspector in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 8, 2026',
+    gradient: 'from-emerald-700/15 via-emerald-700/5 to-transparent',
+  },
+  {
     id: '111',
     slug: 'ai-automation-for-pool-builders',
     title: 'AI Automation for Pool Builders: What It Actually Does',
