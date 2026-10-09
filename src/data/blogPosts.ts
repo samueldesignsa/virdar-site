@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '113',
+    slug: 'ai-automation-for-commercial-cleaning-janitorial-companies',
+    title: 'AI Automation for Commercial Cleaning and Janitorial Companies: What It Actually Does',
+    excerpt: 'Commercial cleaning companies lose contracts to slow quote responses, annual renewals nobody follows up, and new building onboarding that never converts. October is Q4 contract season — here\'s what AI automation actually does for a janitorial company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 9, 2026',
+    gradient: 'from-cyan-700/15 via-cyan-700/5 to-transparent',
+  },
+  {
     id: '112',
     slug: 'ai-automation-for-home-inspectors',
     title: 'AI Automation for Home Inspectors: What It Actually Does',
