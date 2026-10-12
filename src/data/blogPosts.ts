@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '114',
+    slug: 'ai-automation-for-plumbing-contractors',
+    title: 'AI Automation for Plumbing Contractors: What It Actually Does',
+    excerpt: 'Plumbing contractors lose revenue to slow emergency responses, water heater ages nobody tracks, estimates that go cold, and past customers nobody reconnects with. October is the last warm window before winter creates real urgency — here\'s what AI automation actually does for a plumbing company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 12, 2026',
+    gradient: 'from-blue-700/15 via-blue-700/5 to-transparent',
+  },
+  {
     id: '113',
     slug: 'ai-automation-for-commercial-cleaning-janitorial-companies',
     title: 'AI Automation for Commercial Cleaning and Janitorial Companies: What It Actually Does',
