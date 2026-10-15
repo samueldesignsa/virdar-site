@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '115',
+    slug: 'ai-automation-for-air-duct-cleaning-companies',
+    title: 'AI Automation for Air Duct Cleaning Companies: What It Actually Does',
+    excerpt: 'Air duct cleaning companies lose their fall season to missed outreach before the first heat cycle, past customers nobody contacts, real estate referrals nobody builds, and dryer vent cleaning nobody cross-sells. October is the peak pre-winter window — here\'s what AI automation actually does for an air duct cleaning company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 15, 2026',
+    gradient: 'from-slate-500/15 via-slate-500/5 to-transparent',
+  },
+  {
     id: '114',
     slug: 'ai-automation-for-plumbing-contractors',
     title: 'AI Automation for Plumbing Contractors: What It Actually Does',
@@ -861,16 +871,6 @@ export const blogPosts: BlogPost[] = [
     gradient: 'from-sky-300/15 via-sky-300/5 to-transparent',
   },
   {
-    id: '29',
-    slug: 'ai-automation-for-painting-contractors',
-    title: 'AI Automation for Painting Contractors: What It Actually Does',
-    excerpt: 'Painting contractors lose thousands every season to estimates that go dark, past customers nobody reactivates, and completed jobs that never produce a review or a referral. Here\'s what AI automation actually looks like for an independent painting company.',
-    category: 'Industry Deep Dives',
-    readTime: '7 min read',
-    date: 'June 1, 2026',
-    gradient: 'from-yellow-500/15 via-yellow-500/5 to-transparent',
-  },
-  {
     id: '28',
     slug: 'ai-automation-for-electrical-contractors',
     title: 'AI Automation for Electrical Contractors: What It Actually Does',
@@ -879,16 +879,6 @@ export const blogPosts: BlogPost[] = [
     readTime: '7 min read',
     date: 'May 29, 2026',
     gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
-  },
-  {
-    id: '27',
-    slug: 'ai-automation-for-plumbing-contractors',
-    title: 'AI Automation for Plumbing Contractors: What It Actually Does',
-    excerpt: 'Plumbing contractors lose thousands every year to estimates that go dark, past customers nobody contacts again, and water heaters that age out untracked. Here\'s what AI automation actually looks like for an independent plumbing company.',
-    category: 'Industry Deep Dives',
-    readTime: '7 min read',
-    date: 'May 28, 2026',
-    gradient: 'from-blue-500/15 via-blue-500/5 to-transparent',
   },
   {
     id: '26',
