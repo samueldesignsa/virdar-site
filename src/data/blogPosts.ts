@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '116',
+    slug: 'ai-automation-for-solar-installation-companies',
+    title: 'AI Automation for Solar Installation Companies: What It Actually Does',
+    excerpt: 'Solar installation companies lose Q4 revenue to stale quotes nobody follows up, referrals nobody asks for, a year-end ITC deadline nobody markets, and post-install silence that kills battery add-on sales. October is the last month to close 2026 installations — here\'s what AI automation actually does for a solar company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 16, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
     id: '115',
     slug: 'ai-automation-for-air-duct-cleaning-companies',
     title: 'AI Automation for Air Duct Cleaning Companies: What It Actually Does',
