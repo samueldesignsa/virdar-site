@@ -11,6 +11,36 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '117',
+    slug: 'ai-automation-for-pet-boarding-doggy-daycare',
+    title: 'AI Automation for Pet Boarding and Doggy Daycare Businesses: What It Actually Does',
+    excerpt: 'Pet boarding facilities and doggy daycares lose holiday revenue to regular clients who book elsewhere, membership drift nobody catches, past customers nobody contacts between visits, and grooming add-ons nobody offers at pickup. Thanksgiving is five weeks out — here\'s what AI automation actually does for a pet boarding business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 19, 2026',
+    gradient: 'from-amber-600/15 via-amber-600/5 to-transparent',
+  },
+  {
+    id: '116',
+    slug: 'ai-automation-for-solar-installation-companies',
+    title: 'AI Automation for Solar Installation Companies: What It Actually Does',
+    excerpt: 'Solar installation companies lose Q4 revenue to stale quotes nobody follows up, referrals nobody asks for, a year-end ITC deadline nobody markets, and post-install silence that kills battery add-on sales. October is the last month to close 2026 installations — here\'s what AI automation actually does for a solar company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 16, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
+    id: '115',
+    slug: 'ai-automation-for-air-duct-cleaning-companies',
+    title: 'AI Automation for Air Duct Cleaning Companies: What It Actually Does',
+    excerpt: 'Air duct cleaning companies lose their fall season to missed outreach before the first heat cycle, past customers nobody contacts, real estate referrals nobody builds, and dryer vent cleaning nobody cross-sells. October is the peak pre-winter window — here\'s what AI automation actually does for an air duct cleaning company in North Texas.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 15, 2026',
+    gradient: 'from-slate-500/15 via-slate-500/5 to-transparent',
+  },
+  {
     id: '114',
     slug: 'ai-automation-for-plumbing-contractors',
     title: 'AI Automation for Plumbing Contractors: What It Actually Does',
