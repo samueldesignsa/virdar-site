@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '118',
+    slug: 'ai-automation-for-custom-window-treatment-companies',
+    title: 'AI Automation for Custom Window Treatment Companies: What It Actually Does',
+    excerpt: 'Custom window treatment companies lose Q4 revenue to cold quotes nobody follows up, installation reschedules that stall in limbo, referrals nobody captures at delivery, and past customers nobody contacts for holiday reorders. Here\'s what AI automation actually does for a window treatment business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 23, 2026',
+    gradient: 'from-sky-600/15 via-sky-600/5 to-transparent',
+  },
+  {
     id: '117',
     slug: 'ai-automation-for-pet-boarding-doggy-daycare',
     title: 'AI Automation for Pet Boarding and Doggy Daycare Businesses: What It Actually Does',
