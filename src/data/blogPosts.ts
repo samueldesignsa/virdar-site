@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '119',
+    slug: 'ai-automation-for-catering-companies-event-caterers',
+    title: 'AI Automation for Catering Companies and Event Caterers: What It Actually Does',
+    excerpt: 'Catering companies lose holiday season revenue to cold proposals nobody follows up, deposits that stall in limbo, event-day changes nobody tracks, and corporate clients nobody contacts for repeat bookings. Holiday party season is open — here\'s what AI automation actually does for a catering business.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 26, 2026',
+    gradient: 'from-rose-600/15 via-rose-600/5 to-transparent',
+  },
+  {
     id: '118',
     slug: 'ai-automation-for-custom-window-treatment-companies',
     title: 'AI Automation for Custom Window Treatment Companies: What It Actually Does',
