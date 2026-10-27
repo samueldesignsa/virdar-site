@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '120',
+    slug: 'ai-automation-for-event-dj-entertainment-companies',
+    title: 'AI Automation for Event DJ and Entertainment Companies: What It Actually Does',
+    excerpt: 'Event DJ and entertainment companies lose Q4 revenue to inquiries nobody follows up, event details nobody confirms before the show, reviews nobody captures after, and past clients nobody contacts for referrals. Holiday party season is open right now — here\'s what AI automation actually does for a DJ company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 27, 2026',
+    gradient: 'from-violet-600/15 via-violet-600/5 to-transparent',
+  },
+  {
     id: '119',
     slug: 'ai-automation-for-catering-companies-event-caterers',
     title: 'AI Automation for Catering Companies and Event Caterers: What It Actually Does',
