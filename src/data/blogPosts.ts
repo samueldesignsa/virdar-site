@@ -11,6 +11,26 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '122',
+    slug: 'ai-automation-for-commercial-linen-laundry-services',
+    title: 'AI Automation for Commercial Linen and Laundry Services: What It Actually Does',
+    excerpt: 'Commercial linen and laundry services lose Q4 revenue to route change requests that fall through the cracks, cold quotes nobody follows up, dormant accounts nobody reactivates, and billing disputes that quietly kill long-term clients. Holiday season is the highest-volume stretch of the year — here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 29, 2026',
+    gradient: 'from-teal-600/15 via-teal-600/5 to-transparent',
+  },
+  {
+    id: '121',
+    slug: 'ai-automation-for-party-event-rental-companies',
+    title: 'AI Automation for Party and Event Rental Companies: What It Actually Does',
+    excerpt: 'Party and event rental companies lose Q4 revenue to proposals nobody follows up, deposits that stall in limbo, delivery logistics nobody confirms, and corporate accounts nobody contacts between events. Holiday party season is open — here\'s what AI automation actually does for a rental company.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'October 28, 2026',
+    gradient: 'from-emerald-600/15 via-emerald-600/5 to-transparent',
+  },
+  {
     id: '120',
     slug: 'ai-automation-for-event-dj-entertainment-companies',
     title: 'AI Automation for Event DJ and Entertainment Companies: What It Actually Does',
