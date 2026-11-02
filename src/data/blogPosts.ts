@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '123',
+    slug: 'ai-automation-for-house-cleaning-services',
+    title: 'AI Automation for House Cleaning Services: What It Actually Does',
+    excerpt: 'House cleaning services lose revenue to quotes nobody follows up, one-time clients who never become recurring, last-minute cancellations that don\'t get rebooked, and holiday surge demand that gets filled by the competition. The Thanksgiving booking window is open right now — here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 2, 2026',
+    gradient: 'from-sky-600/15 via-sky-600/5 to-transparent',
+  },
+  {
     id: '122',
     slug: 'ai-automation-for-commercial-linen-laundry-services',
     title: 'AI Automation for Commercial Linen and Laundry Services: What It Actually Does',
