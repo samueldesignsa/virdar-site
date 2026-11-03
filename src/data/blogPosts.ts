@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '124',
+    slug: 'ai-automation-for-personal-chef-private-dining-services',
+    title: 'AI Automation for Personal Chef and Private Dining Services: What It Actually Does',
+    excerpt: 'Personal chef services lose holiday revenue to inquiries nobody follows up, event clients who never book again, a Thanksgiving booking window that closes unworked, and menu consultation calls that go cold. The holiday season books now — here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 3, 2026',
+    gradient: 'from-rose-700/15 via-rose-700/5 to-transparent',
+  },
+  {
     id: '123',
     slug: 'ai-automation-for-house-cleaning-services',
     title: 'AI Automation for House Cleaning Services: What It Actually Does',
