@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://virdar.co/blog/</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://virdar.co/blog/ai-automation-for-acupuncture-integrative-medicine.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://virdar.co/blog/ai-automation-for-personal-chef-private-dining-services.html</loc>

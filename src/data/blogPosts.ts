@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '125',
+    slug: 'ai-automation-for-acupuncture-integrative-medicine',
+    title: 'AI Automation for Acupuncture and Integrative Medicine Practices: What It Actually Does',
+    excerpt: 'Acupuncture practices lose revenue to new patient inquiries nobody answers fast enough, lapsed patients nobody reactivates, FSA dollars that expire December 31, and treatment plans patients abandon mid-protocol. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 4, 2026',
+    gradient: 'from-amber-600/15 via-amber-600/5 to-transparent',
+  },
+  {
     id: '124',
     slug: 'ai-automation-for-personal-chef-private-dining-services',
     title: 'AI Automation for Personal Chef and Private Dining Services: What It Actually Does',
