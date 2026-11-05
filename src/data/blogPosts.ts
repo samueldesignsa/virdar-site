@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '126',
+    slug: 'ai-automation-for-independent-pharmacies-compounding-pharmacies',
+    title: 'AI Automation for Independent Pharmacies and Compounding Pharmacies: What It Actually Does',
+    excerpt: 'Independent pharmacies lose patients to silent refill dropout, abandoned new prescriptions, and missed flu season outreach. FSA balances expire December 31. Here\'s what AI automation actually does for an independent pharmacy.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 5, 2026',
+    gradient: 'from-green-700/15 via-green-700/5 to-transparent',
+  },
+  {
     id: '125',
     slug: 'ai-automation-for-acupuncture-integrative-medicine',
     title: 'AI Automation for Acupuncture and Integrative Medicine Practices: What It Actually Does',
