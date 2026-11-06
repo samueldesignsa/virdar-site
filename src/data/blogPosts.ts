@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '127',
+    slug: 'ai-automation-for-bridal-boutiques-wedding-dress-shops',
+    title: 'AI Automation for Bridal Boutiques and Wedding Dress Shops: What It Actually Does',
+    excerpt: 'Bridal boutiques lose brides to slow appointment responses, post-tour silence, missed accessory upsells, and a referral list nobody works. Engagement season peaks Thanksgiving through New Year\'s Eve. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 6, 2026',
+    gradient: 'from-pink-500/15 via-pink-500/5 to-transparent',
+  },
+  {
     id: '126',
     slug: 'ai-automation-for-independent-pharmacies-compounding-pharmacies',
     title: 'AI Automation for Independent Pharmacies and Compounding Pharmacies: What It Actually Does',
