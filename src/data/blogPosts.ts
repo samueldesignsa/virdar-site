@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '128',
+    slug: 'ai-automation-for-boutique-clothing-stores-gift-boutiques',
+    title: 'AI Automation for Boutique Clothing Stores and Gift Boutiques: What It Actually Does',
+    excerpt: 'Boutique clothing stores lose holiday revenue to a dormant customer list, in-store browsers who leave without buying, gift cards that only sell reactively, and VIP customers nobody notifies. Black Friday is three weeks away. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 9, 2026',
+    gradient: 'from-violet-500/15 via-violet-500/5 to-transparent',
+  },
+  {
     id: '127',
     slug: 'ai-automation-for-bridal-boutiques-wedding-dress-shops',
     title: 'AI Automation for Bridal Boutiques and Wedding Dress Shops: What It Actually Does',
