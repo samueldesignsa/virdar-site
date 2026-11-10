@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '129',
+    slug: 'ai-automation-for-independent-jewelers-custom-jewelry-stores',
+    title: 'AI Automation for Independent Jewelers and Custom Jewelry Stores: What It Actually Does',
+    excerpt: 'Independent jewelers lose holiday revenue to engagement inquiries nobody follows up, anniversary customers nobody reminds, Black Friday gift buyers who go to the mall, and post-purchase relationships nobody maintains. The holiday sales window is open. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 10, 2026',
+    gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
+  },
+  {
     id: '128',
     slug: 'ai-automation-for-boutique-clothing-stores-gift-boutiques',
     title: 'AI Automation for Boutique Clothing Stores and Gift Boutiques: What It Actually Does',
