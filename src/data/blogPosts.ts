@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '130',
+    slug: 'ai-automation-for-pet-boarding-dog-daycare',
+    title: 'AI Automation for Pet Boarding and Dog Daycare: What It Actually Does',
+    excerpt: 'Pet boarding facilities lose Thanksgiving revenue to late reservations, dormant past clients, and a full waitlist nobody captures. Thanksgiving is 15 days away. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 11, 2026',
+    gradient: 'from-green-500/15 via-green-500/5 to-transparent',
+  },
+  {
     id: '129',
     slug: 'ai-automation-for-independent-jewelers-custom-jewelry-stores',
     title: 'AI Automation for Independent Jewelers and Custom Jewelry Stores: What It Actually Does',
