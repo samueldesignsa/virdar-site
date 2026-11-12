@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '131',
+    slug: 'ai-automation-for-escape-rooms-family-entertainment-centers',
+    title: 'AI Automation for Escape Rooms and Family Entertainment Centers: What It Actually Does',
+    excerpt: 'Escape rooms and family entertainment centers lose holiday revenue to group inquiries nobody follows up, corporate party clients who went elsewhere, and gift cards sold reactively. Corporate holiday party season is now — here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 12, 2026',
+    gradient: 'from-cyan-500/15 via-cyan-500/5 to-transparent',
+  },
+  {
     id: '130',
     slug: 'ai-automation-for-pet-boarding-dog-daycare',
     title: 'AI Automation for Pet Boarding and Dog Daycare: What It Actually Does',
