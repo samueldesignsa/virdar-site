@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '132',
+    slug: 'ai-automation-for-lash-studios-brow-bars',
+    title: 'AI Automation for Lash Studios and Brow Bars: What It Actually Does',
+    excerpt: 'Lash studios and brow bars lose holiday revenue to lapsed clients nobody reactivates, gift cards nobody promotes, first-time clients who don\'t rebook, and same-day cancellations that sit empty. The holiday booking window is open. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 13, 2026',
+    gradient: 'from-rose-500/15 via-rose-500/5 to-transparent',
+  },
+  {
     id: '131',
     slug: 'ai-automation-for-escape-rooms-family-entertainment-centers',
     title: 'AI Automation for Escape Rooms and Family Entertainment Centers: What It Actually Does',
