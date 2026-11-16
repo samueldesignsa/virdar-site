@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '133',
+    slug: 'ai-automation-for-spray-tan-tanning-salons',
+    title: 'AI Automation for Spray Tan and Tanning Salons: What It Actually Does',
+    excerpt: 'Spray tan studios and tanning salons lose holiday revenue to lapsed summer clients nobody reactivates, gift cards nobody promotes, first-time sessions that don\'t convert to regulars, and package series that go unused. Holiday party season opens now. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 16, 2026',
+    gradient: 'from-amber-400/15 via-amber-400/5 to-transparent',
+  },
+  {
     id: '132',
     slug: 'ai-automation-for-lash-studios-brow-bars',
     title: 'AI Automation for Lash Studios and Brow Bars: What It Actually Does',
