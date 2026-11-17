@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '134',
+    slug: 'ai-automation-for-specialty-bakeries-custom-cake-studios',
+    title: 'AI Automation for Specialty Bakeries and Custom Cake Studios: What It Actually Does',
+    excerpt: 'Specialty bakeries lose holiday revenue to no-show pre-orders, lapsed customers nobody reactivates, slow custom order responses, and gift products nobody promotes. Thanksgiving is 9 days away. Here\'s what AI automation actually does.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 17, 2026',
+    gradient: 'from-orange-400/15 via-orange-400/5 to-transparent',
+  },
+  {
     id: '133',
     slug: 'ai-automation-for-spray-tan-tanning-salons',
     title: 'AI Automation for Spray Tan and Tanning Salons: What It Actually Does',
