@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '135',
+    slug: 'ai-automation-for-iv-hydration-drip-clinics',
+    title: 'AI Automation for IV Hydration and Drip Clinics: What It Actually Does',
+    excerpt: 'IV hydration clinics lose revenue to no-shows on expensive appointment slots, lapsed summer clients nobody reactivates, gift cards nobody promotes, and walk-in traffic they\'re too slow to capture. Holiday party season is here.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 18, 2026',
+    gradient: 'from-cyan-400/15 via-cyan-400/5 to-transparent',
+  },
+  {
     id: '134',
     slug: 'ai-automation-for-specialty-bakeries-custom-cake-studios',
     title: 'AI Automation for Specialty Bakeries and Custom Cake Studios: What It Actually Does',
