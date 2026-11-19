@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '136',
+    slug: 'ai-automation-for-independent-wine-spirits-shops',
+    title: 'AI Automation for Independent Wine and Spirits Shops: What It Actually Does',
+    excerpt: 'Independent wine shops lose holiday revenue to no host-gift campaigns, slow inquiry responses, and lapsed customers who bought for a dinner party eight months ago and never came back. Thanksgiving is six days away.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 19, 2026',
+    gradient: 'from-purple-500/15 via-purple-500/5 to-transparent',
+  },
+  {
     id: '135',
     slug: 'ai-automation-for-iv-hydration-drip-clinics',
     title: 'AI Automation for IV Hydration and Drip Clinics: What It Actually Does',
