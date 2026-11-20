@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '137',
+    slug: 'ai-automation-for-professional-organizers-home-organization-services',
+    title: 'AI Automation for Professional Organizers and Home Organization Services: What It Actually Does',
+    excerpt: 'Professional organizers lose revenue to slow inquiry responses, lapsed clients nobody reactivates, and referrals nobody captures. Thanksgiving is 6 days away and the panic-organizing rush is already here.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 20, 2026',
+    gradient: 'from-emerald-500/15 via-emerald-500/5 to-transparent',
+  },
+  {
     id: '136',
     slug: 'ai-automation-for-independent-wine-spirits-shops',
     title: 'AI Automation for Independent Wine and Spirits Shops: What It Actually Does',
