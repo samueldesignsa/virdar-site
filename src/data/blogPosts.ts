@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '138',
+    slug: 'ai-automation-for-independent-florists-local-flower-shops',
+    title: 'AI Automation for Independent Florists and Local Flower Shops: What It Actually Does',
+    excerpt: 'Independent florists lose holiday revenue to slow inquiry responses, no advance order system, and lapsed customers who never came back. Thanksgiving is Thursday. Hanukkah is December 1. The five-week stretch that makes or breaks the year starts right now.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 23, 2026',
+    gradient: 'from-rose-500/15 via-rose-500/5 to-transparent',
+  },
+  {
     id: '137',
     slug: 'ai-automation-for-professional-organizers-home-organization-services',
     title: 'AI Automation for Professional Organizers and Home Organization Services: What It Actually Does',
