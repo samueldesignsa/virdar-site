@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '139',
+    slug: 'ai-automation-for-personal-trainers-independent-fitness-coaches',
+    title: 'AI Automation for Personal Trainers and Independent Fitness Coaches: What It Actually Does',
+    excerpt: 'Independent trainers lose January clients to big-box gyms because they don\'t run December campaigns. The trainers who fill January do it by reaching past clients right now — not by waiting for the resolution crowd to walk in.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 24, 2026',
+    gradient: 'from-cyan-500/15 via-cyan-500/5 to-transparent',
+  },
+  {
     id: '138',
     slug: 'ai-automation-for-independent-florists-local-flower-shops',
     title: 'AI Automation for Independent Florists and Local Flower Shops: What It Actually Does',
