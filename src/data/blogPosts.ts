@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '140',
+    slug: 'ai-automation-for-house-cleaning-residential-cleaning-services',
+    title: 'AI Automation for House Cleaning and Residential Cleaning Services: What It Actually Does',
+    excerpt: 'Residential cleaning services lose revenue to quotes that go cold, one-time clients who never rebook, and lapsed customers nobody reactivates. Holiday hosting season is here — Thanksgiving is tomorrow, Christmas is four weeks away.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 25, 2026',
+    gradient: 'from-green-500/15 via-green-500/5 to-transparent',
+  },
+  {
     id: '139',
     slug: 'ai-automation-for-personal-trainers-independent-fitness-coaches',
     title: 'AI Automation for Personal Trainers and Independent Fitness Coaches: What It Actually Does',
