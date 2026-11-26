@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '141',
+    slug: 'ai-automation-for-independent-coffee-shops-specialty-cafes',
+    title: 'AI Automation for Independent Coffee Shops and Specialty Cafes: What It Actually Does',
+    excerpt: 'Independent coffee shops lose revenue to no holiday gift card campaigns, slow catering inquiry responses, and lapsed regulars nobody reactivates. Black Friday is tomorrow — the five-week holiday sprint starts now.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 26, 2026',
+    gradient: 'from-amber-500/15 via-amber-500/5 to-transparent',
+  },
+  {
     id: '140',
     slug: 'ai-automation-for-house-cleaning-residential-cleaning-services',
     title: 'AI Automation for House Cleaning and Residential Cleaning Services: What It Actually Does',
