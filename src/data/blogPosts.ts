@@ -11,6 +11,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '142',
+    slug: 'ai-automation-for-independent-bookstores',
+    title: 'AI Automation for Independent Bookstores: What It Actually Does',
+    excerpt: 'Independent bookstores lose holiday revenue to no gift card campaigns, slow pre-order systems, and lapsed readers nobody reactivates. Black Friday is today — the five-week gift book sprint starts now.',
+    category: 'Industry Deep Dives',
+    readTime: '7 min read',
+    date: 'November 27, 2026',
+    gradient: 'from-indigo-500/15 via-indigo-500/5 to-transparent',
+  },
+  {
     id: '141',
     slug: 'ai-automation-for-independent-coffee-shops-specialty-cafes',
     title: 'AI Automation for Independent Coffee Shops and Specialty Cafes: What It Actually Does',
